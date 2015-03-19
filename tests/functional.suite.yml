@@ -1,0 +1,6 @@
+class_name: FunctionalTester
+modules:
+    enabled:
+        - Db
+        - Laravel5
+        - FunctionalHelper
