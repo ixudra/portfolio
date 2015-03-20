@@ -144,13 +144,17 @@ class ProjectViewFactoryTest extends BaseViewFactoryTestCase {
         $projectInputHelperMock->shouldReceive('getInputForSearch')->once()->with($input)->andReturn($searchInput);
         App::instance('\Ixudra\Portfolio\Services\Input\ProjectInputHelper', $projectInputHelperMock);
 
+        $projectTypeFormHelperMock = Mockery::mock('\Ixudra\Portfolio\Services\Form\ProjectInputHelper');
+        $projectTypeFormHelperMock->shouldReceive('getAllAsSelectList')->once()->with(true)->andReturn('ProjectTypeList');
+        App::instance('\Ixudra\Portfolio\Services\Form\ProjectInputHelper', $projectTypeFormHelperMock);
+
         $project1 = new Project( array( 'name' => 'Foo' ) );
         $project2 = new Project( array( 'name' => 'Bar' ) );
         $projects = new \Illuminate\Support\Collection( array( $project1, $project2 ) );
 
-        $projectInputHelperMock = Mockery::mock('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository');
-        $projectInputHelperMock->shouldReceive('search')->once()->with($searchInput, 25)->andReturn($projects);
-        App::instance('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository', $projectInputHelperMock);
+        $projectRepositoryMock = Mockery::mock('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository');
+        $projectRepositoryMock->shouldReceive('search')->once()->with($searchInput, 25)->andReturn($projects);
+        App::instance('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository', $projectRepositoryMock);
     }
 
     protected function assertFilterMocks($view, $input)
@@ -163,12 +167,19 @@ class ProjectViewFactoryTest extends BaseViewFactoryTestCase {
 
     protected function createFormMocks()
     {
-        // ...
+        $projectFormHelperMock = Mockery::mock('\Ixudra\Portfolio\Services\Form\ProjectFormHelper');
+        $projectFormHelperMock->shouldReceive('getStatusesAsSelectList')->once()->andReturn('ProjectStatusList');
+        App::instance('\Ixudra\Portfolio\Services\Form\ProjectFormHelper', $projectFormHelperMock);
+
+        $projectTypeFormHelperMock = Mockery::mock('\Ixudra\Portfolio\Services\Form\ProjectInputHelper');
+        $projectTypeFormHelperMock->shouldReceive('getAllAsSelectList')->once()->andReturn('ProjectTypeList');
+        App::instance('\Ixudra\Portfolio\Services\Form\ProjectInputHelper', $projectTypeFormHelperMock);
     }
 
     protected function assertFormMocks($view)
     {
-        // ...
+        $this->assertViewData( $view, 'statuses', 'ProjectStatusList' );
+        $this->assertViewData( $view, 'projectTypes', 'ProjectTypeList' );
     }
 
 }

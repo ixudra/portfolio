@@ -7,6 +7,7 @@
                     <th>{{ Translate::recursive('members.name') }}</th>
                     <th>{{ Translate::recursive('members.contractor_id') }}</th>
                     <th>{{ Translate::recursive('members.customer_id') }}</th>
+                    <th>{{ Translate::recursive('members.project_type_id') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>
@@ -17,6 +18,7 @@
                     <td>{!! HTML::linkRoute('admin.projects.show', $project->name, array($project->id)) !!}</td>
                     <td>{{ $project->contractor_id }}</td>
                     <td>{{ $project->customer_id }}</td>
+                    <td>{{ $project->projectType->name }}</td>
                     <td class="table-small">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

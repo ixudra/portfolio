@@ -13,8 +13,9 @@ class FilterProjectFormRequest extends BaseRequest {
     public function rules()
     {
         return array(
-            'customer_id'           => 'required|integer',
-            'contractor_id'         => 'required|integer',
+            'customer_id'               => 'required|integer',
+            'contractor_id'             => 'required|integer',
+            'project_type_id'           => 'required|integer',
         );
     }
 

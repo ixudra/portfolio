@@ -17,4 +17,22 @@ class EloquentProjectRepository extends BaseEloquentRepository {
         return 'projects';
     }
 
+    public function search($filters, $resultsPerPage)
+    {
+        $foreignKeys = array(
+            'customer_id',
+            'contractor_id',
+            'project_type_id',
+        );
+
+        $results = $this->getModel();
+        $results = $this->applyForeignKeys( $results, $foreignKeys, $filters );
+
+        return $results
+            ->select($this->getTable() .'.*')
+            ->paginate($resultsPerPage)
+            ->appends($filters)
+            ->appends('results_per_page', $resultsPerPage);
+    }
+
 }

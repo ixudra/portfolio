@@ -41,6 +41,10 @@
                 <div class='col-md-4'>{{ Translate::recursive('members.status') }}:</div>
                 <div class='col-md-8'>{{ $project->status }}</div>
             </div>
+            <div class='col-md-10'>
+                <div class='col-md-4'>{{ Translate::recursive('members.hidden') }}:</div>
+                <div class='col-md-8'>{{ $project->present()->isHidden }}</div>
+            </div>
         </div>
     </div>
 

@@ -1,10 +1,13 @@
 <?php namespace Ixudra\Portfolio\Presenters;
 
 
-use Laracasts\Presenter\Presenter;
+use Ixudra\Core\Presenters\BasePresenter;
 
-class ProjectPresenter extends Presenter {
+class ProjectPresenter extends BasePresenter {
 
-    // ...
+    public function isHidden()
+    {
+        return $this->truthy( $this->hidden );
+    }
 
 }

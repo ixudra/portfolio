@@ -14,7 +14,8 @@ class ProjectViewFactory extends BaseViewFactory {
         if( empty($input) ) {
             $input = array(
                 'customer_id'           => '',
-                'contractor_id'         => ''
+                'contractor_id'         => '',
+                'project_type_id'       => ''
             );
         }
 
@@ -54,7 +55,10 @@ class ProjectViewFactory extends BaseViewFactory {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\ProjectInputHelper')->getInputForSearch( $input );
         $projects = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository')->search( $searchInput, 25 );
 
+        $projectTypes = App::make('\Ixudra\Portfolio\Services\Form\ProjectTypeFormHelper')->getAllAsSelectList(true);
+
         $this->addParameter('projects', $projects);
+        $this->addParameter('projectTypes', $projectTypes);
         $this->addParameter('input', $input);
 
         return $this->makeView( $template );
@@ -63,8 +67,10 @@ class ProjectViewFactory extends BaseViewFactory {
     protected function prepareForm($template, $input)
     {
         $statuses = App::make('\Ixudra\Portfolio\Services\Form\ProjectFormHelper')->getStatusesAsSelectList();
+        $projectTypes = App::make('\Ixudra\Portfolio\Services\Form\ProjectTypeFormHelper')->getAllAsSelectList();
 
         $this->addParameter('statuses', $statuses);
+        $this->addParameter('projectTypes', $projectTypes);
         $this->addParameter('input', $input);
 
         return $this->makeView( $template );

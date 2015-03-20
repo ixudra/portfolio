@@ -16,4 +16,13 @@ class UpdateProjectFormRequest extends BaseRequest {
         return Project::getRules();
     }
 
+    public function getInput()
+    {
+        $input = $this->input();
+
+        $input[ 'hidden' ] = $this->convertToTruthyValue( $input, 'hidden' );
+
+        return $input;
+    }
+
 }

@@ -1,9 +1,9 @@
 <?php namespace Ixudra\Portfolio\Presenters;
 
 
-use Laracasts\Presenter\Presenter;
+use Ixudra\Core\Presenters\BasePresenter;
 
-class CustomerPresenter extends Presenter {
+class CustomerPresenter extends BasePresenter {
 
     public function fullName()
     {

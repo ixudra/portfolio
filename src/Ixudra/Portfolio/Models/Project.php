@@ -2,14 +2,38 @@
 
 
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Project extends Model {
 
+    use PresentableTrait;
+
+
     protected $table = 'projects';
 
-    protected $fillable = array( 'name', 'description', 'contractor_id', 'customer_id' );
+    protected $fillable = array(
+        'name',
+        'customer_id',
+        'contractor_id',
+        'description',
+        'start_date',
+        'end_date',
+        'status',
+        'project_type_id',
+        'hidden'
+    );
 
     protected $hidden = array();
+
+    protected $translationKey = 'project';
+
+    protected $presenter = '\Ixudra\Portfolio\Presenters\ProjectPresenter';
+
+
+    public function projectType()
+    {
+        return $this->belongsTo('\Ixudra\Portfolio\Models\ProjectType');
+    }
 
 
     public static function getRules()
@@ -23,7 +47,7 @@ class Project extends Model {
             'end_date'              => 'required|date',
             'status'                => 'required|in:unknown,open,scheduled,in_development,completed,cancelled',
 //            'price_id'              => 'required|integer',
-//            'project_type_id'       => 'required|integer',
+            'project_type_id'       => 'required|integer',
             'hidden'                => 'required|boolean',
         );
     }
