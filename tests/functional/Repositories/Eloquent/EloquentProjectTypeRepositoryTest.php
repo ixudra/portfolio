@@ -98,29 +98,28 @@ class EloquentProjectTypeRepositoryTest extends BaseRepositoryTestCase {
         $this->assertCount(0, $projectTypes);
     }
 
-//    /**
-//     * @covers \Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectTypeRepository::search()
-//     */
-//    public function testSearch()
-//    {
-//        $projectType1 = ProjectType::create( array( 'name' => 'Foo_ProjectType 1' ) );
-//        $projectType2 = ProjectType::create( array( 'name' => 'Bar_ProjectType 2' ) );
-//        $projectType3 = ProjectType::create( array( 'name' => 'Bar_ProjectType 3' ) );
-//        $projectType4 = ProjectType::create( array( 'name' => 'Foo_ProjectType 4' ) );
-//        $projectType5 = ProjectType::create( array( 'name' => 'Foz_ProjectType 5' ) );
-//
-//        $filters = array(
-//            'brand_id'          => 1,
-//            'query'             => 'Foo'
-//        );
-//
-//        $paginator = $this->projectTypeRepository->search($filters, 50, true);
-//        $projectTypes = $paginator->getCollection();
-//
-//        $this->assertCount(5, $projectTypes);
-//        $this->assertCollectionWithOnlyInstancesOf('\Ixudra\Portfolio\Models\ProjectType', $projectTypes);
-//        $this->assertCollectionContains( array($projectType1), $projectTypes );
-//    }
+    /**
+     * @covers \Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectTypeRepository::search()
+     */
+    public function testSearch()
+    {
+        $projectType1 = ProjectType::create( array( 'name' => 'Foo_ProjectType 1' ) );
+        $projectType2 = ProjectType::create( array( 'name' => 'Bar_ProjectType 2' ) );
+        $projectType3 = ProjectType::create( array( 'name' => 'Bar_ProjectType 3' ) );
+        $projectType4 = ProjectType::create( array( 'name' => 'Foo_ProjectType 4' ) );
+        $projectType5 = ProjectType::create( array( 'name' => 'Foz_ProjectType 5' ) );
+
+        $filters = array(
+            'name'          => 'foo',
+        );
+
+        $paginator = $this->projectTypeRepository->search($filters, 50, true);
+        $projectTypes = $paginator->getCollection();
+
+        $this->assertCount(2, $projectTypes);
+        $this->assertCollectionWithOnlyInstancesOf('\Ixudra\Portfolio\Models\ProjectType', $projectTypes);
+        $this->assertCollectionContains( array($projectType1, $projectType4), $projectTypes );
+    }
 
     /**
      * @covers \Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectTypeRepository::search()
