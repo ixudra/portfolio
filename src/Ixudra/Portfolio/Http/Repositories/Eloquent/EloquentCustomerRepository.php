@@ -17,4 +17,22 @@ class EloquentCustomerRepository extends BaseEloquentRepository {
         return 'customers';
     }
 
+    public function search($filters, $resultsPerPage)
+    {
+        $results = $this->getModel();
+        foreach( $filters as $key => $value ) {
+            if( !$this->hasString( $filters, $key ) ) {
+                continue;
+            }
+
+            $results = $results->where( $key, 'like', $value );
+        }
+
+        return $results
+            ->select($this->getTable() .'.*')
+            ->paginate($resultsPerPage)
+            ->appends($filters)
+            ->appends('results_per_page', $resultsPerPage);
+    }
+
 }
