@@ -18,7 +18,7 @@
         <div class='form-group {{ $errors->has('customer_id') ? 'has-error' : '' }}'>
             {!! Form::label('customer_id', Translate::recursive('members.customer_id') .': ', array('class' => 'control-label col-lg-3')) !!}
             <div class="col-lg-4">
-                {!! Form::text('customer_id', $input['customer_id'], array('class' => 'form-control')) !!}
+                {!! Form::select('customer_id', $customers, $input['customer_id'], array('class' => 'form-control')) !!}
                 {!! $errors->first('customer_id', '<span class="help-block">:message</span>') !!}
             </div>
         </div>
@@ -60,7 +60,7 @@
         <div class='form-group {{ $errors->has('hidden') ? 'has-error' : '' }}'>
             {!! Form::label('hidden', Translate::recursive('members.hidden') .': ', array('class' => 'control-label col-lg-3')) !!}
             <div class="col-lg-4">
-                {!! Form::checkbox('hidden', $input['hidden'], array('class' => 'form-control')) !!}
+                {!! Form::checkbox('hidden', 'isHidden', $input['hidden'], array('class' => 'form-control')) !!}
                 {!! $errors->first('hidden', '<span class="help-block">:message</span>') !!}
             </div>
         </div>

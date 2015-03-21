@@ -23,7 +23,7 @@
             </div>
             <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.customer_id') }}:</div>
-                <div class='col-md-8'>{{ $project->customer_id }}</div>
+                <div class='col-md-8'>{{ $project->customer->present()->fullName }}</div>
             </div>
             <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.contractor_id') }}:</div>

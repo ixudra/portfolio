@@ -27,6 +27,12 @@ class Customer extends Model {
     protected $presenter = '\Ixudra\Portfolio\Presenters\CustomerPresenter';
 
 
+    public function projects()
+    {
+        return $this->hasMany('\Ixudra\Portfolio\Models\Project');
+    }
+
+
     public static function getRules()
     {
         return array(

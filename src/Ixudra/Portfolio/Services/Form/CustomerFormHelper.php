@@ -1,6 +1,10 @@
 <?php namespace Ixudra\Portfolio\Services\Form;
 
 
+use App;
+
+use Ixudra\Core\Services\Form\BaseFormHelper;
+
 class CustomerFormHelper extends BaseFormHelper {
 
     protected $repository;

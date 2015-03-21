@@ -30,6 +30,11 @@ class Project extends Model {
     protected $presenter = '\Ixudra\Portfolio\Presenters\ProjectPresenter';
 
 
+    public function customer()
+    {
+        return $this->belongsTo('\Ixudra\Portfolio\Models\Customer');
+    }
+
     public function projectType()
     {
         return $this->belongsTo('\Ixudra\Portfolio\Models\ProjectType');

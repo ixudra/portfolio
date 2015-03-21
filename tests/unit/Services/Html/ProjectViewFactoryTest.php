@@ -144,6 +144,10 @@ class ProjectViewFactoryTest extends BaseViewFactoryTestCase {
         $projectInputHelperMock->shouldReceive('getInputForSearch')->once()->with($input)->andReturn($searchInput);
         App::instance('\Ixudra\Portfolio\Services\Input\ProjectInputHelper', $projectInputHelperMock);
 
+        $customerFormHelperMock = Mockery::mock('\Ixudra\Portfolio\Services\Form\CustomerFormHelper');
+        $customerFormHelperMock->shouldReceive('getAllAsSelectList')->once()->with(true)->andReturn('CustomerList');
+        App::instance('\Ixudra\Portfolio\Services\Form\CustomerFormHelper', $customerFormHelperMock);
+
         $projectTypeFormHelperMock = Mockery::mock('\Ixudra\Portfolio\Services\Form\ProjectInputHelper');
         $projectTypeFormHelperMock->shouldReceive('getAllAsSelectList')->once()->with(true)->andReturn('ProjectTypeList');
         App::instance('\Ixudra\Portfolio\Services\Form\ProjectInputHelper', $projectTypeFormHelperMock);
@@ -171,9 +175,13 @@ class ProjectViewFactoryTest extends BaseViewFactoryTestCase {
         $projectFormHelperMock->shouldReceive('getStatusesAsSelectList')->once()->andReturn('ProjectStatusList');
         App::instance('\Ixudra\Portfolio\Services\Form\ProjectFormHelper', $projectFormHelperMock);
 
-        $projectTypeFormHelperMock = Mockery::mock('\Ixudra\Portfolio\Services\Form\ProjectInputHelper');
+        $customerFormHelperMock = Mockery::mock('\Ixudra\Portfolio\Services\Form\CustomerFormHelper');
+        $customerFormHelperMock->shouldReceive('getAllAsSelectList')->once()->andReturn('CustomerList');
+        App::instance('\Ixudra\Portfolio\Services\Form\CustomerFormHelper', $customerFormHelperMock);
+
+        $projectTypeFormHelperMock = Mockery::mock('\Ixudra\Portfolio\Services\Form\ProjectFormHelper');
         $projectTypeFormHelperMock->shouldReceive('getAllAsSelectList')->once()->andReturn('ProjectTypeList');
-        App::instance('\Ixudra\Portfolio\Services\Form\ProjectInputHelper', $projectTypeFormHelperMock);
+        App::instance('\Ixudra\Portfolio\Services\Form\ProjectFormHelper', $projectTypeFormHelperMock);
     }
 
     protected function assertFormMocks($view)

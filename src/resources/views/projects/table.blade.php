@@ -17,7 +17,7 @@
                     <td>{{ $project->id }}</td>
                     <td>{!! HTML::linkRoute('admin.projects.show', $project->name, array($project->id)) !!}</td>
                     <td>{{ $project->contractor_id }}</td>
-                    <td>{{ $project->customer_id }}</td>
+                    <td>{{ $project->customer->present()->fullName }}</td>
                     <td>{{ $project->projectType->name }}</td>
                     <td class="table-small">
                         <div class="btn-group">
