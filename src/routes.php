@@ -15,5 +15,9 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get(     'projectTypes/filter',                      array('as' => 'projectTypes.filter',                    'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@filter'));
     Route::post(    'projectTypes/filter',                      array('as' => 'projectTypes.filter.process',            'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@filter'));
     Route::resource('projectTypes', '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController');
+
+    Route::get(     'addresses/filter',                         array('as' => 'addresses.filter',                       'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
+    Route::post(    'addresses/filter',                         array('as' => 'addresses.filter.process',               'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
+    Route::resource('addresses', '\Ixudra\Portfolio\Http\Controllers\AddressController');
 });
 

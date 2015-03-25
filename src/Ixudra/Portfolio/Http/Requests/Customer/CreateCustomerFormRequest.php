@@ -2,7 +2,6 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-
 use Ixudra\Portfolio\Models\Customer;
 
 class CreateCustomerFormRequest extends BaseRequest {
