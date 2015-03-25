@@ -2,11 +2,13 @@
 
 
 use Illuminate\Database\Eloquent\Model;
+use Ixudra\Imageable\Traits\ImageableTrait;
 use Laracasts\Presenter\PresentableTrait;
 
 class Project extends Model {
 
     use PresentableTrait;
+    use ImageableTrait;
 
 
     protected $table = 'projects';
@@ -29,6 +31,8 @@ class Project extends Model {
 
     protected $presenter = '\Ixudra\Portfolio\Presenters\ProjectPresenter';
 
+    protected $imagePath = 'images/projects';
+
 
     public function customer()
     {
@@ -38,6 +42,11 @@ class Project extends Model {
     public function projectType()
     {
         return $this->belongsTo('\Ixudra\Portfolio\Models\ProjectType');
+    }
+
+    public function image()
+    {
+        return $this->morphOne('Ixudra\Imageable\Models\Image', 'imageable');
     }
 
 

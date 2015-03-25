@@ -17,12 +17,13 @@
         "php": ">=5.4.0",
         "illuminate/support": "5.0.*",
         "ixudra/core": "5.0.*",
-        "ixudra/translation": "2.0.*"
+        "ixudra/translation": "2.0.*",
+        "laracasts/presenter": "0.2.*"
     },
 
     "autoload": {
         "classmap": [
-            "src/migrations"
+            "src/database/migrations"
         ],
         "psr-0": {
             "Ixudra\\Portfolio\\": "src/"

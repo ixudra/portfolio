@@ -41,7 +41,7 @@ class ProjectController extends BaseController {
 
     public function store(CreateProjectFormRequest $request, ProjectFactory $projectFactory)
     {
-        $project = $projectFactory->make( $request->getInput() );
+        $project = $projectFactory->make( $request->getInput(true) );
 
         return $this->redirect( 'admin.projects.show', array('id' => $project->id), 'success', array( Translate::model( 'project.create.success' ) ) );
     }

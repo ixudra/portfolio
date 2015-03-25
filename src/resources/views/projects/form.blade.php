@@ -60,11 +60,14 @@
         <div class='form-group {{ $errors->has('hidden') ? 'has-error' : '' }}'>
             {!! Form::label('hidden', Translate::recursive('members.hidden') .': ', array('class' => 'control-label col-lg-3')) !!}
             <div class="col-lg-4">
-                {!! Form::checkbox('hidden', 'isHidden', $input['hidden'], array('class' => 'form-control')) !!}
+                {!! Form::checkbox('hidden', 'isHidden', $input['hidden'], array('class' => '')) !!}
                 {!! $errors->first('hidden', '<span class="help-block">:message</span>') !!}
             </div>
         </div>
     </div>
+
+    @include('imageable::images/fields')
+
     <div class="action-button">
         {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
         {!! HTML::linkRoute($redirectUrl, 'Cancel', $redirectParameters, array('class' => 'btn btn-default')) !!}

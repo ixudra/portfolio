@@ -48,4 +48,6 @@
         </div>
     </div>
 
+    @include('imageable::images/data', array('imageable' => $project))
+
 @endsection

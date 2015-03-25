@@ -99,7 +99,7 @@ class ProjectControllerTest extends BaseUnitTestCase {
         $project->id = self::PROJECT_ID;
 
         $createProjectRequestFormMock = Mockery::mock('Ixudra\Portfolio\Http\Requests\Project\CreateProjectFormRequest');
-        $createProjectRequestFormMock->shouldReceive('getInput')->once()->andReturn($input);
+        $createProjectRequestFormMock->shouldReceive('getInput')->once()->with(true)->andReturn($input);
         App::instance('Ixudra\Portfolio\Http\Requests\Project\CreateProjectFormRequest', $createProjectRequestFormMock);
 
         $userFactoryMock = Mockery::mock('Ixudra\Portfolio\Services\Factories\ProjectFactory');

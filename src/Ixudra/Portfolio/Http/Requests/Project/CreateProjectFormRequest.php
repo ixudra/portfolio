@@ -3,6 +3,7 @@
 
 use Ixudra\Core\Http\Requests\BaseRequest;
 use Ixudra\Portfolio\Models\Project;
+use Ixudra\Imageable\Models\Image;
 
 class CreateProjectFormRequest extends BaseRequest {
 
@@ -13,12 +14,17 @@ class CreateProjectFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return Project::getRules();
+        $rules = array_merge(
+            Project::getRules(),
+            Image::getRules()
+        );
+
+        return $rules;
     }
 
-    public function getInput()
+    public function getInput($includeFiles = false)
     {
-        $input = $this->input();
+        $input = parent::getInput( $includeFiles );
 
         $input[ 'hidden' ] = $this->convertToTruthyValue( $input, 'hidden' );
 
