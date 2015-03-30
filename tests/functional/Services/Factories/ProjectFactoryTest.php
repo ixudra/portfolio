@@ -1,8 +1,7 @@
 <?php
 
 
-use App\Services\Factories\ProjectFactory;
-use App\Project;
+use Ixudra\Portfolio\Models\Project;
 
 class ProjectFactoryTest extends BaseFunctionalTestCase {
 
@@ -15,12 +14,12 @@ class ProjectFactoryTest extends BaseFunctionalTestCase {
 
         $this->truncateTables('projects');
 
-        $this->projectFactory = new ProjectFactory();
+        $this->personFactory = App::make('\Ixudra\Portfolio\Services\Factories\ProjectFactory');
     }
 
 
     /**
-     * @covers ProjectFactory::create()
+     * @covers \Ixudra\Portfolio\Services\Factories\ProjectFactory::create()
      */
     public function testCreate()
     {
@@ -32,13 +31,13 @@ class ProjectFactoryTest extends BaseFunctionalTestCase {
 
         $project = $this->projectFactory->make( $input );
 
-        $projectRepository = App::make('\App\Repositories\Eloquent\EloquentProjectRepository');
+        $projectRepository = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository');
         $this->assertEquals( 1, $projectRepository->all()->count() );
-        $this->assertInstanceOf( '\App\Project', $project );
+        $this->assertInstanceOf( '\Ixudra\Portfolio\Models\Project', $project );
     }
 
     /**
-     * @covers ProjectFactory::modify()
+     * @covers \Ixudra\Portfolio\Services\Factories\ProjectFactory::modify()
      */
     public function testModify()
     {
@@ -59,7 +58,7 @@ class ProjectFactoryTest extends BaseFunctionalTestCase {
 
         $this->projectFactory->modify( $project, $input );
 
-        $projectRepository = App::make('\App\Repositories\Eloquent\EloquentProjectRepository');
+        $projectRepository = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository');
         $this->assertEquals( 1, $projectRepository->all()->count() );
         $this->assertEquals( 'Bar', $projectRepository->all()->first()->name );
     }

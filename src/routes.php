@@ -19,5 +19,9 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get(     'addresses/filter',                         array('as' => 'addresses.filter',                       'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
     Route::post(    'addresses/filter',                         array('as' => 'addresses.filter.process',               'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
     Route::resource('addresses', '\Ixudra\Portfolio\Http\Controllers\AddressController');
+
+    Route::get(     'people/filter',                            array('as' => 'people.filter',                          'uses' => '\Ixudra\Portfolio\Http\Controllers\PersonController@filter'));
+    Route::post(    'people/filter',                            array('as' => 'people.filter.process',                  'uses' => '\Ixudra\Portfolio\Http\Controllers\PersonController@filter'));
+    Route::resource('people', '\Ixudra\Portfolio\Http\Controllers\PersonController');
 });
 
