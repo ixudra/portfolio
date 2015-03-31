@@ -23,5 +23,9 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get(     'people/filter',                            array('as' => 'people.filter',                          'uses' => '\Ixudra\Portfolio\Http\Controllers\PersonController@filter'));
     Route::post(    'people/filter',                            array('as' => 'people.filter.process',                  'uses' => '\Ixudra\Portfolio\Http\Controllers\PersonController@filter'));
     Route::resource('people', '\Ixudra\Portfolio\Http\Controllers\PersonController');
+
+    Route::get(     'companies/filter',                         array('as' => 'companies.filter',                       'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@filter'));
+    Route::post(    'companies/filter',                         array('as' => 'companies.filter.process',               'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@filter'));
+    Route::resource('companies', '\Ixudra\Portfolio\Http\Controllers\CompanyController');
 });
 
