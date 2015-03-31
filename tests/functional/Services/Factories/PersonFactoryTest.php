@@ -13,7 +13,7 @@ class PersonFactoryTest extends BaseFunctionalTestCase {
     {
         parent::setUp();
 
-        $this->truncateTables('people');
+        $this->truncateTables('people', 'addresses');
 
         $this->personFactory = App::make('\Ixudra\Portfolio\Services\Factories\PersonFactory');
     }
@@ -22,7 +22,7 @@ class PersonFactoryTest extends BaseFunctionalTestCase {
     /**
      * @covers \Ixudra\Portfolio\Services\Factories\PersonFactory::create()
      * @covers \Ixudra\Portfolio\Services\Factories\PersonFactory::extractAddressInput()
-     * @covers \Ixudra\Portfolio\Services\Factories\PersonFactory::extractApartmentInput()
+     * @covers \Ixudra\Portfolio\Services\Factories\PersonFactory::extractPersonInput()
      */
     public function testCreate()
     {
@@ -57,7 +57,7 @@ class PersonFactoryTest extends BaseFunctionalTestCase {
     /**
      * @covers \Ixudra\Portfolio\Services\Factories\PersonFactory::modify()
      * @covers \Ixudra\Portfolio\Services\Factories\PersonFactory::extractAddressInput()
-     * @covers \Ixudra\Portfolio\Services\Factories\PersonFactory::extractApartmentInput()
+     * @covers \Ixudra\Portfolio\Services\Factories\PersonFactory::extractPersonInput()
      */
     public function testModify()
     {
@@ -109,6 +109,10 @@ class PersonFactoryTest extends BaseFunctionalTestCase {
         $personRepository = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentPersonRepository');
         $this->assertEquals( 1, $personRepository->all()->count() );
         $this->assertEquals( 'Bar_first_name', $personRepository->all()->first()->first_name );
+
+        $addressRepository = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentAddressRepository');
+        $this->assertEquals( 1, $addressRepository->all()->count() );
+        $this->assertEquals( 'Bar_street_1', $person->address->street_1 );
     }
 
 }
