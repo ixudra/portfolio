@@ -3,6 +3,8 @@
 
 use Ixudra\Core\Http\Requests\BaseRequest;
 use Ixudra\Portfolio\Models\Company;
+use Ixudra\Portfolio\Models\Address;
+use Ixudra\Portfolio\Models\Person;
 
 class CreateCompanyFormRequest extends BaseRequest {
 
@@ -13,7 +15,11 @@ class CreateCompanyFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return Company::getRules();
+        return array_merge(
+            Company::getRules(),
+            Address::getRules(),
+            Person::getRules()
+        );
     }
 
 }

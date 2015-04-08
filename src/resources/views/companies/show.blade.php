@@ -40,6 +40,10 @@
         </div>
     </div>
 
-    @include('portfolio::addresses.data', array('address' => $company->corporateAddress))
+    @include('portfolio::companies.corporateAddress', array('address' => $company->corporateAddress))
+
+    @include('portfolio::companies.billingAddress', array('address' => $company->billingAddress))
+
+    @include('portfolio::companies.representative', array('person' => $company->representative))
 
 @endsection

@@ -45,7 +45,17 @@
         </div>
     </div>
 
+    <div class=row">
+        <h3>{{ Translate::recursive('members.corporateAddress') }}</h3>
+    </div>
+
     @include('portfolio::addresses.fields')
+
+    <div class=row">
+        <h3>{{ Translate::recursive('members.representative') }}</h3>
+    </div>
+
+    @include('portfolio::people.fields')
 
     <div class="action-button">
         {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}

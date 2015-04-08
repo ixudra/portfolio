@@ -4,15 +4,19 @@
 use Ixudra\Core\Services\Input\BaseInputHelper;
 use Ixudra\Portfolio\Models\Company;
 use Ixudra\Portfolio\Models\Address;
+use Ixudra\Portfolio\Models\Person;
 
 class CompanyInputHelper extends BaseInputHelper {
 
     protected $addressInputHelper;
 
+    protected $personInputHelper;
 
-    public function __construct(AddressInputHelper $addressInputHelper)
+
+    public function __construct(AddressInputHelper $addressInputHelper, PersonInputHelper $personInputHelper)
     {
         $this->addressInputHelper = $addressInputHelper;
+        $this->personInputHelper = $personInputHelper;
     }
 
 
@@ -20,7 +24,8 @@ class CompanyInputHelper extends BaseInputHelper {
     {
         return array_merge(
             Company::getDefaults(),
-            Address::getDefaults()
+            Address::getDefaults(),
+            Person::getDefaults()
         );
     }
 
@@ -28,7 +33,8 @@ class CompanyInputHelper extends BaseInputHelper {
     {
         return array_merge(
             $model->attributesToArray(),
-            $this->addressInputHelper->getInputForModel( $model->corporateAddress )
+            $this->addressInputHelper->getInputForModel( $model->corporateAddress ),
+            $model->representative->attributesToArray()
         );
     }
 

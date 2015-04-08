@@ -7,6 +7,7 @@
                     <th>{{ Translate::recursive('members.name') }}</th>
                     <th>{{ Translate::recursive('members.vat_nr') }}</th>
                     <th>{{ Translate::recursive('models.address.singular') }}</th>
+                    <th>{{ Translate::recursive('members.representative') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>
@@ -17,6 +18,7 @@
                     <td>{!! HTML::linkRoute('admin.companies.show', $company->name, array($company->id)) !!}</td>
                     <td>{!! HTML::linkRoute('admin.companies.show', $company->vat_nr, array($company->id)) !!}</td>
                     <td>{!! HTML::linkRoute('admin.companies.show', $company->corporateAddress->present()->name, array($company->id)) !!}</td>
+                    <td>{!! HTML::linkRoute('admin.companies.show', $company->representative->present()->fullName, array($company->id)) !!}</td>
                     <td class="table-small">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

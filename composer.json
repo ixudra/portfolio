@@ -17,7 +17,7 @@
         "php": ">=5.4.0",
         "illuminate/support": "5.0.*",
         "ixudra/core": "5.0.*",
-        "ixudra/translation": "2.0.*",
+        "ixudra/translation": "5.0.*",
         "laracasts/presenter": "0.2.*"
     },
 

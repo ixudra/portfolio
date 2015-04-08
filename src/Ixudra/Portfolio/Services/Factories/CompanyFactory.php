@@ -8,10 +8,13 @@ class CompanyFactory {
 
     protected $addressFactory;
 
+    protected $personFactory;
 
-    public function __construct(AddressFactory $addressFactory)
+
+    public function __construct(AddressFactory $addressFactory, PersonFactory $personFactory)
     {
         $this->addressFactory = $addressFactory;
+        $this->personFactory = $personFactory;
     }
 
 
