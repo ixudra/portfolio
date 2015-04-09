@@ -20,21 +20,24 @@ class CompanyInputHelper extends BaseInputHelper {
     }
 
 
-    public function getDefaultInput()
+    public function getDefaultInput($prefix = '')
     {
-        return array_merge(
-            Company::getDefaults(),
-            Address::getDefaults(),
-            Person::getDefaults()
+        $input = array_merge(
+            $this->getPrefixedInput( Company::getDefaults(), $prefix ),
+            $this->addressInputHelper->getDefaultInput( 'corporate_address' ),
+            $this->addressInputHelper->getDefaultInput( 'billing_address' ),
+            $this->getPrefixedInput( Person::getDefaults(), 'representative' )
         );
+
+        return $input;
     }
 
-    public function getInputForModel($model)
+    public function getInputForModel($model, $prefix = '')
     {
         return array_merge(
-            $model->attributesToArray(),
-            $this->addressInputHelper->getInputForModel( $model->corporateAddress ),
-            $model->representative->attributesToArray()
+            $this->getPrefixedInput( $model->attributesToArray(), $prefix ),
+            $this->addressInputHelper->getInputForModel( $model->corporateAddress, 'corporate_address' ),
+            $this->getPrefixedInput( $model->representative->attributesToArray(), 'representative' )
         );
     }
 

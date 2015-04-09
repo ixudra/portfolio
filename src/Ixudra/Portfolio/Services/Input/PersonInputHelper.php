@@ -16,7 +16,7 @@ class PersonInputHelper extends BaseInputHelper {
     }
 
 
-    public function getDefaultInput()
+    public function getDefaultInput($prefix = '')
     {
         return array_merge(
             Person::getDefaults(),
@@ -24,11 +24,11 @@ class PersonInputHelper extends BaseInputHelper {
         );
     }
 
-    public function getInputForModel($model)
+    public function getInputForModel($model, $prefix = '')
     {
         return array_merge(
             $model->attributesToArray(),
-            $this->addressInputHelper->getInputForModel( $model->address )
+            $this->addressInputHelper->getInputForModel($model->address, $prefix)
         );
     }
 

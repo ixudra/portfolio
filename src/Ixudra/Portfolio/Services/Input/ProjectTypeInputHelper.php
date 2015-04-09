@@ -6,7 +6,7 @@ use Ixudra\Portfolio\Models\ProjectType;
 
 class ProjectTypeInputHelper extends BaseInputHelper {
 
-    public function getDefaultInput()
+    public function getDefaultInput($prefix = '')
     {
         return ProjectType::getDefaults();
     }

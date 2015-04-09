@@ -20,7 +20,7 @@ class Company extends Model {
         'fax',
         'billing_address_id',
         'corporate_address_id',
-        'contact_person_id',
+        'representative_id',
     );
 
     protected $guarded = array();

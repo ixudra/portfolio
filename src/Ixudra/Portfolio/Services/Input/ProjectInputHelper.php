@@ -7,7 +7,7 @@ use Ixudra\Portfolio\Models\Project;
 
 class ProjectInputHelper extends BaseInputHelper {
 
-    public function getDefaultInput()
+    public function getDefaultInput($prefix = '')
     {
         return array_merge(
             Project::getDefaults(),

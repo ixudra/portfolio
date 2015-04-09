@@ -15,9 +15,12 @@ class PersonFactory {
     }
 
 
-    public function make($input)
+    public function make($input, $includeAddress = true)
     {
-        $address = $this->addressFactory->make( $this->extractAddressInput( $input ) );
+        $address = null;
+        if( $includeAddress ) {
+            $address = $this->addressFactory->make( $this->extractAddressInput( $input ) );
+        }
 
         return Person::create( $this->extractPersonInput( $address, $input ) );
     }
@@ -46,7 +49,12 @@ class PersonFactory {
             $results[ $key ] = $input [ $key ];
         }
 
-        $results[ 'address_id' ] = $address->id;
+        $addressId = 0;
+        if( !is_null($address) ) {
+            $addressId = $address->id;
+        }
+
+        $results[ 'address_id' ] = $addressId;
 
         return $results;
     }

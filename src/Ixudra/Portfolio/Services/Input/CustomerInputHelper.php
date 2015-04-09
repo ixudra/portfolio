@@ -7,7 +7,7 @@ use Ixudra\Portfolio\Models\Customer;
 
 class CustomerInputHelper extends BaseInputHelper {
 
-    public function getDefaultInput()
+    public function getDefaultInput($prefix = '')
     {
         return Customer::getDefaults();
     }

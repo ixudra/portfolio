@@ -49,13 +49,13 @@
         <h3>{{ Translate::recursive('members.corporateAddress') }}</h3>
     </div>
 
-    @include('portfolio::addresses.fields')
+    @include('portfolio::addresses.fields', array('prefix' => 'corporate_address_'))
 
     <div class=row">
         <h3>{{ Translate::recursive('members.representative') }}</h3>
     </div>
 
-    @include('portfolio::people.fields')
+    @include('portfolio::people.fields', array('prefix' => 'representative_'))
 
     <div class="action-button">
         {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}

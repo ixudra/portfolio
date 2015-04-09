@@ -8,9 +8,9 @@ use Ixudra\Portfolio\Models\Address;
 
 class AddressInputHelper extends BaseInputHelper {
 
-    public function getDefaultInput()
+    public function getDefaultInput($prefix = '')
     {
-        return Address::getDefaults();
+        return $this->getPrefixedInput( Address::getDefaults(), $prefix );
     }
 
     public function getInputForSearch($input)
