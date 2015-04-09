@@ -72,4 +72,15 @@ class Company extends Model {
         );
     }
 
+    public function delete()
+    {
+        $this->corporateAddress->delete();
+        if( $this->billingAddress ) {
+            $this->billingAddress->delete();
+        }
+        $this->representative->delete();
+
+        parent::delete();
+    }
+
 }

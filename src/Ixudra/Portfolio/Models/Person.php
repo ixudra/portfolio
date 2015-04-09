@@ -57,4 +57,13 @@ class Person extends Model {
         );
     }
 
+    public function delete()
+    {
+        if( $this->address ) {
+            $this->address->delete();
+        }
+
+        parent::delete();
+    }
+
 }
