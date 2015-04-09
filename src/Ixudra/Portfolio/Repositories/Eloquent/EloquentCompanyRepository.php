@@ -31,6 +31,7 @@ class EloquentCompanyRepository extends BaseEloquentRepository {
 
         return $results
             ->select($this->getTable() .'.*')
+            ->with('corporateAddress', 'representative')
             ->paginate($resultsPerPage)
             ->appends($filters)
             ->appends('results_per_page', $resultsPerPage);
