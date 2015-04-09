@@ -1,11 +1,12 @@
 <?php namespace Ixudra\Portfolio\Services\Factories;
 
 
+use Ixudra\Core\Services\Factories\BaseFactory;
 use Ixudra\Portfolio\Models\Company;
 use Ixudra\Portfolio\Models\Address;
 use Ixudra\Portfolio\Models\Person;
 
-class CompanyFactory {
+class CompanyFactory extends BaseFactory {
 
     protected $addressFactory;
 
@@ -37,38 +38,17 @@ class CompanyFactory {
 
     protected function extractAddressInput($input, $prefix)
     {
-        if( $prefix != '' ) {
-            $prefix = $prefix .'_';
-        }
-
-        $results = Address::getDefaults();
-        foreach( $results as $key => $value ) {
-            $results[ $key ] = $input[ $prefix . $key ];
-        }
-
-        return $results;
+        return $this->extractInput( $input, Address::getDefaults(), $prefix );
     }
 
     protected function extractRepresentativeInput($input, $prefix)
     {
-        if( $prefix != '' ) {
-            $prefix = $prefix .'_';
-        }
-
-        $results = Person::getDefaults();
-        foreach( $results as $key => $value ) {
-            $results[ $key ] = $input[ $prefix . $key ];
-        }
-
-        return $results;
+        return $this->extractInput( $input, Person::getDefaults(), $prefix );
     }
 
     protected function extractCompanyInput($address, $representative, $input)
     {
-        $results = Company::getDefaults();
-        foreach( $results as $key => $value ) {
-            $results[ $key ] = $input [ $key ];
-        }
+        $results = $this->extractInput( $input, Company::getDefaults() );
 
         $results[ 'corporate_address_id' ] = $address->id;
         $results[ 'billing_address_id' ] = $address->id;
