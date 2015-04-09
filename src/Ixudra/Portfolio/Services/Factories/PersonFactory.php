@@ -1,10 +1,11 @@
 <?php namespace Ixudra\Portfolio\Services\Factories;
 
 
+use Ixudra\Core\Services\Factories\BaseFactory;
 use Ixudra\Portfolio\Models\Person;
 use Ixudra\Portfolio\Models\Address;
 
-class PersonFactory {
+class PersonFactory extends BaseFactory {
 
     protected $addressFactory;
 
@@ -36,20 +37,12 @@ class PersonFactory {
 
     protected function extractAddressInput($input)
     {
-        $results = Address::getDefaults();
-        foreach( $results as $key => $value ) {
-            $results[ $key ] = $input [ $key ];
-        }
-
-        return $results;
+        return $this->extractInput( $input, Address::getDefaults() );
     }
 
     protected function extractPersonInput($address, $input)
     {
-        $results = Person::getDefaults();
-        foreach( $results as $key => $value ) {
-            $results[ $key ] = $input [ $key ];
-        }
+        $results = $this->extractInput( $input, Person::getDefaults() );
 
         $addressId = 0;
         if( !is_null($address) ) {
