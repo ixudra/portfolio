@@ -25,7 +25,7 @@ class EloquentCompanyRepository extends BaseEloquentRepository {
             $query = '%'. $filters[ 'query' ] .'%';
             $results = $results
                 ->where('name', 'like', $query)
-                ->where('url', 'like', $query)
+                ->orWhere('url', 'like', $query)
                 ->orWhere('email', 'like', $query);
         }
 
