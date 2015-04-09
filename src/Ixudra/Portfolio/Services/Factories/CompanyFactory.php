@@ -31,7 +31,7 @@ class CompanyFactory extends BaseFactory {
     public function modify($company, $input)
     {
         $this->addressFactory->modify( $company->corporateAddress, $this->extractAddressInput($input, 'corporate_address') );
-        $this->personFactory->modify( $company->representative, $this->extractRepresentativeInput($input, 'representative') );
+        $this->personFactory->modify( $company->representative, $this->extractRepresentativeInput($input, 'representative'), false );
 
         return $company->update( $this->extractCompanyInput( $company->corporateAddress, $company->representative, $input ) );
     }

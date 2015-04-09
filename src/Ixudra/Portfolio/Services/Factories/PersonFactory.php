@@ -25,9 +25,11 @@ class PersonFactory {
         return Person::create( $this->extractPersonInput( $address, $input ) );
     }
 
-    public function modify($person, $input)
+    public function modify($person, $input, $includeAddress = false)
     {
-        $this->addressFactory->modify( $person->address, $this->extractAddressInput( $input ) );
+        if( $includeAddress ) {
+            $this->addressFactory->modify( $person->address, $this->extractAddressInput( $input ) );
+        }
 
         return $person->update( $this->extractPersonInput( $person->address, $input ) );
     }
