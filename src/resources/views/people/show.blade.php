@@ -32,6 +32,8 @@
         </div>
     </div>
 
-    @include('portfolio::addresses.data', array('address' => $person->address))
+    @if( !is_null($person->address) )
+        @include('portfolio::addresses.data', array('address' => $person->address))
+    @endif
 
 @endsection
