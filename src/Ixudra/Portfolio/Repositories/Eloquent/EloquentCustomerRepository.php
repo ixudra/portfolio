@@ -23,12 +23,24 @@ class EloquentCustomerRepository extends BaseEloquentRepository {
         $results = $results
             ->join('projects', 'customers.id', '=', 'projects.customer_id');
 
-        foreach( $filters as $key => $value ) {
-            if( !$this->hasString( $filters, $key ) ) {
-                continue;
-            }
+        if( array_key_exists('query', $filters) && $filters[ 'query' ] != '' ) {
+            $results = $results
+                ->leftJoin('people', function($join)
+                {
+                    $join->on('customers.customer_id', '=', 'people.id')
+                        ->where('customers.customer_type', '=', 'Ixudra\\Portfolio\\Models\\Person');
+                })
+                ->leftJoin('companies', function($join)
+                {
+                    $join->on('customers.customer_id', '=', 'companies.id')
+                        ->where('customers.customer_type', '=', 'Ixudra\\Portfolio\\Models\\Company');
+                });
 
-            $results = $results->where( $key, 'like', $value );
+            $query = '%'. $filters[ 'query' ] .'%';
+            $results = $results
+                ->where('companies.name', 'like', $query)
+                ->orWhere('people.first_name', 'like', $query)
+                ->orWhere('people.last_name', 'like', $query);
         }
 
         return $results

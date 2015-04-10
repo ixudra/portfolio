@@ -13,8 +13,7 @@ class CustomerViewFactory extends BaseViewFactory {
     {
         if( empty($input) ) {
             $input = array(
-                'first_name'            => '',
-                'last_name'             => ''
+                'query'             => ''
             );
         }
 

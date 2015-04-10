@@ -13,8 +13,7 @@ class FilterCustomerFormRequest extends BaseRequest {
     public function rules()
     {
         return array(
-            'first_name'            => 'max:64',
-            'last_name'             => 'max:64',
+            'query'         => 'required'
         );
     }
 
