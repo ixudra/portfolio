@@ -43,4 +43,6 @@
         @include('portfolio::companies.data', array('company' => $person->company, 'includeName' => true))
     @endif
 
+    @include('portfolio::people.projects', array('projects' => $person->projects))
+
 @endsection

@@ -12,10 +12,8 @@ class Customer extends Model {
     protected $table = 'customers';
 
     protected $fillable = array(
-        'first_name',
-        'last_name',
-        'email',
-        'cellphone'
+        'customer_type',
+        'customer_id',
     );
 
     protected $guarded = array();
@@ -27,6 +25,11 @@ class Customer extends Model {
     protected $presenter = '\Ixudra\Portfolio\Presenters\CustomerPresenter';
 
 
+    public function object()
+    {
+        return $this->morphTo('customer');
+    }
+
     public function projects()
     {
         return $this->hasMany('\Ixudra\Portfolio\Models\Project');
@@ -36,20 +39,16 @@ class Customer extends Model {
     public static function getRules()
     {
         return array(
-            'first_name'            => 'required|max:64',
-            'last_name'             => 'required|max:64',
-            'email'                 => 'required|email',
-            'cellphone'             => 'required|max:64'
+            'customer_type'             => 'required|max:64',
+            'customer_id'               => 'required|integer',
         );
     }
 
     public static function getDefaults()
     {
         return array(
-            'first_name'            => '',
-            'last_name'             => '',
-            'email'                 => '',
-            'cellphone'             => ''
+            'customer_type'             => '',
+            'customer_id'               => 0,
         );
     }
 

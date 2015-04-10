@@ -12,7 +12,6 @@ class CreateTableIxudraPortfolioProjects extends Migration {
         {
             $table->increments('id');
             $table->string('name', 64);
-            $table->string('customer_type', 64);
             $table->integer('customer_id');
             $table->integer('contractor_id');
             $table->text('description');

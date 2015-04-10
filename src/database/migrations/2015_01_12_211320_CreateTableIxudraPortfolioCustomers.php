@@ -11,10 +11,8 @@ class CreateTableIxudraPortfolioCustomers extends Migration {
         Schema::create('customers', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('first_name', 64);
-            $table->string('last_name', 64);
-            $table->string('email', 128);
-            $table->string('cellphone', 16);
+            $table->string('customer_type', 64);
+            $table->integer('customer_id');
             $table->timestamps();
         });
     }

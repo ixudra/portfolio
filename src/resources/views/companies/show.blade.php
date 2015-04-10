@@ -23,4 +23,6 @@
 
     @include('portfolio::companies.representative', array('person' => $company->representative))
 
+    @include('portfolio::companies.projects', array('projects' => $company->projects))
+
 @endsection

@@ -15,7 +15,6 @@ class Project extends Model {
 
     protected $fillable = array(
         'name',
-        'customer_type',
         'customer_id',
         'contractor_id',
         'description',
@@ -37,7 +36,7 @@ class Project extends Model {
 
     public function customer()
     {
-        return $this->morphTo('customer', 'customer_type', 'customer_id');
+        return $this->belongsTo('\Ixudra\Portfolio\Models\Customer', 'customer_id');
     }
 
     public function projectType()
@@ -55,7 +54,6 @@ class Project extends Model {
     {
         return array(
             'name'                  => 'required|max:64',
-            'customer_type'         => 'required|max:64',
             'customer_id'           => 'required|integer',
             'contractor_id'         => 'required|integer',
             'description'           => 'required',
@@ -71,7 +69,6 @@ class Project extends Model {
     {
         return array(
             'name'                  => '',
-            'customer_type'         => '',
             'customer_id'           => 0,
             'contractor_id'         => 0,
             'description'           => '',

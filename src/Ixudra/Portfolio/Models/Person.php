@@ -41,7 +41,7 @@ class Person extends Model implements CustomerModelInterface {
 
     public function projects()
     {
-        return $this->morphMany('\Ixudra\Portfolio\Models\Project', 'customer');
+        return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer')->first()->projects();
     }
 
 

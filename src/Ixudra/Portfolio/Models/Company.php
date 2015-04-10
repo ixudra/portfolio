@@ -2,6 +2,7 @@
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Laracasts\Presenter\PresentableTrait;
 
 class Company extends Model implements CustomerModelInterface {
@@ -49,7 +50,7 @@ class Company extends Model implements CustomerModelInterface {
 
     public function projects()
     {
-        return $this->morphMany('\Ixudra\Portfolio\Models\Project', 'customer');
+        return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer')->first()->projects();
     }
 
 
