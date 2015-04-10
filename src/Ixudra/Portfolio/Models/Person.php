@@ -34,6 +34,11 @@ class Person extends Model implements CustomerModelInterface {
         return $this->belongsTo('\Ixudra\Portfolio\Models\Address');
     }
 
+    public function company()
+    {
+        return $this->hasOne('\Ixudra\Portfolio\Models\Company', 'representative_id');
+    }
+
     public function projects()
     {
         return $this->morphMany('\Ixudra\Portfolio\Models\Project', 'customer');
