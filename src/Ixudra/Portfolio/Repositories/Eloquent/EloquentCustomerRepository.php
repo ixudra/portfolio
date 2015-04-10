@@ -17,6 +17,14 @@ class EloquentCustomerRepository extends BaseEloquentRepository {
         return 'customers';
     }
 
+    public function used()
+    {
+        return $this->getModel()
+            ->join('projects', 'customers.id', '=', 'projects.customer_id')
+            ->select($this->getTable() .'.*')
+            ->get();
+    }
+
     public function search($filters, $resultsPerPage)
     {
         $results = $this->getModel();

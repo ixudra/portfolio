@@ -7,6 +7,14 @@ use Ixudra\Portfolio\Models\Project;
 
 class ProjectInputHelper extends BaseInputHelper {
 
+    public function getInputForModel($model, $prefix = '')
+    {
+        return array_merge(
+            $this->getPrefixedInput( $model->attributesToArray(), $prefix ),
+            $this->getPrefixedInput( $model->image->attributesToArray() )
+        );
+    }
+
     public function getDefaultInput($prefix = '')
     {
         return array_merge(

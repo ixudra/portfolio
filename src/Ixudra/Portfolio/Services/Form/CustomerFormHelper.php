@@ -16,6 +16,13 @@ class CustomerFormHelper extends BaseFormHelper {
     }
 
 
+    public function getUsedAsSelectList($includeNull = false)
+    {
+        $models = $this->repository->used();
+
+        return $this->convertToSelectList($includeNull, $models);
+    }
+
     protected function convertToSelectList($includeNull, $models)
     {
         $results = array();
@@ -24,7 +31,7 @@ class CustomerFormHelper extends BaseFormHelper {
         }
 
         foreach( $models as $model ) {
-            $results[ $model->id ] = $model->present()->fullName;
+            $results[ $model->id ] = $model->object->present()->fullName;
         }
 
         return $results;
@@ -36,7 +43,7 @@ class CustomerFormHelper extends BaseFormHelper {
         foreach( $models as $model ) {
             $results[] = array(
                 'data'          => $model->id,
-                'value'         => $model->present()->fullName
+                'value'         => $model->object->present()->fullName
             );
         }
 
