@@ -4,7 +4,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
-class Company extends Model {
+class Company extends Model implements CustomerModelInterface {
 
     use PresentableTrait;
 
@@ -47,6 +47,11 @@ class Company extends Model {
         return $this->belongsTo('\Ixudra\Portfolio\Models\Person', 'representative_id');
     }
 
+    public function projects()
+    {
+        return $this->morphMany('\Ixudra\Portfolio\Models\Project', 'customer');
+    }
+
 
     public static function getRules()
     {
@@ -81,6 +86,11 @@ class Company extends Model {
         $this->representative->delete();
 
         parent::delete();
+    }
+
+    public function getUrlKey()
+    {
+        return 'companies';
     }
 
 }

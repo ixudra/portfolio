@@ -23,7 +23,10 @@
             </div>
             <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.customer_id') }}:</div>
-                <div class='col-md-8'>{{ $project->customer->present()->fullName }}</div>
+                <div class='col-md-8'>
+                    <span class="glyphicon glyphicon-{{ $project->customer->present()->segmentIcon }}" aria-hidden="true"></span>
+                    {!! HTML::linkRoute('admin.'. $project->customer->getUrlKey() .'.show', $project->customer->present()->fullName, array($project->customer_id)) !!}
+                </div>
             </div>
             <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.contractor_id') }}:</div>
@@ -48,6 +51,9 @@
         </div>
     </div>
 
+    <div class="row">
+        <h3>Project image</h3>
+    </div>
     @include('imageable::images/data', array('imageable' => $project))
 
 @endsection
