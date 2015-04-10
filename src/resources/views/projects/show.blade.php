@@ -25,7 +25,7 @@
                 <div class='col-md-4'>{{ Translate::recursive('members.customer_id') }}:</div>
                 <div class='col-md-8'>
                     <span class="glyphicon glyphicon-{{ $project->customer->object->present()->segmentIcon }}" aria-hidden="true"></span>
-                    {!! HTML::linkRoute('admin.'. $project->customer->object->getUrlKey() .'.show', $project->customer->object->present()->fullName, array($project->customer_id)) !!}
+                    {!! HTML::linkRoute('admin.'. $project->customer->object->getUrlKey() .'.show', $project->customer->object->present()->fullName, array($project->customer->object->id)) !!}
                 </div>
             </div>
             <div class='col-md-10'>
