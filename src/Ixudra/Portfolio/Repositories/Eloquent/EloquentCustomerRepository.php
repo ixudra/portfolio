@@ -20,6 +20,9 @@ class EloquentCustomerRepository extends BaseEloquentRepository {
     public function search($filters, $resultsPerPage)
     {
         $results = $this->getModel();
+        $results = $results
+            ->join('projects', 'customers.id', '=', 'projects.customer_id');
+
         foreach( $filters as $key => $value ) {
             if( !$this->hasString( $filters, $key ) ) {
                 continue;
