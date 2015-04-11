@@ -12,11 +12,14 @@ class CompanyFactory extends BaseFactory {
 
     protected $personFactory;
 
+    protected $customerFactory;
 
-    public function __construct(AddressFactory $addressFactory, PersonFactory $personFactory)
+
+    public function __construct(AddressFactory $addressFactory, PersonFactory $personFactory, CustomerFactory $customerFactory)
     {
         $this->addressFactory = $addressFactory;
         $this->personFactory = $personFactory;
+        $this->customerFactory = $customerFactory;
     }
 
 
@@ -25,7 +28,10 @@ class CompanyFactory extends BaseFactory {
         $address = $this->addressFactory->make( $this->extractAddressInput($input, 'corporate_address') );
         $representative = $this->personFactory->make( $this->extractRepresentativeInput($input, 'representative'), false );
 
-        return Company::create( $this->extractCompanyInput( $address, $representative, $input ) );
+        $company = Company::create( $this->extractCompanyInput( $address, $representative, $input ) );
+        $this->customerFactory->make( $company );
+
+        return $company;
     }
 
     public function modify($company, $input)

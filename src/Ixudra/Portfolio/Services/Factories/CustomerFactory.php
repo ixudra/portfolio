@@ -2,17 +2,21 @@
 
 
 use Ixudra\Portfolio\Models\Customer;
+use Ixudra\Portfolio\Models\CustomerModelInterface;
 
 class CustomerFactory {
 
-    public function make($input)
+    public function make(CustomerModelInterface $object)
     {
-        return Customer::create( $input );
+        return Customer::create( $this->extractCustomerInput( $object ) );
     }
 
-    public function modify($customer, $input)
+    protected function extractCustomerInput($object)
     {
-        return $customer->update( $input );
+        return array(
+            'customer_id'           => $object->id,
+            'customer_type'         => get_class( $object )
+        );
     }
 
 }

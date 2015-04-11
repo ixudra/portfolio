@@ -9,10 +9,13 @@ class PersonFactory extends BaseFactory {
 
     protected $addressFactory;
 
+    protected $customerFactory;
 
-    public function __construct(AddressFactory $addressFactory)
+
+    public function __construct(AddressFactory $addressFactory, CustomerFactory $customerFactory)
     {
         $this->addressFactory = $addressFactory;
+        $this->customerFactory = $customerFactory;
     }
 
 
@@ -23,7 +26,10 @@ class PersonFactory extends BaseFactory {
             $address = $this->addressFactory->make( $this->extractAddressInput( $input ) );
         }
 
-        return Person::create( $this->extractPersonInput( $address, $input ) );
+        $person = Person::create( $this->extractPersonInput( $address, $input ) );
+        $this->customerFactory->make( $person );
+
+        return $person;
     }
 
     public function modify($person, $input, $includeAddress = false)
