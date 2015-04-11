@@ -80,4 +80,11 @@ class Project extends Model {
         );
     }
 
+    public function delete()
+    {
+        $this->image->delete();
+
+        parent::delete();
+    }
+
 }

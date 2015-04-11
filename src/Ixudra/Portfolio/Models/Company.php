@@ -48,6 +48,11 @@ class Company extends Model implements CustomerModelInterface {
         return $this->belongsTo('\Ixudra\Portfolio\Models\Person', 'representative_id');
     }
 
+    protected function customer()
+    {
+        return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer');
+    }
+
     public function projects()
     {
         return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer')->first()->projects();
@@ -85,6 +90,7 @@ class Company extends Model implements CustomerModelInterface {
             $this->billingAddress->delete();
         }
         $this->representative->delete();
+        $this->customer->delete();
 
         parent::delete();
     }

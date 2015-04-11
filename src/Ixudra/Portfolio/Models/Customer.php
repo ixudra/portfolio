@@ -52,4 +52,13 @@ class Customer extends Model {
         );
     }
 
+    public function delete()
+    {
+        foreach( $this->projects as $project ) {
+            $project->delete();
+        }
+
+        parent::delete();
+    }
+
 }

@@ -39,6 +39,11 @@ class Person extends Model implements CustomerModelInterface {
         return $this->hasOne('\Ixudra\Portfolio\Models\Company', 'representative_id');
     }
 
+    protected function customer()
+    {
+        return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer');
+    }
+
     public function projects()
     {
         return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer')->first()->projects();
@@ -72,6 +77,7 @@ class Person extends Model implements CustomerModelInterface {
         if( $this->address ) {
             $this->address->delete();
         }
+        $this->customer->delete();
 
         parent::delete();
     }
