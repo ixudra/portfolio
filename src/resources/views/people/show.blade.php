@@ -38,7 +38,7 @@
 
     @if( !is_null($person->company) )
         <div class="row">
-            <h3>Company information</h3>
+            <h2>Company information</h2>
         </div>
         @include('portfolio::companies.data', array('company' => $person->company, 'includeName' => true))
     @endif

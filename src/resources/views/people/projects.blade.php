@@ -1,6 +1,6 @@
 
     <div class="row">
-        <h2>Company projects</h2>
+        <h2>Private projects</h2>
     </div>
 
     <div class="row">
