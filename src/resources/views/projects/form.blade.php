@@ -8,13 +8,7 @@
                 {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
             </div>
         </div>
-        <div class='form-group {{ $errors->has('contractor_id') ? 'has-error' : '' }}'>
-            {!! Form::label('contractor_id', Translate::recursive('members.contractor_id') .': ', array('class' => 'control-label col-lg-3')) !!}
-            <div class="col-lg-4">
-                {!! Form::text('contractor_id', $input['contractor_id'], array('class' => 'form-control')) !!}
-                {!! $errors->first('contractor_id', '<span class="help-block">:message</span>') !!}
-            </div>
-        </div>
+        {!! Form::hidden('contractor_id', $input['contractor_id']) !!}
         <div class='form-group {{ $errors->has('customer_id') ? 'has-error' : '' }}'>
             {!! Form::label('customer_id', Translate::recursive('members.customer_id') .': ', array('class' => 'control-label col-lg-3')) !!}
             <div class="col-lg-4">

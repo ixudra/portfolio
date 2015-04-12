@@ -18,10 +18,6 @@
     <div class="row">
         <div class="well well-large col-md-12">
             <div class='col-md-10'>
-                <div class='col-md-4'>{{ Translate::recursive('members.description') }}:</div>
-                <div class='col-md-8'>{{ $project->description }}</div>
-            </div>
-            <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.customer_id') }}:</div>
                 <div class='col-md-8'>
                     <span class="glyphicon glyphicon-{{ $project->customer->object->present()->segmentIcon }}" aria-hidden="true"></span>
@@ -29,8 +25,8 @@
                 </div>
             </div>
             <div class='col-md-10'>
-                <div class='col-md-4'>{{ Translate::recursive('members.contractor_id') }}:</div>
-                <div class='col-md-8'>{{ $project->contractor_id }}</div>
+                <div class='col-md-4'>{{ Translate::recursive('members.description') }}:</div>
+                <div class='col-md-8'>{{ $project->description }}</div>
             </div>
             <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.start_date') }}:</div>

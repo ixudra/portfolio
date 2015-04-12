@@ -15,8 +15,8 @@ class Project extends Model {
 
     protected $fillable = array(
         'name',
-        'customer_id',
         'contractor_id',
+        'customer_id',
         'description',
         'start_date',
         'end_date',
@@ -33,6 +33,11 @@ class Project extends Model {
 
     protected $imagePath = 'images/projects';
 
+
+    public function contractor()
+    {
+        return $this->belongsTo('\Ixudra\Portfolio\Models\Company', 'contractor_id');
+    }
 
     public function customer()
     {
@@ -54,8 +59,8 @@ class Project extends Model {
     {
         return array(
             'name'                  => 'required|max:64',
-            'customer_id'           => 'required|integer',
             'contractor_id'         => 'required|integer',
+            'customer_id'           => 'required|integer',
             'description'           => 'required',
             'start_date'            => 'required|date',
             'end_date'              => 'required|date',
@@ -69,8 +74,8 @@ class Project extends Model {
     {
         return array(
             'name'                  => '',
+            'contractor_id'         => 1,
             'customer_id'           => 0,
-            'contractor_id'         => 0,
             'description'           => '',
             'start_date'            => date('Y-m-d'),
             'end_date'              => date('Y-m-d', strtotime('+1 week')),
