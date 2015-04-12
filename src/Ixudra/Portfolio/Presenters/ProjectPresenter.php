@@ -10,4 +10,14 @@ class ProjectPresenter extends BasePresenter {
         return $this->truthy( $this->hidden );
     }
 
+    public function hiddenIcon()
+    {
+        $icon = 'eye-open';
+        if( $this->hidden ) {
+            $icon = 'eye-close';
+        }
+
+        return $icon;
+    }
+
 }
