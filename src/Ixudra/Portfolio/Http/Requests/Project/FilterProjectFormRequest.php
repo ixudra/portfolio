@@ -16,6 +16,7 @@ class FilterProjectFormRequest extends BaseRequest {
             'query'                     => '',
             'customer_id'               => 'required|integer',
             'project_type_id'           => 'required|integer',
+            'hidden'                    => 'boolean',
         );
     }
 

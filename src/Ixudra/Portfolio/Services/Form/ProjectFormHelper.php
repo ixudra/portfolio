@@ -40,4 +40,9 @@ class ProjectFormHelper extends BaseFormHelper {
         return $results;
     }
 
+    public function getVisibilityOptionsAsSelectList($includeNull = false)
+    {
+        return $this->getBooleanSelectList( $includeNull );
+    }
+
 }

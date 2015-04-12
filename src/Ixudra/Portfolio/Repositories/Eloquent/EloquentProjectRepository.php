@@ -25,6 +25,7 @@ class EloquentProjectRepository extends BaseEloquentRepository {
         );
 
         $results = $this->getModel();
+        $results = $this->applyBoolean( $results, array('hidden'), $filters );
         $results = $this->applyForeignKeys( $results, $foreignKeys, $filters );
 
         if( array_key_exists('query', $filters) && $filters[ 'query' ] != '' ) {

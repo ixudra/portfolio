@@ -15,7 +15,8 @@ class ProjectViewFactory extends BaseViewFactory {
             $input = array(
                 'query'                 => '',
                 'customer_id'           => '',
-                'project_type_id'       => ''
+                'project_type_id'       => '',
+                'hidden'                => ''
             );
         }
 
@@ -55,12 +56,14 @@ class ProjectViewFactory extends BaseViewFactory {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\ProjectInputHelper')->getInputForSearch( $input );
         $projects = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository')->search( $searchInput, 25 );
 
-        $projectTypes = App::make('\Ixudra\Portfolio\Services\Form\ProjectTypeFormHelper')->getAllAsSelectList(true);
         $customers = App::make('\Ixudra\Portfolio\Services\Form\CustomerFormHelper')->getUsedAsSelectList(true);
+        $projectTypes = App::make('\Ixudra\Portfolio\Services\Form\ProjectTypeFormHelper')->getAllAsSelectList(true);
+        $visibilityOptions = App::make('\Ixudra\Portfolio\Services\Form\ProjectFormHelper')->getVisibilityOptionsAsSelectList(true);
 
         $this->addParameter('projects', $projects);
-        $this->addParameter('projectTypes', $projectTypes);
         $this->addParameter('customers', $customers);
+        $this->addParameter('projectTypes', $projectTypes);
+        $this->addParameter('visibilityOptions', $visibilityOptions);
         $this->addParameter('input', $input);
 
         return $this->makeView( $template );
@@ -73,8 +76,8 @@ class ProjectViewFactory extends BaseViewFactory {
         $customers = App::make('\Ixudra\Portfolio\Services\Form\CustomerFormHelper')->getAllAsSelectList();
 
         $this->addParameter('statuses', $statuses);
-        $this->addParameter('projectTypes', $projectTypes);
         $this->addParameter('customers', $customers);
+        $this->addParameter('projectTypes', $projectTypes);
         $this->addParameter('input', $input);
 
         return $this->makeView( $template );
