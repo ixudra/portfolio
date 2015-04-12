@@ -25,8 +25,9 @@ class ProjectViewFactoryTest extends BaseViewFactoryTestCase {
     public function testIndex()
     {
         $input = array(
+            'query'                 => '',
             'customer_id'           => '',
-            'contractor_id'         => ''
+            'project_type_id'       => ''
         );
 
         $this->createFilterMocks( $input );

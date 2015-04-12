@@ -21,12 +21,17 @@ class EloquentProjectRepository extends BaseEloquentRepository {
     {
         $foreignKeys = array(
             'customer_id',
-            'contractor_id',
             'project_type_id',
         );
 
         $results = $this->getModel();
         $results = $this->applyForeignKeys( $results, $foreignKeys, $filters );
+
+        if( array_key_exists('query', $filters) && $filters[ 'query' ] != '' ) {
+            $query = '%'. $filters[ 'query' ] .'%';
+            $results = $results
+                ->where('projects.name', 'like', $query);
+        }
 
         return $results
             ->select($this->getTable() .'.*')

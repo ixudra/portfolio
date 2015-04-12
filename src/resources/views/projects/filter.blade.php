@@ -1,6 +1,10 @@
 <div class="row">
     {!! Form::open(array('url' => '/admin/projects/filter', 'method' => 'POST', 'id' => 'filterProjects', 'class' => 'form-inline', 'role' => 'form')) !!}
         <div class="form-group">
+            {!! Form::label('query', Translate::recursive('common.query') .': ', array('class' => 'sr-only')) !!}
+            {!! Form::text('query', $input['query'], array('placeholder' => Translate::recursive('common.query'), 'class' => 'form-control', 'id' => 'query')) !!}
+        </div>
+        <div class="form-group">
             {!! Form::label('customer_id', Translate::recursive('members.customer_id') .': ', array('class' => '')) !!}
             {!! Form::select('customer_id', $customers, $input['customer_id'], array('placeholder' => Translate::recursive('members.customer_id'), 'class' => 'form-control')) !!}
         </div>

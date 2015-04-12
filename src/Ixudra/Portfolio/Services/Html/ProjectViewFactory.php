@@ -13,8 +13,8 @@ class ProjectViewFactory extends BaseViewFactory {
     {
         if( empty($input) ) {
             $input = array(
+                'query'                 => '',
                 'customer_id'           => '',
-                'contractor_id'         => '',
                 'project_type_id'       => ''
             );
         }
