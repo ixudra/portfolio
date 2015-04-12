@@ -38,7 +38,7 @@
             </div>
             <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.status') }}:</div>
-                <div class='col-md-8'>{{ $project->status }}</div>
+                <div class='col-md-8'>{{ $project->present()->projectStatus }}</div>
             </div>
             <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.hidden') }}:</div>
