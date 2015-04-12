@@ -29,3 +29,18 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('companies', '\Ixudra\Portfolio\Http\Controllers\CompanyController');
 });
 
+
+
+
+/**
+ * HTML macros
+ */
+
+HTML::macro('iconRoute', function($route = '', $data, $iconType, $parameters = array(), $attributes = array())
+{
+    $icon = '<span class="glyphicon glyphicon-'. $iconType .'" aria-hidden="true"></span>';
+    $link = HTML::linkRoute($route, '#'. $data, $parameters, $attributes);
+
+    return str_replace('#', $icon, $link);
+});
+

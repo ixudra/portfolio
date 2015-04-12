@@ -5,7 +5,6 @@
                 <tr>
                     <th>ID</th>
                     <th>{{ Translate::recursive('members.name') }}</th>
-                    <th>{{ Translate::recursive('members.segment') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>
@@ -13,8 +12,10 @@
             @foreach( $customers as $customer )
                 <tr>
                     <td>{{ $customer->id }}</td>
-                    <td>{!! HTML::linkRoute('admin.'. $customer->object->getUrlKey() .'.show', $customer->object->present()->fullName, array($customer->object->id)) !!}</td>
-                    <td><span class="glyphicon glyphicon-{{ $customer->object->present()->segmentIcon }}" aria-hidden="true"></span></td>
+                    <td>
+                        {!! HTML::iconRoute('admin.'. $customer->object->getUrlKey() .'.show', '', $customer->object->present()->segmentIcon, array($customer->object->id)) !!}
+                        {!! HTML::linkRoute('admin.'. $customer->object->getUrlKey() .'.show', $customer->object->present()->fullName, array($customer->object->id)) !!}
+                    </td>
                     <td class="table-small">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
