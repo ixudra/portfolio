@@ -1,6 +1,8 @@
 <?php namespace Ixudra\Portfolio\Presenters;
 
 
+use Translate;
+
 use Ixudra\Core\Presenters\BasePresenter;
 
 class ProjectPresenter extends BasePresenter {
@@ -18,6 +20,11 @@ class ProjectPresenter extends BasePresenter {
         }
 
         return $icon;
+    }
+
+    public function projectStatus()
+    {
+        return Translate::recursive('statuses.project.'. $this->status);
     }
 
 }

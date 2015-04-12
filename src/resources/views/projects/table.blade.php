@@ -7,6 +7,7 @@
                     <th>{{ Translate::recursive('members.name') }}</th>
                     <th>{{ Translate::recursive('members.customer_id') }}</th>
                     <th>{{ Translate::recursive('members.project_type_id') }}</th>
+                    <th>{{ Translate::recursive('members.status') }}</th>
                     <th>{{ Translate::recursive('members.hidden') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
@@ -18,6 +19,7 @@
                     <td>{!! HTML::linkRoute('admin.projects.show', $project->name, array($project->id)) !!}</td>
                     <td>{!! HTML::iconRoute('admin.projects.show', '', $project->customer->object->present()->segmentIcon, array($project->id)) !!} {!! HTML::linkRoute('admin.projects.show', $project->customer->object->present()->fullName, array($project->id)) !!}</td>
                     <td>{!! HTML::linkRoute('admin.projects.show', $project->projectType->name, array($project->id)) !!}</td>
+                    <td>{!! HTML::linkRoute('admin.projects.show', $project->present()->projectStatus, array($project->id)) !!}</td>
                     <td>{!! HTML::iconRoute('admin.projects.show', '', $project->present()->hiddenIcon, array($project->id)) !!}</td>
                     <td class="table-small">
                         <div class="btn-group">
