@@ -53,6 +53,7 @@ class EloquentCustomerRepository extends BaseEloquentRepository {
 
         return $results
             ->select($this->getTable() .'.*')
+            ->distinct()
             ->paginate($resultsPerPage)
             ->appends($filters)
             ->appends('results_per_page', $resultsPerPage);
