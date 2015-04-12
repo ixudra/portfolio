@@ -5,6 +5,10 @@
         {!! Form::text('query', $input['query'], array('placeholder' => Translate::recursive('common.query'), 'class' => 'form-control', 'id' => 'query')) !!}
     </div>
     <div class="form-group">
+        {!! Form::label('withProjects', Translate::recursive('form.withProjects') .': ', array('class' => 's')) !!}
+        {!! Form::select('withProjects', $withProjectOptions, $input['withProjects'], array('placeholder' => Translate::recursive('common.withProjects'), 'class' => 'form-control', 'id' => 'withProjects')) !!}
+    </div>
+    <div class="form-group">
             {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
             {!! HTML::linkRoute('admin.customers.index', Translate::recursive('common.clear'), array(), array('class' => 'btn btn-default')) !!}
         </div>

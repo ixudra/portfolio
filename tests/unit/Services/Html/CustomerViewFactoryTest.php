@@ -25,7 +25,8 @@ class CustomerViewFactoryTest extends BaseViewFactoryTestCase {
     public function testIndex()
     {
         $input = array(
-            'query'             => ''
+            'query'                 => '',
+            'withProjects'          => '',
         );
 
         $this->createFilterMocks( $input );

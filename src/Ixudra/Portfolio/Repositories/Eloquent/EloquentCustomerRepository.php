@@ -28,8 +28,17 @@ class EloquentCustomerRepository extends BaseEloquentRepository {
     public function search($filters, $resultsPerPage)
     {
         $results = $this->getModel();
-        $results = $results
-            ->join('projects', 'customers.id', '=', 'projects.customer_id');
+
+        if( array_key_exists('withProjects', $filters) && $filters[ 'withProjects' ] != '' ) {
+            if( $filters[ 'withProjects' ] == 1 ) {
+                $results = $results
+                    ->join('projects', 'customers.id', '=', 'projects.customer_id');
+            } else if( $filters[ 'withProjects' ] == 0 ) {
+                $results = $results
+                    ->leftJoin('projects', 'customers.id', '=', 'projects.customer_id')
+                    ->whereNull('projects.customer_id');
+            }
+        }
 
         if( array_key_exists('query', $filters) && $filters[ 'query' ] != '' ) {
             $results = $results

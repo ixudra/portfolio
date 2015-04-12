@@ -13,7 +13,8 @@ class CustomerViewFactory extends BaseViewFactory {
     {
         if( empty($input) ) {
             $input = array(
-                'query'             => ''
+                'query'                 => '',
+                'withProjects'          => 1,
             );
         }
 
@@ -52,8 +53,10 @@ class CustomerViewFactory extends BaseViewFactory {
     {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\CustomerInputHelper')->getInputForSearch( $input );
         $customers = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentCustomerRepository')->search( $searchInput, 25 );
+        $withProjectOptions = App::make('\Ixudra\Portfolio\Services\Form\CustomerFormHelper')->getWithProjectOptionsAsSelectList( true );
 
         $this->addParameter('customers', $customers);
+        $this->addParameter('withProjectOptions', $withProjectOptions);
         $this->addParameter('input', $input);
 
         return $this->makeView( $template );

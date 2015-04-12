@@ -13,7 +13,8 @@ class FilterCustomerFormRequest extends BaseRequest {
     public function rules()
     {
         return array(
-            'query'         => 'required'
+            'query'             => '',
+            'withProject'       => 'boolean'
         );
     }
 

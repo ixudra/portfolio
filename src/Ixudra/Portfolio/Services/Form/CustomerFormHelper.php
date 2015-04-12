@@ -50,4 +50,9 @@ class CustomerFormHelper extends BaseFormHelper {
         return $results;
     }
 
+    public function getWithProjectOptionsAsSelectList($includeNull = false)
+    {
+        return $this->getBooleanSelectList( $includeNull );
+    }
+
 }
