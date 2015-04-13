@@ -73,7 +73,7 @@ class ProjectController extends BaseController {
             return $this->modelNotFound();
         }
 
-        $projectFactory->modify( $project, $request->getInput() );
+        $projectFactory->modify( $project, $request->getInput(true) );
 
         return $this->redirect( 'admin.projects.show', array('id' => $id), 'success', array( Translate::model( 'project.edit.success' ) ) );
     }

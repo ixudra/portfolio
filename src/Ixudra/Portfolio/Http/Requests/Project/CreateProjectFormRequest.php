@@ -14,12 +14,10 @@ class CreateProjectFormRequest extends BaseRequest {
 
     public function rules()
     {
-        $rules = array_merge(
+        return array_merge(
             Project::getRules(),
             Image::getRules()
         );
-
-        return $rules;
     }
 
     public function getInput($includeFiles = false)
