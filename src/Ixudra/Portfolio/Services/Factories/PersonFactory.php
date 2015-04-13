@@ -34,7 +34,7 @@ class PersonFactory extends BaseFactory {
 
     public function modify($person, $input, $prefix = '', $includeAddress = false)
     {
-        if( $includeAddress ) {
+        if( $includeAddress && !is_null($person->address) ) {
             $this->addressFactory->modify( $person->address, $this->extractAddressInput( $input, 'address' ) );
         }
 

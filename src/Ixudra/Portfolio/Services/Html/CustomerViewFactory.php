@@ -30,25 +30,6 @@ class CustomerViewFactory extends BaseViewFactory {
         return $this->prepareForm( 'portfolio::customers.create', $input );
     }
 
-    public function show(Customer $customer)
-    {
-        $this->addParameter('customer', $customer);
-
-        return $this->makeView( 'portfolio::customers.show' );
-    }
-
-    public function edit(Customer $customer, $input = null)
-    {
-        if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Services\Input\CustomerInputHelper')->getInputForModel( $customer );
-        }
-
-        $this->addParameter('customer', $customer);
-
-        return $this->prepareForm( 'portfolio::customers.edit', $input );
-    }
-
-
     protected function prepareFilter($template, $input)
     {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\CustomerInputHelper')->getInputForSearch( $input );

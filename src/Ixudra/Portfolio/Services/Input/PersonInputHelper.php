@@ -26,9 +26,15 @@ class PersonInputHelper extends BaseInputHelper {
 
     public function getInputForModel($model, $prefix = '')
     {
+        if( is_null($model->address) ) {
+            $addressInput = $this->addressInputHelper->getDefaultInput( 'address' );
+        } else {
+            $addressInput = $this->addressInputHelper->getInputForModel( $model->address, 'address' );
+        }
+
         return array_merge(
-            $model->attributesToArray(),
-            $this->addressInputHelper->getInputForModel($model->address, 'address')
+            $this->getPrefixedInput( $model->attributesToArray(), $prefix ),
+            $addressInput
         );
     }
 

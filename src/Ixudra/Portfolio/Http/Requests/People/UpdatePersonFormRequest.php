@@ -15,7 +15,7 @@ class UpdatePersonFormRequest extends BaseRequest {
     public function rules()
     {
         return array_merge(
-            $this->getPrefixedRules( Person::getRules(), 'person' ),
+            $this->getPrefixedRules( Person::getRules() ),
             $this->getPrefixedRules( Address::getRules(), 'address', true )
         );
     }

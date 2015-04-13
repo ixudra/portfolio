@@ -72,7 +72,7 @@ class PersonController extends BaseController {
             return $this->modelNotFound();
         }
 
-        $personFactory->modify($person, $request->getInput(), 'person', true);
+        $personFactory->modify($person, $request->getInput(), '', true);
 
         return $this->redirect( 'admin.people.show', array('id' => $id), 'success', array( Translate::model( 'person.edit.success' ) ) );
     }
