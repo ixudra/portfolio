@@ -19,8 +19,8 @@ class PersonInputHelper extends BaseInputHelper {
     public function getDefaultInput($prefix = '')
     {
         return array_merge(
-            Person::getDefaults(),
-            Address::getDefaults()
+            $this->getPrefixedInput( Person::getDefaults(), $prefix ),
+            $this->addressInputHelper->getDefaultInput( 'address' )
         );
     }
 
@@ -28,7 +28,7 @@ class PersonInputHelper extends BaseInputHelper {
     {
         return array_merge(
             $model->attributesToArray(),
-            $this->addressInputHelper->getInputForModel($model->address, $prefix)
+            $this->addressInputHelper->getInputForModel($model->address, 'address')
         );
     }
 

@@ -21,7 +21,7 @@ class CompanyFactoryTest extends BaseFunctionalTestCase {
 
     /**
      * @covers \Ixudra\Portfolio\Services\Factories\CompanyFactory::create()
-     * @covers \Ixudra\Portfolio\Services\Factories\CompanyFactory::extractAddressInput()
+     * @covers \Ixudra\Portfolio\Services\Factories\CompanyFactory::extractCorporateAddressInput()
      * @covers \Ixudra\Portfolio\Services\Factories\CompanyFactory::extractCompanyInput()
      */
     public function testCreate()
@@ -55,7 +55,7 @@ class CompanyFactoryTest extends BaseFunctionalTestCase {
 
     /**
      * @covers \Ixudra\Portfolio\Services\Factories\CompanyFactory::modify()
-     * @covers \Ixudra\Portfolio\Services\Factories\CompanyFactory::extractAddressInput()
+     * @covers \Ixudra\Portfolio\Services\Factories\CompanyFactory::extractCorporateAddressInput()
      * @covers \Ixudra\Portfolio\Services\Factories\CompanyFactory::extractCompanyInput()
      */
     public function testModify()

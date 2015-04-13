@@ -23,38 +23,38 @@ class CompanyFactory extends BaseFactory {
     }
 
 
-    public function make($input)
+    public function make($input, $prefix = '')
     {
-        $address = $this->addressFactory->make( $this->extractAddressInput($input, 'corporate_address') );
-        $representative = $this->personFactory->make( $this->extractRepresentativeInput($input, 'representative'), false );
+        $address = $this->addressFactory->make( $this->extractCorporateAddressInput($input) );
+        $representative = $this->personFactory->make( $this->extractRepresentativeInput($input), '', false );
 
-        $company = Company::create( $this->extractCompanyInput( $address, $representative, $input ) );
+        $company = Company::create( $this->extractCompanyInput( $address, $representative, $input, $prefix ) );
         $this->customerFactory->make( $company );
 
         return $company;
     }
 
-    public function modify($company, $input)
+    public function modify($company, $input, $prefix = '')
     {
-        $this->addressFactory->modify( $company->corporateAddress, $this->extractAddressInput($input, 'corporate_address') );
-        $this->personFactory->modify( $company->representative, $this->extractRepresentativeInput($input, 'representative'), false );
+        $this->addressFactory->modify( $company->corporateAddress, $this->extractCorporateAddressInput($input) );
+        $this->personFactory->modify( $company->representative, $this->extractRepresentativeInput($input), '', false );
 
-        return $company->update( $this->extractCompanyInput( $company->corporateAddress, $company->representative, $input ) );
+        return $company->update( $this->extractCompanyInput( $company->corporateAddress, $company->representative, $input, $prefix ) );
     }
 
-    protected function extractAddressInput($input, $prefix)
+    protected function extractCorporateAddressInput($input)
     {
-        return $this->extractInput( $input, Address::getDefaults(), $prefix );
+        return $this->extractInput( $input, Address::getDefaults(), 'corporate_address' );
     }
 
-    protected function extractRepresentativeInput($input, $prefix)
+    protected function extractRepresentativeInput($input)
     {
-        return $this->extractInput( $input, Person::getDefaults(), $prefix );
+        return $this->extractInput( $input, Person::getDefaults(), 'representative' );
     }
 
-    protected function extractCompanyInput($address, $representative, $input)
+    protected function extractCompanyInput($address, $representative, $input, $prefix)
     {
-        $results = $this->extractInput( $input, Company::getDefaults() );
+        $results = $this->extractInput( $input, Company::getDefaults(), $prefix );
 
         $results[ 'corporate_address_id' ] = $address->id;
         $results[ 'billing_address_id' ] = $address->id;

@@ -16,7 +16,7 @@ class CreateCompanyFormRequest extends BaseRequest {
     public function rules()
     {
         return array_merge(
-            $this->getPrefixedRules( Company::getRules() ),
+            $this->getPrefixedRules( Company::getRules(), 'company' ),
             $this->getPrefixedRules( Address::getRules(), 'corporate_address' ),
             $this->getPrefixedRules( Address::getRules(), 'billing_address', true ),
             $this->getPrefixedRules( Person::getRules(), 'representative' )

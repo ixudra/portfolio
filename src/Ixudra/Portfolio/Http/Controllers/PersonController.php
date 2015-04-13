@@ -40,7 +40,7 @@ class PersonController extends BaseController {
 
     public function store(CreatePersonFormRequest $request, PersonFactory $personFactory)
     {
-        $person = $personFactory->make( $request->getInput() );
+        $person = $personFactory->make($request->getInput(), 'person', true);
 
         return $this->redirect( 'admin.people.show', array('id' => $person->id), 'success', array( Translate::model( 'person.create.success' ) ) );
     }
@@ -72,7 +72,7 @@ class PersonController extends BaseController {
             return $this->modelNotFound();
         }
 
-        $personFactory->modify( $person, $request->getInput() );
+        $personFactory->modify($person, $request->getInput(), 'person', true);
 
         return $this->redirect( 'admin.people.show', array('id' => $id), 'success', array( Translate::model( 'person.edit.success' ) ) );
     }

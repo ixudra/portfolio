@@ -40,7 +40,7 @@ class CompanyController extends BaseController {
 
     public function store(CreateCompanyFormRequest $request, CompanyFactory $companyFactory)
     {
-        $company = $companyFactory->make( $request->getInput() );
+        $company = $companyFactory->make( $request->getInput(), 'company' );
 
         return $this->redirect( 'admin.companies.show', array('id' => $company->id), 'success', array( Translate::model( 'company.create.success' ) ) );
     }

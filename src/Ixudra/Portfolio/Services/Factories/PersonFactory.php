@@ -19,36 +19,36 @@ class PersonFactory extends BaseFactory {
     }
 
 
-    public function make($input, $includeAddress = true)
+    public function make($input, $prefix = '', $includeAddress = true)
     {
         $address = null;
         if( $includeAddress ) {
-            $address = $this->addressFactory->make( $this->extractAddressInput( $input ) );
+            $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address' ) );
         }
 
-        $person = Person::create( $this->extractPersonInput( $address, $input ) );
+        $person = Person::create( $this->extractPersonInput($address, $input, $prefix) );
         $this->customerFactory->make( $person );
 
         return $person;
     }
 
-    public function modify($person, $input, $includeAddress = false)
+    public function modify($person, $input, $prefix = '', $includeAddress = false)
     {
         if( $includeAddress ) {
-            $this->addressFactory->modify( $person->address, $this->extractAddressInput( $input ) );
+            $this->addressFactory->modify( $person->address, $this->extractAddressInput( $input, 'address' ) );
         }
 
-        return $person->update( $this->extractPersonInput( $person->address, $input ) );
+        return $person->update( $this->extractPersonInput($person->address, $input, $prefix) );
     }
 
-    protected function extractAddressInput($input)
+    protected function extractAddressInput($input, $prefix = '')
     {
-        return $this->extractInput( $input, Address::getDefaults() );
+        return $this->extractInput( $input, Address::getDefaults(), $prefix );
     }
 
-    protected function extractPersonInput($address, $input)
+    protected function extractPersonInput($address, $input, $prefix)
     {
-        $results = $this->extractInput( $input, Person::getDefaults() );
+        $results = $this->extractInput( $input, Person::getDefaults(), $prefix );
 
         $addressId = 0;
         if( !is_null($address) ) {

@@ -60,6 +60,7 @@ class CompanyViewFactory extends BaseViewFactory {
 
     protected function prepareForm($template, $input)
     {
+        $this->addParameter('prefix', '');
         $this->addParameter('input', $input);
 
         return $this->makeView( $template );
