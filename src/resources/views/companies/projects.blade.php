@@ -8,8 +8,11 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th class="table-small">&nbsp;</th>
                     <th>{{ Translate::recursive('members.name') }}</th>
                     <th>{{ Translate::recursive('members.project_type_id') }}</th>
+                    <th>{{ Translate::recursive('members.status') }}</th>
+                    <th>{{ Translate::recursive('members.hidden') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>
@@ -17,8 +20,11 @@
             @foreach( $projects as $project )
                 <tr>
                     <td>{{ $project->id }}</td>
+                    <td class="table-small">{!! HTML::imageRoute('admin.projects.show', $project->image->present()->imageUrl, $project->image->alt, array('class' => 'img-icon', 'title' => $project->image->title), array($project->id)) !!}</td>
                     <td>{!! HTML::linkRoute('admin.projects.show', $project->name, array($project->id)) !!}</td>
                     <td>{!! HTML::linkRoute('admin.projects.show', $project->projectType->name, array($project->id)) !!}</td>
+                    <td>{!! HTML::linkRoute('admin.projects.show', $project->present()->projectStatus, array($project->id)) !!}</td>
+                    <td>{!! HTML::iconRoute('admin.projects.show', '', $project->present()->hiddenIcon, array($project->id)) !!}</td>
                     <td class="table-small">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
