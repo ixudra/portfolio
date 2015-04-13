@@ -36,7 +36,7 @@ class EloquentProjectRepository extends BaseEloquentRepository {
 
         return $results
             ->select($this->getTable() .'.*')
-            ->with('projectType', 'customer')
+            ->with('projectType', 'customer', 'image')
             ->paginate($resultsPerPage)
             ->appends($filters)
             ->appends('results_per_page', $resultsPerPage);
