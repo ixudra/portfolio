@@ -16,7 +16,7 @@ class ProjectViewFactory extends BaseViewFactory {
                 'query'                 => '',
                 'customer_id'           => '',
                 'project_type_id'       => '',
-                'hidden'                => ''
+                'shown'                 => ''
             );
         }
 

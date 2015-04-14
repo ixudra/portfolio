@@ -28,7 +28,7 @@ class ProjectViewFactoryTest extends BaseViewFactoryTestCase {
             'query'                 => '',
             'customer_id'           => '',
             'project_type_id'       => '',
-            'hidden'                => ''
+            'shown'                 => ''
         );
 
         $this->createFilterMocks( $input );

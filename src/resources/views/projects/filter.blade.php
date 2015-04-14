@@ -13,8 +13,8 @@
             {!! Form::select('project_type_id', $projectTypes, $input['project_type_id'], array('placeholder' => Translate::recursive('members.project_type_id'), 'class' => 'form-control')) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('hidden', Translate::recursive('members.hidden') .': ', array('class' => '')) !!}
-            {!! Form::select('hidden', $visibilityOptions, $input['hidden'], array('placeholder' => Translate::recursive('members.hidden'), 'class' => 'form-control')) !!}
+            {!! Form::label('shown', Translate::recursive('form.shown') .': ', array('class' => '')) !!}
+            {!! Form::select('shown', $visibilityOptions, $input['shown'], array('placeholder' => Translate::recursive('form.shown'), 'class' => 'form-control')) !!}
         </div>
         <div class="form-group">
             {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}

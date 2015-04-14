@@ -23,4 +23,23 @@ class ProjectInputHelper extends BaseInputHelper {
         );
     }
 
+    public function getInputForSearch($input)
+    {
+        if( array_key_exists('_token', $input) ) {
+            unset( $input[ '_token' ] );
+        }
+
+        $hidden = '';
+        if( $input[ 'shown' ] === '1' ) {
+            $hidden = '0';
+        } else if( $input[ 'shown' ] === '0' ) {
+            $hidden = '1';
+        }
+
+        $input[ 'hidden' ] = $hidden;
+        unset( $input[ 'shown' ] );
+
+        return $input;
+    }
+
 }

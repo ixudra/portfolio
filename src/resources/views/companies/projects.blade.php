@@ -12,7 +12,7 @@
                     <th>{{ Translate::recursive('members.name') }}</th>
                     <th>{{ Translate::recursive('members.project_type_id') }}</th>
                     <th>{{ Translate::recursive('members.status') }}</th>
-                    <th>{{ Translate::recursive('members.hidden') }}</th>
+                    <th>{{ Translate::recursive('form.shown') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>
