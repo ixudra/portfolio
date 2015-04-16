@@ -20,8 +20,8 @@
             <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('members.customer_id') }}:</div>
                 <div class='col-md-8'>
-                    {!! HTML::iconRoute('admin.'. $project->customer->object->getPlural() .'.show', '', $project->customer->object->present()->segmentIcon, array($project->customer->object->id)) !!}
-                    {!! HTML::linkRoute('admin.'. $project->customer->object->getPlural() .'.show', $project->customer->object->present()->fullName, array($project->customer->object->id)) !!}
+                    {!! HTML::iconRoute('admin.customers.show', '', $project->customer->object->present()->segmentIcon, array($project->customer->id)) !!}
+                    {!! HTML::linkRoute('admin.customers.show', $project->customer->object->present()->fullName, array($project->customer->id)) !!}
                 </div>
             </div>
             <div class='col-md-10'>
