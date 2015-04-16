@@ -77,6 +77,7 @@ class Person extends Model implements CustomerModelInterface {
         if( $this->address ) {
             $this->address->delete();
         }
+
         $this->customer->delete();
 
         parent::delete();

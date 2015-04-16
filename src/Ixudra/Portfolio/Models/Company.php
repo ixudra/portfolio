@@ -89,7 +89,11 @@ class Company extends Model implements CustomerModelInterface {
         if( $this->billingAddress ) {
             $this->billingAddress->delete();
         }
-        $this->representative->delete();
+
+        if( $this->representative->projects->isEmpty() ) {
+            $this->representative->delete();
+        }
+
         $this->customer->delete();
 
         parent::delete();
