@@ -8,6 +8,17 @@
 
 @section('content')
 
-@include('portfolio::customers.form', array('url' => 'admin/customers/'.$customer->id, 'method' => 'put', 'input' => $input, 'formId' => 'editCustomer', 'redirectUrl' => 'admin.customers.show', 'redirectParameters' => array($customer->id)))
+    {!! Form::open(array('url' => 'admin/customers/'. $customer->id, 'method' => 'put', 'id' => 'editCustomer', 'class' => 'form-horizontal', 'role' => 'form')) !!}
+
+        {!! Form::hidden('customerType', $form['customerType']) !!}
+
+        @include($form['template'], array('input' => $input, 'prefix' => ''))
+
+        <div class="action-button">
+            {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
+            {!! HTML::linkRoute('admin.customers.show', Translate::recursive('common.cancel'), array($customer->id), array('class' => 'btn btn-default')) !!}
+        </div>
+
+    {!! Form::close() !!}
 
 @endsection

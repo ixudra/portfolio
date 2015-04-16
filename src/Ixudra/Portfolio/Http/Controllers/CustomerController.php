@@ -1,15 +1,15 @@
 <?php namespace Ixudra\Portfolio\Http\Controllers;
 
 
-use Translate;
-
 use Ixudra\Core\Http\Controllers\BaseController;
-
 use Ixudra\Portfolio\Http\Requests\Customer\FilterCustomerFormRequest;
+use Ixudra\Portfolio\Http\Requests\Customer\CreateCustomerFormRequest;
+use Ixudra\Portfolio\Http\Requests\Customer\UpdateCustomerFormRequest;
 use Ixudra\Portfolio\Repositories\Eloquent\EloquentCustomerRepository;
 use Ixudra\Portfolio\Services\Html\CustomerViewFactory;
-use Ixudra\Portfolio\Services\Html\CompanyViewFactory;
-use Ixudra\Portfolio\Services\Html\PersonViewFactory;
+
+use App;
+use Translate;
 
 class CustomerController extends BaseController {
 
@@ -17,17 +17,11 @@ class CustomerController extends BaseController {
 
     protected $customerViewFactory;
 
-    protected $companyViewFactory;
 
-    protected $personViewFactory;
-
-
-    public function __construct(EloquentCustomerRepository $customerRepository, CustomerViewFactory $customerViewFactory, CompanyViewFactory $companyViewFactory, PersonViewFactory $personViewFactory)
+    public function __construct(EloquentCustomerRepository $customerRepository, CustomerViewFactory $customerViewFactory)
     {
         $this->customerRepository = $customerRepository;
         $this->customerViewFactory = $customerViewFactory;
-        $this->companyViewFactory = $companyViewFactory;
-        $this->personViewFactory = $personViewFactory;
     }
 
 
@@ -46,6 +40,14 @@ class CustomerController extends BaseController {
         return $this->customerViewFactory->create();
     }
 
+    public function store(CreateCustomerFormRequest $request)
+    {
+        $customerType = $request->input('customerType');
+        $object = $this->getFactory( $customerType )->make( $request->getInput(), $customerType );
+
+        return $this->redirect( 'admin.customers.show', array('id' => $object->customer->id), 'success', array( Translate::model( 'customer.create.success' ) ) );
+    }
+
     public function show($id)
     {
         $customer = $this->customerRepository->find( $id );
@@ -53,7 +55,7 @@ class CustomerController extends BaseController {
             return $this->modelNotFound();
         }
 
-        return $this->getViewFactory( $customer )->show( $customer->object );
+        return $this->customerViewFactory->show( $customer );
     }
 
     public function edit($id)
@@ -63,7 +65,19 @@ class CustomerController extends BaseController {
             return $this->modelNotFound();
         }
 
-        return $this->getViewFactory( $customer )->edit( $customer->object );
+        return $this->customerViewFactory->edit( $customer );
+    }
+
+    public function update($id, UpdateCustomerFormRequest $request)
+    {
+        $customer = $this->customerRepository->find( $id );
+        if( is_null($customer) ) {
+            return $this->modelNotFound();
+        }
+
+        $this->getFactory( $request->input( 'customerType' ) )->modify( $customer->object, $request->getInput() );
+
+        return $this->redirect( 'admin.customers.show', array('id' => $id), 'success', array( Translate::model( 'customer.edit.success' ) ) );
     }
 
     public function destroy($id)
@@ -83,13 +97,14 @@ class CustomerController extends BaseController {
         return $this->redirect( 'admin.customers.index', array(), 'error', array( Translate::model( 'customer.error.notFound' ) ) );
     }
 
-    protected function getViewFactory($customer)
+    protected function getFactory($customerType)
     {
-        if( $customer->object->getUrlKey() == 'companies' ) {
-            return $this->companyViewFactory;
+        $factory = '\Ixudra\Portfolio\Services\Factories\CompanyFactory';
+        if( $customerType == 'person' ) {
+            $factory = '\Ixudra\Portfolio\Services\Factories\PersonFactory';
         }
 
-        return $this->personViewFactory;
+        return App::make( $factory );
     }
 
 }

@@ -10,25 +10,41 @@
 
     <ul role="tablist" class="nav nav-tabs" id="createCustomerTab">
         <li class="active" role="presentation">
-            <a aria-controls="company" data-toggle="tab" role="tab" aria-expanded="true"
+            <a aria-controls="company" data-toggle="tab" data-customer-type="company" role="tab" aria-expanded="true"
                 id="company-tab" href="#company">Company</a>
         </li>
         <li role="presentation">
-            <a aria-controls="person" data-toggle="tab" role="tab"
+            <a aria-controls="person" data-toggle="tab" data-customer-type="person" role="tab"
                 id="person-tab" href="#person">Person</a>
         </li>
     </ul>
-    <div class="tab-content" id="createCustomerTabContent">
-        <div aria-labelledby="company-tab" id="company" class="tab-pane fade in active" role="tabpanel">
+    {!! Form::open(array('url' => 'admin/customers', 'method' => 'post', 'id' => 'createCompany', 'class' => 'form-horizontal', 'role' => 'form')) !!}
+        <div class="tab-content" id="createCustomerTabContent">
 
-            @include('portfolio::companies.form', array('url' => 'admin/companies/', 'method' => 'post', 'input' => $input, 'formId' => 'createCompany', 'redirectUrl' => 'admin.companies.index', 'redirectParameters' => array(), 'prefix' => 'company_'))
+            {!! Form::hidden('customerType', 'company', array('id' => 'customerType')) !!}
+
+            <div aria-labelledby="company-tab" id="company" class="tab-pane fade in active" role="tabpanel">
+
+                @include('portfolio::companies.form.full', array('input' => $input, 'prefix' => 'company_'))
+
+                <div class="action-button">
+                    {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
+                    {!! HTML::linkRoute('admin.customers.index', Translate::recursive('common.cancel'), array(), array('class' => 'btn btn-default')) !!}
+                </div>
+
+            </div>
+            <div aria-labelledby="person-tab" id="person" class="tab-pane fade" role="tabpanel">
+
+                @include('portfolio::people.form.full', array('input' => $input, 'prefix' => 'person_'))
+
+                <div class="action-button">
+                    {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
+                    {!! HTML::linkRoute('admin.customers.index', Translate::recursive('common.cancel'), array(), array('class' => 'btn btn-default')) !!}
+                </div>
+
+            </div>
 
         </div>
-        <div aria-labelledby="person-tab" id="person" class="tab-pane fade" role="tabpanel">
-
-            @include('portfolio::people.form', array('url' => 'admin/people/', 'method' => 'post', 'input' => $input, 'formId' => 'createPerson', 'redirectUrl' => 'admin.people.index', 'redirectParameters' => array(), 'prefix' => 'person_'))
-
-        </div>
-    </div>
+    {!! Form::close() !!}
 
 @endsection

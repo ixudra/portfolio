@@ -95,7 +95,12 @@ class Company extends Model implements CustomerModelInterface {
         parent::delete();
     }
 
-    public function getUrlKey()
+    public function getSingular()
+    {
+        return 'company';
+    }
+
+    public function getPlural()
     {
         return 'companies';
     }

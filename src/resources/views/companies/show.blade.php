@@ -15,14 +15,6 @@
         {!! Form:: close() !!}
     </div>
 
-    @include('portfolio::companies.data', array('company' => $company, 'includeName' => false))
-
-    @include('portfolio::companies.corporateAddress', array('address' => $company->corporateAddress))
-
-    @include('portfolio::companies.billingAddress', array('address' => $company->billingAddress))
-
-    @include('portfolio::companies.representative', array('person' => $company->representative))
-
-    @include('portfolio::companies.projects', array('projects' => $company->projects))
+    @include('portfolio::companies.show.content', array('company' => $company))
 
 @endsection

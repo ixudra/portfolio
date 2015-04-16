@@ -82,7 +82,12 @@ class Person extends Model implements CustomerModelInterface {
         parent::delete();
     }
 
-    public function getUrlKey()
+    public function getSingular()
+    {
+        return 'person';
+    }
+
+    public function getPlural()
     {
         return 'people';
     }

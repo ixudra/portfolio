@@ -3,6 +3,8 @@
 
 interface CustomerModelInterface {
 
-    public function getUrlKey();
+    public function getSingular();
+
+    public function getPlural();
 
 }

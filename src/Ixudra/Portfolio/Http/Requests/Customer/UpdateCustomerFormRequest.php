@@ -3,7 +3,7 @@
 
 use Ixudra\Core\Http\Requests\BaseRequest;
 
-use Ixudra\Portfolio\Models\Customer;
+use App;
 
 class UpdateCustomerFormRequest extends BaseRequest {
 
@@ -14,7 +14,17 @@ class UpdateCustomerFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return Customer::getRules();
+        return $this->getCustomerTypeFormRequest()->rules();
+    }
+
+    protected function getCustomerTypeFormRequest()
+    {
+        $formRequest = '\Ixudra\Portfolio\Http\Requests\Companies\UpdateCompanyFormRequest';
+        if( $this->input('customerType') == 'person' ) {
+            $formRequest = '\Ixudra\Portfolio\Http\Requests\People\UpdatePersonFormRequest';
+        }
+
+        return App::make( $formRequest );
     }
 
 }
