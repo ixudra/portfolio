@@ -74,6 +74,10 @@ class Person extends Model implements CustomerModelInterface {
 
     public function delete()
     {
+        if( !is_null($this->company) ) {
+            throw new \Exception('exceptions.delete.companyRepresentative');
+        }
+
         if( $this->address ) {
             $this->address->delete();
         }

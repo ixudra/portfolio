@@ -87,7 +87,11 @@ class CustomerController extends BaseController {
             return $this->modelNotFound();
         }
 
-        $customer->object->delete();
+        try {
+            $customer->object->delete();
+        } catch(\Exception $e) {
+            return $this->redirect( 'admin.customers.show', array($customer->id), 'error', array( Translate::recursive( $e->getMessage() ) ) );
+        }
 
         return $this->redirect( 'admin.customers.index', array(), 'success', array( Translate::model( 'customer.delete.success' ) ) );
     }
