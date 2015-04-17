@@ -16,7 +16,7 @@ class CreatePersonFormRequest extends BaseRequest {
     {
         return array_merge(
             $this->getPrefixedRules( Person::getRules(), 'person' ),
-            $this->getPrefixedRules( Address::getRules(), 'address', true )
+            $this->getPrefixedRules( Address::getRules(), 'address' )
         );
     }
 

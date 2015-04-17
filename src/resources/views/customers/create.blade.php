@@ -18,6 +18,7 @@
                 id="person-tab" href="#person">Person</a>
         </li>
     </ul>
+
     {!! Form::open(array('url' => 'admin/customers', 'method' => 'post', 'id' => 'createCompany', 'class' => 'form-horizontal', 'role' => 'form')) !!}
         <div class="tab-content" id="createCustomerTabContent">
 

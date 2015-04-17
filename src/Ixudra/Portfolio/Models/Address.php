@@ -55,7 +55,7 @@ class Address extends Model {
             'district'              => '',
             'postal_code'           => '',
             'city'                  => '',
-            'country'               => 'us',
+            'country'               => 'be',
         );
     }
 

@@ -19,10 +19,10 @@ class PersonFactory extends BaseFactory {
     }
 
 
-    public function make($input, $prefix = '', $includeAddress = true)
+    public function make($input, $prefix = '')
     {
         $address = null;
-        if( $includeAddress ) {
+        if( $this->includeAddress($input) ) {
             $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address' ) );
         }
 
@@ -32,13 +32,28 @@ class PersonFactory extends BaseFactory {
         return $person;
     }
 
-    public function modify($person, $input, $prefix = '', $includeAddress = false)
+    public function modify($person, $input, $prefix = '')
     {
-        if( $includeAddress && !is_null($person->address) ) {
-            $this->addressFactory->modify( $person->address, $this->extractAddressInput( $input, 'address' ) );
+        $address = $person->address;
+        if( $this->includeAddress($input) ) {
+            if( is_null($address) ) {
+                $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address' ) );
+            } else {
+                $this->addressFactory->modify( $address, $this->extractAddressInput( $input, 'address' ) );
+            }
+        } else {
+            if( !is_null($address) ) {
+                $address->delete();
+                $address = null;
+            }
         }
 
-        return $person->update( $this->extractPersonInput($person->address, $input, $prefix) );
+        return $person->update( $this->extractPersonInput($address, $input, $prefix) );
+    }
+
+    protected function includeAddress($input)
+    {
+        return array_key_exists('address_street_1', $input) && $input[ 'address_street_1' ] != '';
     }
 
     protected function extractAddressInput($input, $prefix = '')
