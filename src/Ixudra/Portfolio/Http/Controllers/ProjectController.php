@@ -43,7 +43,7 @@ class ProjectController extends BaseController {
     {
         $project = $projectFactory->make( $request->getInput(true) );
 
-        return $this->redirect( 'admin.projects.show', array('id' => $project->id), 'success', array( Translate::model( 'project.create.success' ) ) );
+        return $this->redirect( 'admin.projects.show', array('id' => $project->id), 'success', array( Translate::model( 'portfolio::project.create.success' ) ) );
     }
 
     public function show($id)
@@ -75,7 +75,7 @@ class ProjectController extends BaseController {
 
         $projectFactory->modify( $project, $request->getInput(true) );
 
-        return $this->redirect( 'admin.projects.show', array('id' => $id), 'success', array( Translate::model( 'project.edit.success' ) ) );
+        return $this->redirect( 'admin.projects.show', array('id' => $id), 'success', array( Translate::model( 'portfolio::project.edit.success' ) ) );
     }
 
     public function destroy($id)
@@ -87,12 +87,12 @@ class ProjectController extends BaseController {
 
         $project->delete();
 
-        return $this->redirect( 'admin.projects.index', array(), 'success', array( Translate::model( 'project.delete.success' ) ) );
+        return $this->redirect( 'admin.projects.index', array(), 'success', array( Translate::model( 'portfolio::project.delete.success' ) ) );
     }
 
     protected function modelNotFound()
     {
-        return $this->redirect( 'admin.projects.index', array(), 'error', array( Translate::model( 'project.error.notFound' ) ) );
+        return $this->redirect( 'admin.projects.index', array(), 'error', array( Translate::model( 'portfolio::project.error.notFound' ) ) );
     }
 
 }

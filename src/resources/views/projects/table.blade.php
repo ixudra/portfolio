@@ -5,11 +5,11 @@
                 <tr>
                     <th>ID</th>
                     <th class="table-small">&nbsp;</th>
-                    <th>{{ Translate::recursive('members.name') }}</th>
-                    <th>{{ Translate::recursive('members.customer_id') }}</th>
-                    <th>{{ Translate::recursive('members.project_type_id') }}</th>
-                    <th>{{ Translate::recursive('members.status') }}</th>
-                    <th>{{ Translate::recursive('form.shown') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.name') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.customer_id') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.project_type_id') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.status') }}</th>
+                    <th>{{ Translate::recursive('portfolio::form.shown') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>

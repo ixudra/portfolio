@@ -63,8 +63,8 @@
     @include('imageable::images/fields')
 
     <div class="action-button">
-        {!! Form::submit(Translate::recursive('portfolio::common.submit'), array('class' => 'btn btn-primary')) !!}
-        {!! HTML::linkRoute($redirectUrl, Translate::recursive('portfolio::common.cancel'), $redirectParameters, array('class' => 'btn btn-default')) !!}
+        {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
+        {!! HTML::linkRoute($redirectUrl, Translate::recursive('common.cancel'), $redirectParameters, array('class' => 'btn btn-default')) !!}
     </div>
 
 {!! Form::close() !!}

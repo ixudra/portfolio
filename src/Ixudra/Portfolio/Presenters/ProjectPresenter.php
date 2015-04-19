@@ -24,7 +24,7 @@ class ProjectPresenter extends BasePresenter {
 
     public function projectStatus()
     {
-        return Translate::recursive('statuses.project.'. $this->status);
+        return Translate::recursive('portfolio::statuses.project.'. $this->status, array());
     }
 
 }

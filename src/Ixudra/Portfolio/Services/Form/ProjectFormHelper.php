@@ -30,11 +30,11 @@ class ProjectFormHelper extends BaseFormHelper {
 
         $results = array();
         if( $includeNull ) {
-            $results[ '' ] = 'None';
+            $results[ '' ] = Translate::recursive('common.none');
         }
 
         foreach( $statuses as $status ) {
-            $results[ $status ] = Translate::recursive('statuses.project.'. $status);
+            $results[ $status ] = Translate::recursive('portfolio::statuses.project.'. $status);
         }
 
         return $results;

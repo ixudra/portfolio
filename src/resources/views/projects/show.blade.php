@@ -10,8 +10,8 @@
 
     <div class="row">
         {!! Form::open(array('url' => '/admin/projects/'. $project->id, 'method' => 'delete')) !!}
-            {!! HTML::linkRoute('admin.projects.edit', Translate::recursive('portfolio::common.edit'), array($project->id), array('class' => 'btn btn-default')) !!}
-            {!! Form::submit(Translate::recursive('portfolio::common.delete'), array('class' => 'btn btn-danger')) !!}
+            {!! HTML::linkRoute('admin.projects.edit', Translate::recursive('common.edit'), array($project->id), array('class' => 'btn btn-default')) !!}
+            {!! Form::submit(Translate::recursive('common.delete'), array('class' => 'btn btn-danger')) !!}
         {!! Form:: close() !!}
     </div>
 
