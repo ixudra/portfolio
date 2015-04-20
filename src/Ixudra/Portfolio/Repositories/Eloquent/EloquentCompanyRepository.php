@@ -17,7 +17,7 @@ class EloquentCompanyRepository extends BaseEloquentRepository {
     }
 
 
-    public function search($filters, $resultsPerPage)
+    public function search($filters, $resultsPerPage = 25)
     {
         $results = $this->getModel();
 
@@ -34,7 +34,7 @@ class EloquentCompanyRepository extends BaseEloquentRepository {
             ->with('corporateAddress', 'representative')
             ->paginate($resultsPerPage)
             ->appends($filters)
-            ->appends('results_per_page', $resultsPerPage);
+            ->appends('size', $resultsPerPage);
     }
 
 }

@@ -59,7 +59,7 @@ class CustomerViewFactory extends BaseViewFactory {
     protected function prepareFilter($template, $input)
     {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\CustomerInputHelper')->getInputForSearch( $input );
-        $customers = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentCustomerRepository')->search( $searchInput, 25 );
+        $customers = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentCustomerRepository')->search( $searchInput );
         $withProjectOptions = App::make('\Ixudra\Portfolio\Services\Form\CustomerFormHelper')->getWithProjectOptionsAsSelectList( true );
 
         $this->addParameter('customers', $customers);

@@ -50,7 +50,7 @@ class AddressViewFactory extends BaseViewFactory {
     protected function prepareFilter($template, $input)
     {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\AddressInputHelper')->getInputForSearch( $input );
-        $addresses = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentAddressRepository')->search( $searchInput, 25 );
+        $addresses = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentAddressRepository')->search( $searchInput );
 
         $cities = App::make('\Ixudra\Portfolio\Services\Form\AddressFormHelper')->getCitiesAsSelectList( true );
 

@@ -50,7 +50,7 @@ class PersonViewFactory extends BaseViewFactory {
     protected function prepareFilter($template, $input)
     {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\PersonInputHelper')->getInputForSearch( $input );
-        $people = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentPersonRepository')->search( $searchInput, 25 );
+        $people = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentPersonRepository')->search( $searchInput );
 
         $this->addParameter('people', $people);
         $this->addParameter('input', $input);

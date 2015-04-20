@@ -50,7 +50,7 @@ class CompanyViewFactory extends BaseViewFactory {
     protected function prepareFilter($template, $input)
     {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\CompanyInputHelper')->getInputForSearch( $input );
-        $companies = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentCompanyRepository')->search( $searchInput, 25 );
+        $companies = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentCompanyRepository')->search( $searchInput );
 
         $this->addParameter('companies', $companies);
         $this->addParameter('input', $input);

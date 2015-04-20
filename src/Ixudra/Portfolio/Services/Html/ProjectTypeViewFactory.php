@@ -51,7 +51,7 @@ class ProjectTypeViewFactory extends BaseViewFactory {
     protected function prepareFilter($template, $input)
     {
         $searchInput = App::make('\Ixudra\Portfolio\Services\Input\ProjectTypeInputHelper')->getInputForSearch( $input );
-        $projectTypes = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectTypeRepository')->search( $searchInput, 25 );
+        $projectTypes = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectTypeRepository')->search( $searchInput );
 
         $this->addParameter('projectTypes', $projectTypes);
         $this->addParameter('input', $input);

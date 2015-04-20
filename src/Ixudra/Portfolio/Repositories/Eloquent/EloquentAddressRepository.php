@@ -17,7 +17,7 @@ class EloquentAddressRepository extends BaseEloquentRepository {
     }
 
 
-    public function search($filters, $resultsPerPage)
+    public function search($filters, $resultsPerPage = 25)
     {
         $results = $this->getModel();
 
@@ -30,7 +30,7 @@ class EloquentAddressRepository extends BaseEloquentRepository {
             ->select($this->getTable() .'.*')
             ->paginate($resultsPerPage)
             ->appends($filters)
-            ->appends('results_per_page', $resultsPerPage);
+            ->appends('size', $resultsPerPage);
     }
 
 }
