@@ -42,7 +42,7 @@ class CompanyController extends BaseController {
     {
         $company = $companyFactory->make( $request->getInput(), 'company' );
 
-        return $this->redirect( 'admin.companies.show', array('id' => $company->id), 'success', array( Translate::model( 'company.create.success' ) ) );
+        return $this->redirect( 'admin.companies.show', array('id' => $company->id), 'success', array( Translate::model( 'portfolio::company.create.success' ) ) );
     }
 
     public function show($id)
@@ -74,7 +74,7 @@ class CompanyController extends BaseController {
 
         $companyFactory->modify( $company, $request->getInput() );
 
-        return $this->redirect( 'admin.companies.show', array('id' => $id), 'success', array( Translate::model( 'company.edit.success' ) ) );
+        return $this->redirect( 'admin.companies.show', array('id' => $id), 'success', array( Translate::model( 'portfolio::company.edit.success' ) ) );
     }
 
     public function destroy($id)
@@ -86,12 +86,12 @@ class CompanyController extends BaseController {
 
         $company->delete();
 
-        return $this->redirect( 'admin.companies.index', array(), 'success', array( Translate::model( 'company.delete.success' ) ) );
+        return $this->redirect( 'admin.companies.index', array(), 'success', array( Translate::model( 'portfolio::company.delete.success' ) ) );
     }
 
     protected function modelNotFound()
     {
-        return $this->redirect( 'admin.companies.index', array(), 'error', array( Translate::model( 'company.error.notFound' ) ) );
+        return $this->redirect( 'admin.companies.index', array(), 'error', array( Translate::model( 'portfolio::company.error.notFound' ) ) );
     }
 
 }

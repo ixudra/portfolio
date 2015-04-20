@@ -42,7 +42,7 @@ class PersonController extends BaseController {
     {
         $person = $personFactory->make($request->getInput(), 'person', true);
 
-        return $this->redirect( 'admin.people.show', array('id' => $person->id), 'success', array( Translate::model( 'person.create.success' ) ) );
+        return $this->redirect( 'admin.people.show', array('id' => $person->id), 'success', array( Translate::model( 'portfolio::person.create.success' ) ) );
     }
 
     public function show($id)
@@ -74,7 +74,7 @@ class PersonController extends BaseController {
 
         $personFactory->modify($person, $request->getInput(), '', true);
 
-        return $this->redirect( 'admin.people.show', array('id' => $id), 'success', array( Translate::model( 'person.edit.success' ) ) );
+        return $this->redirect( 'admin.people.show', array('id' => $id), 'success', array( Translate::model( 'portfolio::person.edit.success' ) ) );
     }
 
     public function destroy($id)
@@ -86,12 +86,12 @@ class PersonController extends BaseController {
 
         $person->delete();
 
-        return $this->redirect( 'admin.people.index', array(), 'success', array( Translate::model( 'person.delete.success' ) ) );
+        return $this->redirect( 'admin.people.index', array(), 'success', array( Translate::model( 'portfolio::person.delete.success' ) ) );
     }
 
     protected function modelNotFound()
     {
-        return $this->redirect( 'admin.people.index', array(), 'error', array( Translate::model( 'person.error.notFound' ) ) );
+        return $this->redirect( 'admin.people.index', array(), 'error', array( Translate::model( 'portfolio::person.error.notFound' ) ) );
     }
 
 }

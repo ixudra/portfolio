@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>{{ Translate::recursive('members.name') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.name') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>

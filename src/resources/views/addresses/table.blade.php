@@ -4,9 +4,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>{{ Translate::recursive('members.street') }}</th>
-                    <th>{{ Translate::recursive('members.city') }}</th>
-                    <th>{{ Translate::recursive('members.country') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.street') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.city') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.country') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>

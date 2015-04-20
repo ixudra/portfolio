@@ -42,7 +42,7 @@ class AddressController extends BaseController {
     {
         $address = $addressFactory->make( $request->getInput() );
 
-        return $this->redirect( 'admin.addresses.show', array('id' => $address->id), 'success', array( Translate::model( 'address.create.success' ) ) );
+        return $this->redirect( 'admin.addresses.show', array('id' => $address->id), 'success', array( Translate::model( 'portfolio::address.create.success' ) ) );
     }
 
     public function show($id)
@@ -74,7 +74,7 @@ class AddressController extends BaseController {
 
         $addressFactory->modify( $address, $request->getInput() );
 
-        return $this->redirect( 'admin.addresses.show', array('id' => $id), 'success', array( Translate::model( 'address.edit.success' ) ) );
+        return $this->redirect( 'admin.addresses.show', array('id' => $id), 'success', array( Translate::model( 'portfolio::address.edit.success' ) ) );
     }
 
     public function destroy($id)
@@ -86,12 +86,12 @@ class AddressController extends BaseController {
 
         $address->delete();
 
-        return $this->redirect( 'admin.addresses.index', array(), 'success', array( Translate::model( 'address.delete.success' ) ) );
+        return $this->redirect( 'admin.addresses.index', array(), 'success', array( Translate::model( 'portfolio::address.delete.success' ) ) );
     }
 
     protected function modelNotFound()
     {
-        return $this->redirect( 'admin.addresses.index', array(), 'error', array( Translate::model( 'address.error.notFound' ) ) );
+        return $this->redirect( 'admin.addresses.index', array(), 'error', array( Translate::model( 'portfolio::address.error.notFound' ) ) );
     }
 
 }

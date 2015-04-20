@@ -2,7 +2,7 @@
 
 
 @section('content-title')
-    {{ Translate::recursive('admin.menu.title.new', array('model' => 'customer')) }}
+    {{ Translate::recursive('portfolio::admin.menu.title.new', array('model' => 'customer')) }}
 @endsection
 
 

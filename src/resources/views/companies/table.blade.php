@@ -4,10 +4,10 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>{{ Translate::recursive('members.name') }}</th>
-                    <th>{{ Translate::recursive('members.vat_nr') }}</th>
-                    <th>{{ Translate::recursive('models.address.singular') }}</th>
-                    <th>{{ Translate::recursive('members.representative') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.name') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.vat_nr') }}</th>
+                    <th>{{ Translate::recursive('portfolio::models.address.singular') }}</th>
+                    <th>{{ Translate::recursive('portfolio::members.representative') }}</th>
                     <th>{{ Translate::recursive('common.actions') }}</th>
                 </tr>
             </thead>

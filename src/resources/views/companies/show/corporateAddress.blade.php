@@ -1,6 +1,6 @@
 
     <div class="row">
-        <h2>Corporate address</h2>
+        <h2>{{ Translate::recursive('portfolio::members.corporateAddress') }}</h2>
     </div>
 
     @include('portfolio::addresses.data')

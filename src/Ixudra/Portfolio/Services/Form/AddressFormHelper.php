@@ -51,7 +51,7 @@ class AddressFormHelper extends BaseFormHelper {
 
         $results = array();
         if( $includeNull ) {
-            $results[ 0 ] = Translate::recursive('members.city') .'...';
+            $results[ 0 ] = Translate::recursive('portfolio::members.city') .'...';
         }
 
         foreach( $models as $model ) {

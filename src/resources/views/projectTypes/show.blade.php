@@ -18,7 +18,7 @@
     <div class="row">
         <div class="well well-large col-md-12">
             <div class='col-md-12'>
-                <div class='col-md-4'>{{ Translate::recursive('members.name') }}:</div>
+                <div class='col-md-4'>{{ Translate::recursive('portfolio::members.name') }}:</div>
                 <div class='col-md-8'>{{ $projectType->name }}</div>
             </div>
         </div>

@@ -45,7 +45,7 @@ class CustomerController extends BaseController {
         $customerType = $request->input('customerType');
         $object = $this->getFactory( $customerType )->make( $request->getInput(), $customerType );
 
-        return $this->redirect( 'admin.customers.show', array('id' => $object->customer->id), 'success', array( Translate::model( 'customer.create.success' ) ) );
+        return $this->redirect( 'admin.customers.show', array('id' => $object->customer->id), 'success', array( Translate::model( 'portfolio::customer.create.success' ) ) );
     }
 
     public function show($id)
@@ -77,7 +77,7 @@ class CustomerController extends BaseController {
 
         $this->getFactory( $request->input( 'customerType' ) )->modify( $customer->object, $request->getInput() );
 
-        return $this->redirect( 'admin.customers.show', array('id' => $id), 'success', array( Translate::model( 'customer.edit.success' ) ) );
+        return $this->redirect( 'admin.customers.show', array('id' => $id), 'success', array( Translate::model( 'portfolio::customer.edit.success' ) ) );
     }
 
     public function destroy($id)
@@ -93,12 +93,12 @@ class CustomerController extends BaseController {
             return $this->redirect( 'admin.customers.show', array($customer->id), 'error', array( Translate::recursive( $e->getMessage() ) ) );
         }
 
-        return $this->redirect( 'admin.customers.index', array(), 'success', array( Translate::model( 'customer.delete.success' ) ) );
+        return $this->redirect( 'admin.customers.index', array(), 'success', array( Translate::model( 'portfolio::customer.delete.success' ) ) );
     }
 
     protected function modelNotFound()
     {
-        return $this->redirect( 'admin.customers.index', array(), 'error', array( Translate::model( 'customer.error.notFound' ) ) );
+        return $this->redirect( 'admin.customers.index', array(), 'error', array( Translate::model( 'portfolio::customer.error.notFound' ) ) );
     }
 
     protected function getFactory($customerType)
