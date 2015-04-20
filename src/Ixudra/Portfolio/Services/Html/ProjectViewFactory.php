@@ -6,8 +6,18 @@ use App;
 use Ixudra\Core\Services\Html\BaseViewFactory;
 
 use Ixudra\Portfolio\Models\Project;
+use Ixudra\Portfolio\Services\Form\ProjectFormHelper;
 
 class ProjectViewFactory extends BaseViewFactory {
+
+    protected $projectFormHelper;
+
+
+    public function __construct(ProjectFormHelper $projectFormHelper)
+    {
+        $this->projectFormHelper = $projectFormHelper;
+    }
+
 
     public function index($input = array())
     {
@@ -29,7 +39,7 @@ class ProjectViewFactory extends BaseViewFactory {
             $input = App::make('\Ixudra\Portfolio\Services\Input\ProjectInputHelper')->getDefaultInput();
         }
 
-        return $this->prepareForm( 'portfolio::projects.create', $input );
+        return $this->prepareForm('portfolio::projects.create', 'create', $input);
     }
 
     public function show(Project $project)
@@ -47,7 +57,7 @@ class ProjectViewFactory extends BaseViewFactory {
 
         $this->addParameter('project', $project);
 
-        return $this->prepareForm( 'portfolio::projects.edit', $input );
+        return $this->prepareForm('portfolio::projects.edit', 'update', $input);
     }
 
 
@@ -69,16 +79,18 @@ class ProjectViewFactory extends BaseViewFactory {
         return $this->makeView( $template );
     }
 
-    protected function prepareForm($template, $input)
+    protected function prepareForm($template, $formName, $input)
     {
-        $statuses = App::make('\Ixudra\Portfolio\Services\Form\ProjectFormHelper')->getStatusesAsSelectList();
+        $statuses = $this->projectFormHelper->getStatusesAsSelectList();
         $projectTypes = App::make('\Ixudra\Portfolio\Services\Form\ProjectTypeFormHelper')->getAllAsSelectList();
         $customers = App::make('\Ixudra\Portfolio\Services\Form\CustomerFormHelper')->getAllAsSelectList();
+        $requiredFields = $this->projectFormHelper->getRequiredFields( $formName );
 
         $this->addParameter('statuses', $statuses);
         $this->addParameter('customers', $customers);
         $this->addParameter('projectTypes', $projectTypes);
         $this->addParameter('input', $input);
+        $this->addParameter('requiredFields', $requiredFields);
 
         return $this->makeView( $template );
     }
