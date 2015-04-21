@@ -2,8 +2,8 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Models\Person;
-use Ixudra\Portfolio\Models\Address;
+
+use App;
 
 class CreatePersonFormRequest extends BaseRequest {
 
@@ -14,10 +14,8 @@ class CreatePersonFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return array_merge(
-            $this->getPrefixedRules( Person::getRules(), 'person' ),
-            $this->getPrefixedRules( Address::getRules(), 'address' )
-        );
+        return App::make('\Ixudra\Portfolio\Services\Validation\PersonValidationHelper')
+            ->getFormValidationRules( 'create' );
     }
 
 }

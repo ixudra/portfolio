@@ -3,6 +3,8 @@
 
 use Ixudra\Core\Http\Requests\BaseRequest;
 
+use App;
+
 class FilterCustomerFormRequest extends BaseRequest {
 
     public function authorize()
@@ -12,10 +14,8 @@ class FilterCustomerFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return array(
-            'query'             => '',
-            'withProject'       => 'boolean'
-        );
+        return App::make('\Ixudra\Portfolio\Services\Validation\CustomerValidationHelper')
+            ->getFilterValidationRules();
     }
 
 }

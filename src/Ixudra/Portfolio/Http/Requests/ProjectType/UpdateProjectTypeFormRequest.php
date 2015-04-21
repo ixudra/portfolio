@@ -3,7 +3,7 @@
 
 use Ixudra\Core\Http\Requests\BaseRequest;
 
-use Ixudra\Portfolio\Models\ProjectType;
+use App;
 
 class UpdateProjectTypeFormRequest extends BaseRequest {
 
@@ -14,7 +14,8 @@ class UpdateProjectTypeFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return ProjectType::getRules();
+        return App::make('\Ixudra\Portfolio\Services\Validation\ProjectTypeValidationHelper')
+            ->getFormValidationRules( 'update' );
     }
 
 }

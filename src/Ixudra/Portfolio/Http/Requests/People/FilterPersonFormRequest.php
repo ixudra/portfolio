@@ -3,6 +3,8 @@
 
 use Ixudra\Core\Http\Requests\BaseRequest;
 
+use App;
+
 class FilterPersonFormRequest extends BaseRequest {
 
     public function authorize()
@@ -12,9 +14,8 @@ class FilterPersonFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return array(
-            'query'         => 'required'
-        );
+        return App::make('\Ixudra\Portfolio\Services\Validation\PersonValidationHelper')
+            ->getFilterValidationRules();
     }
 
 }

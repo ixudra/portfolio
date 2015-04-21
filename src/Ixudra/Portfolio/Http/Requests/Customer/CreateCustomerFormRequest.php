@@ -14,17 +14,8 @@ class CreateCustomerFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return $this->getCustomerTypeFormRequest()->rules();
-    }
-
-    protected function getCustomerTypeFormRequest()
-    {
-        $formRequest = '\Ixudra\Portfolio\Http\Requests\Companies\CreateCompanyFormRequest';
-        if( $this->input('customerType') == 'person' ) {
-            $formRequest = '\Ixudra\Portfolio\Http\Requests\People\CreatePersonFormRequest';
-        }
-
-        return App::make( $formRequest );
+        return App::make('\Ixudra\Portfolio\Services\Validation\CustomerValidationHelper', array( $this->input('customerType') ))
+            ->getFormValidationRules( 'create' );
     }
 
 }
