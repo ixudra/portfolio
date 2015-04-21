@@ -10,14 +10,6 @@ use Ixudra\Portfolio\Services\Form\ProjectFormHelper;
 
 class ProjectViewFactory extends BaseViewFactory {
 
-    protected $projectFormHelper;
-
-
-    public function __construct(ProjectFormHelper $projectFormHelper)
-    {
-        $this->projectFormHelper = $projectFormHelper;
-    }
-
 
     public function index($input = array())
     {
@@ -81,10 +73,10 @@ class ProjectViewFactory extends BaseViewFactory {
 
     protected function prepareForm($template, $formName, $input)
     {
-        $statuses = $this->projectFormHelper->getStatusesAsSelectList();
+        $statuses = App::make('\Ixudra\Portfolio\Services\Form\ProjectFormHelper')->getStatusesAsSelectList();
         $projectTypes = App::make('\Ixudra\Portfolio\Services\Form\ProjectTypeFormHelper')->getAllAsSelectList();
         $customers = App::make('\Ixudra\Portfolio\Services\Form\CustomerFormHelper')->getAllAsSelectList();
-        $requiredFields = $this->projectFormHelper->getRequiredFields( $formName );
+        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\ProjectValidationHelper')->getRequiredFormFields( $formName );
 
         $this->addParameter('statuses', $statuses);
         $this->addParameter('customers', $customers);
