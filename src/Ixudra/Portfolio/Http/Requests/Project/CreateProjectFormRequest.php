@@ -2,8 +2,8 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Models\Project;
-use Ixudra\Imageable\Models\Image;
+
+use App;
 
 class CreateProjectFormRequest extends BaseRequest {
 
@@ -14,10 +14,8 @@ class CreateProjectFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return array_merge(
-            Project::getRules(),
-            Image::getRules()
-        );
+        return App::make('\Ixudra\Portfolio\Services\Validation\ProjectValidationHelper')
+            ->getFormValidationRules( 'create' );
     }
 
     public function getInput($includeFiles = false)
