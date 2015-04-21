@@ -25,7 +25,7 @@ class CompanyViewFactory extends BaseViewFactory {
             $input = App::make('\Ixudra\Portfolio\Services\Input\CompanyInputHelper')->getDefaultInput();
         }
 
-        return $this->prepareForm( 'portfolio::companies.create', $input );
+        return $this->prepareForm('portfolio::companies.create', 'create', $input);
     }
 
     public function show(Company $company)
@@ -43,7 +43,7 @@ class CompanyViewFactory extends BaseViewFactory {
 
         $this->addParameter('company', $company);
 
-        return $this->prepareForm( 'portfolio::companies.edit', $input );
+        return $this->prepareForm('portfolio::companies.edit', 'update', $input);
     }
 
 
@@ -58,10 +58,14 @@ class CompanyViewFactory extends BaseViewFactory {
         return $this->makeView( $template );
     }
 
-    protected function prepareForm($template, $input)
+    protected function prepareForm($template, $formName, $input)
     {
+        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\CompanyValidationHelper')->getRequiredFormFields( $formName );
+        dd( $requiredFields );
+
         $this->addParameter('prefix', '');
         $this->addParameter('input', $input);
+        $this->addParameter('requiredFields', $requiredFields);
 
         return $this->makeView( $template );
     }

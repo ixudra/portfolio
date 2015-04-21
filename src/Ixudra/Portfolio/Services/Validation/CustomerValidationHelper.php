@@ -39,4 +39,24 @@ class CustomerValidationHelper extends BaseValidationHelper {
         return App::make( $validationHelper );
     }
 
+    public function getRequiredFormFields($formName)
+    {
+        $rules = $this->getFormValidationRules( 'update' );
+        if( $formName == 'create' ) {
+            $rules = array_merge(
+                App::make('\Ixudra\Portfolio\Services\Validation\CompanyValidationHelper')->getFormValidationRules( $formName ),
+                App::make('\Ixudra\Portfolio\Services\Validation\PersonValidationHelper')->getFormValidationRules( $formName )
+            );
+        }
+
+        $requiredFields = array();
+        foreach( $rules as $key => $value ) {
+            if( $this->isRequired( $value ) ) {
+                $requiredFields[] = $key;
+            }
+        }
+
+        return $requiredFields;
+    }
+
 }

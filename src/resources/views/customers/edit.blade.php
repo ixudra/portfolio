@@ -12,7 +12,7 @@
 
         {!! Form::hidden('customerType', $form['customerType']) !!}
 
-        @include($form['template'], array('input' => $input, 'prefix' => ''))
+        @include($form['template'], array('input' => $input, 'prefix' => $prefix))
 
         <div class="action-button">
             {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}

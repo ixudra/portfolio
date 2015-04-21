@@ -75,7 +75,8 @@ class CustomerController extends BaseController {
             return $this->modelNotFound();
         }
 
-        $this->getFactory( $request->input( 'customerType' ) )->modify( $customer->object, $request->getInput() );
+        $customerType = $request->input('customerType');
+        $this->getFactory( $customerType )->modify( $customer->object, $request->getInput(), $customerType );
 
         return $this->redirect( 'admin.customers.show', array('id' => $id), 'success', array( Translate::model( 'portfolio::customer.edit.success' ) ) );
     }

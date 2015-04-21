@@ -26,7 +26,7 @@ class ProjectTypeViewFactory extends BaseViewFactory {
             $input = App::make('\Ixudra\Portfolio\Services\Input\ProjectTypeInputHelper')->getDefaultInput();
         }
 
-        return $this->prepareForm( 'portfolio::projectTypes.create', $input );
+        return $this->prepareForm('portfolio::projectTypes.create', 'create', $input);
     }
 
     public function show(ProjectType $projectType)
@@ -44,7 +44,7 @@ class ProjectTypeViewFactory extends BaseViewFactory {
 
         $this->addParameter('projectType', $projectType);
 
-        return $this->prepareForm( 'portfolio::projectTypes.edit', $input );
+        return $this->prepareForm('portfolio::projectTypes.edit', 'update', $input);
     }
 
 
@@ -59,9 +59,12 @@ class ProjectTypeViewFactory extends BaseViewFactory {
         return $this->makeView( $template );
     }
 
-    protected function prepareForm($template, $input)
+    protected function prepareForm($template, $formName, $input)
     {
+        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\ProjectTypeValidationHelper')->getRequiredFormFields( $formName );
+
         $this->addParameter('input', $input);
+        $this->addParameter('requiredFields', $requiredFields);
 
         return $this->makeView( $template );
     }

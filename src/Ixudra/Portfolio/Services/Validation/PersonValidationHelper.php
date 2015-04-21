@@ -35,7 +35,7 @@ class PersonValidationHelper extends BaseValidationHelper {
         );
 
         return array_merge(
-            $this->getPrefixedRules( Person::getRules() ),
+            $this->getPrefixedRules( Person::getRules(), 'person' ),
             $addressRules
         );
     }

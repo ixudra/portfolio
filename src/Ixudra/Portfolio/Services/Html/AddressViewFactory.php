@@ -25,7 +25,7 @@ class AddressViewFactory extends BaseViewFactory {
             $input = App::make('\Ixudra\Portfolio\Services\Input\AddressInputHelper')->getDefaultInput();
         }
 
-        return $this->prepareForm( 'portfolio::addresses.create', $input );
+        return $this->prepareForm('portfolio::addresses.create', 'create', $input);
     }
 
     public function show(Address $address)
@@ -43,7 +43,7 @@ class AddressViewFactory extends BaseViewFactory {
 
         $this->addParameter('address', $address);
 
-        return $this->prepareForm( 'portfolio::addresses.edit', $input );
+        return $this->prepareForm('portfolio::addresses.edit', 'update', $input);
     }
 
 
@@ -61,9 +61,12 @@ class AddressViewFactory extends BaseViewFactory {
         return $this->makeView( $template );
     }
 
-    protected function prepareForm($template, $input)
+    protected function prepareForm($template, $formName, $input)
     {
+        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\AddressValidationHelper')->getRequiredFormFields( $formName );
+
         $this->addParameter('input', $input);
+        $this->addParameter('requiredFields', $requiredFields);
 
         return $this->makeView( $template );
     }

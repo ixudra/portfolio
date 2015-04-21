@@ -25,7 +25,7 @@ class PersonViewFactory extends BaseViewFactory {
             $input = App::make('\Ixudra\Portfolio\Services\Input\PersonInputHelper')->getDefaultInput();
         }
 
-        return $this->prepareForm( 'portfolio::people.create', $input );
+        return $this->prepareForm('portfolio::people.create', 'create', $input);
     }
 
     public function show(Person $person)
@@ -43,7 +43,7 @@ class PersonViewFactory extends BaseViewFactory {
 
         $this->addParameter('person', $person);
 
-        return $this->prepareForm( 'portfolio::people.edit', $input );
+        return $this->prepareForm('portfolio::people.edit', 'update', $input);
     }
 
 
@@ -58,10 +58,13 @@ class PersonViewFactory extends BaseViewFactory {
         return $this->makeView( $template );
     }
 
-    protected function prepareForm($template, $input)
+    protected function prepareForm($template, $formName, $input)
     {
+        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\PersonValidationHelper')->getRequiredFormFields( $formName );
+
         $this->addParameter('prefix', '');
         $this->addParameter('input', $input);
+        $this->addParameter('requiredFields', $requiredFields);
 
         return $this->makeView( $template );
     }

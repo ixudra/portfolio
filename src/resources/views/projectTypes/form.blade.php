@@ -1,7 +1,7 @@
 {!! Form::open(array('url' => $url, 'method' => $method, 'id' => $formId, 'class' => 'form-horizontal', 'role' => 'form')) !!}
 
     <div class="well well-large">
-        <div class='form-group {{ $errors->has('name') ? 'has-error' : '' }}'>
+        <div class='form-group {{ $errors->has('name') ? 'has-error' : '' }} {{ in_array('name', $requiredFields) ? 'required' : '' }}'>
             {!! Form::label('name', Translate::recursive('portfolio::members.name') .': ', array('class' => 'control-label col-lg-3')) !!}
             <div class="col-lg-4">
                 {!! Form::text('name', $input['name'], array('class' => 'form-control')) !!}
