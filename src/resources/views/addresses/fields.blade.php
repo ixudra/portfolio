@@ -49,8 +49,10 @@
         </div>
     </div>
     <div class='form-group {{ $errors->has($prefix . 'country') ? 'has-error' : '' }} {{ in_array($prefix . 'country', $requiredFields) ? 'required' : '' }}'>
+        {!! Form::label($prefix . 'country', Translate::recursive('portfolio::members.country') .': ', array('class' => 'control-label col-lg-3')) !!}
         <div class="col-lg-4">
-            {!! Form::hidden($prefix . 'country', 'us', array('class' => 'form-control')) !!}
+            {!! Form::select($prefix . 'country', $countries, $input[$prefix . 'country'], array('class' => 'form-control')) !!}
+            {!! $errors->first($prefix . 'country', '<span class="help-block">:message</span>') !!}
         </div>
     </div>
 </div>

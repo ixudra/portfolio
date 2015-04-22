@@ -72,6 +72,8 @@ class CustomerViewFactory extends BaseViewFactory {
 
     protected function prepareForm($template, $formName, $input, $customer = null)
     {
+        $countries = App::make('\Ixudra\Portfolio\Services\Form\AddressFormHelper')->getCountriesAsSelectList();
+
         $customerType = 'company';
         if( !is_null($customer) ) {
             $customerType = $customer->object->getSingular();
@@ -79,6 +81,7 @@ class CustomerViewFactory extends BaseViewFactory {
         }
         $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\CustomerValidationHelper', array($customerType))->getRequiredFormFields( $formName );
 
+        $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);
         $this->addParameter('requiredFields', $requiredFields);
 

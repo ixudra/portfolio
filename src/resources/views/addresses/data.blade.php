@@ -30,7 +30,7 @@
         </div>
         <div class='col-md-12'>
             <div class='col-md-4'>{{ Translate::recursive('portfolio::members.country') }}:</div>
-            <div class='col-md-8'>{{ $address->country }}</div>
+            <div class='col-md-8'>{{ $address->present()->countryName }}</div>
         </div>
     </div>
 </div>

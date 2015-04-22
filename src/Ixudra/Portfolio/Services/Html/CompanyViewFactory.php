@@ -60,12 +60,14 @@ class CompanyViewFactory extends BaseViewFactory {
 
     protected function prepareForm($template, $formName, $input)
     {
-        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\CompanyValidationHelper')->getRequiredFormFields( $formName );
-        dd( $requiredFields );
+        $countries = App::make('\Ixudra\Portfolio\Services\Form\AddressFormHelper')->getCountriesAsSelectList();
 
-        $this->addParameter('prefix', '');
+        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\CompanyValidationHelper')->getRequiredFormFields( $formName );
+
+        $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);
         $this->addParameter('requiredFields', $requiredFields);
+        $this->addParameter('prefix', 'company');
 
         return $this->makeView( $template );
     }

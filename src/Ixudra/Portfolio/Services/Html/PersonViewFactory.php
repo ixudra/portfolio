@@ -60,11 +60,14 @@ class PersonViewFactory extends BaseViewFactory {
 
     protected function prepareForm($template, $formName, $input)
     {
+        $countries = App::make('\Ixudra\Portfolio\Services\Form\AddressFormHelper')->getCountriesAsSelectList();
+
         $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\PersonValidationHelper')->getRequiredFormFields( $formName );
 
-        $this->addParameter('prefix', '');
+        $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);
         $this->addParameter('requiredFields', $requiredFields);
+        $this->addParameter('prefix', '');
 
         return $this->makeView( $template );
     }

@@ -3,6 +3,8 @@
 
 use Laracasts\Presenter\Presenter;
 
+use Translate;
+
 class AddressPresenter extends Presenter {
 
     public function name()
@@ -18,6 +20,11 @@ class AddressPresenter extends Presenter {
         }
 
         return $this->street_1 .' '. $this->number . $box;
+    }
+
+    public function countryName()
+    {
+        return Translate::recursive('portfolio::international.countries.'. $this->country);
     }
 
 }
