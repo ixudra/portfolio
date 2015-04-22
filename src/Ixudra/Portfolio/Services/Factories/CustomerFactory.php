@@ -14,6 +14,7 @@ class CustomerFactory {
     protected function extractCustomerInput($object)
     {
         return array(
+            'name'                  => $object->getSortingName(),
             'customer_id'           => $object->id,
             'customer_type'         => get_class( $object )
         );

@@ -7,4 +7,6 @@ interface CustomerModelInterface {
 
     public function getPlural();
 
+    public function getSortingName();
+
 }

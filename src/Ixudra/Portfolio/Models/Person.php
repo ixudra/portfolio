@@ -97,4 +97,9 @@ class Person extends Model implements CustomerModelInterface {
         return 'people';
     }
 
+    public function getSortingName()
+    {
+        return $this->last_name .' '. $this->first_name;
+    }
+
 }

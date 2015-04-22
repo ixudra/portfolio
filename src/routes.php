@@ -31,7 +31,6 @@ Route::group(array('prefix' => 'admin'), function()
 
 
 
-
 /**
  * HTML macros
  */
@@ -51,4 +50,13 @@ HTML::macro('iconRoute', function($route = '', $data, $iconType, $parameters = a
 
     return str_replace('#', $icon, $link);
 });
+
+
+
+/**
+ * Model observers
+ */
+
+Ixudra\Portfolio\Models\Company::observe(new \Ixudra\Portfolio\Observers\CustomerModelObserver());
+Ixudra\Portfolio\Models\Person::observe(new \Ixudra\Portfolio\Observers\CustomerModelObserver());
 

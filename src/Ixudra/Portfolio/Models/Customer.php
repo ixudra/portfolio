@@ -12,6 +12,7 @@ class Customer extends Model {
     protected $table = 'customers';
 
     protected $fillable = array(
+        'name',
         'customer_type',
         'customer_id',
     );
@@ -39,6 +40,7 @@ class Customer extends Model {
     public static function getRules()
     {
         return array(
+            'name'                      => 'required|max:128',
             'customer_type'             => 'required|max:64',
             'customer_id'               => 'required|integer',
         );
@@ -47,6 +49,7 @@ class Customer extends Model {
     public static function getDefaults()
     {
         return array(
+            'name'                      => '',
             'customer_type'             => '',
             'customer_id'               => 0,
         );

@@ -109,4 +109,9 @@ class Company extends Model implements CustomerModelInterface {
         return 'companies';
     }
 
+    public function getSortingName()
+    {
+        return $this->name;
+    }
+
 }

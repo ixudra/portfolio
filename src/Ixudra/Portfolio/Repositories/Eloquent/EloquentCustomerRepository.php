@@ -22,6 +22,7 @@ class EloquentCustomerRepository extends BaseEloquentRepository {
         return $this->getModel()
             ->join('projects', 'customers.id', '=', 'projects.customer_id')
             ->select($this->getTable() .'.*')
+            ->orderBy('name', 'asc')
             ->get();
     }
 
@@ -62,6 +63,7 @@ class EloquentCustomerRepository extends BaseEloquentRepository {
 
         return $results
             ->select($this->getTable() .'.*')
+            ->orderBy('name', 'asc')
             ->distinct()
             ->paginate($resultsPerPage)
             ->appends($filters)
