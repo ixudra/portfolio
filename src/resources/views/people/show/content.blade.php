@@ -17,6 +17,9 @@
     </div>
 
     @if( !is_null($person->address) )
+        <div class="row">
+            <h2>{{ Translate::recursive('portfolio::models.address.singular') }}</h2>
+        </div>
         @include('portfolio::addresses.data', array('address' => $person->address))
     @endif
 
