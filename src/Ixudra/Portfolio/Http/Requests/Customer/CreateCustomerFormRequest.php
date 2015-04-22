@@ -18,4 +18,11 @@ class CreateCustomerFormRequest extends BaseRequest {
             ->getFormValidationRules( 'create' );
     }
 
+    protected function getRedirectUrl()
+    {
+        $url = parent::getRedirectUrl();
+
+        return $url .'#tab_'. $this->input('customerType');
+    }
+
 }
