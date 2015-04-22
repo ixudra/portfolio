@@ -4,6 +4,8 @@
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
+use Translate;
+
 class Person extends Model implements CustomerModelInterface {
 
     use PresentableTrait;
@@ -75,7 +77,7 @@ class Person extends Model implements CustomerModelInterface {
     public function delete()
     {
         if( !is_null($this->company) ) {
-            throw new \Exception('exceptions.delete.companyRepresentative');
+            throw new \Exception( 'portfolio::exceptions.delete.companyRepresentative' );
         }
 
         if( $this->address ) {

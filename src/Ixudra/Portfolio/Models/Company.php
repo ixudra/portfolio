@@ -90,13 +90,13 @@ class Company extends Model implements CustomerModelInterface {
             $this->billingAddress->delete();
         }
 
+        parent::delete();
+
         if( $this->representative->projects->isEmpty() ) {
             $this->representative->delete();
         }
 
         $this->customer->delete();
-
-        parent::delete();
     }
 
     public function getSingular()
