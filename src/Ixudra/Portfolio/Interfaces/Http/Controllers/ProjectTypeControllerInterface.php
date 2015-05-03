@@ -1,18 +1,12 @@
 <?php namespace Ixudra\Portfolio\Interfaces\Http\Controllers;
 
 
-use Translate;
-
-use Ixudra\Portfolio\Http\Requests\ProjectType\FilterProjectTypeFormRequestInterface;
-use Ixudra\Portfolio\Http\Requests\ProjectType\CreateProjectTypeFormRequestInterface;
-use Ixudra\Portfolio\Http\Requests\ProjectType\UpdateProjectTypeFormRequestInterface;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectTypeRepositoryInterface;
-use Ixudra\Portfolio\Services\Html\ProjectTypeViewFactoryInterface;
-use Ixudra\Portfolio\Services\Factories\ProjectTypeFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\FilterProjectTypeFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\CreateProjectTypeFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\UpdateProjectTypeFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\ProjectTypeFactoryInterface;
 
 interface ProjectTypeControllerInterface {
-
-    public function __construct(EloquentProjectTypeRepositoryInterface $projectTypeRepository, ProjectTypeViewFactoryInterface $projectTypeViewFactory);
 
     public function index();
 

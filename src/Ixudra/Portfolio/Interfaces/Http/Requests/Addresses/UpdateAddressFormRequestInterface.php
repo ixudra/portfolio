@@ -1,4 +1,4 @@
-<?php namespace Ixudra\Portfolio\Interfaces\Http\Requests\Address;
+<?php namespace Ixudra\Portfolio\Interfaces\Http\Requests\Addresses;
 
 
 use App;

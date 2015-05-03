@@ -1,9 +1,7 @@
 <?php namespace Ixudra\Portfolio\Interfaces\Http\Requests\Companies;
 
 
-use App;
-
-interface UpdateCompanyFormRequestInterface {
+interface CreateCompanyFormRequestInterface {
 
     public function authorize();
 

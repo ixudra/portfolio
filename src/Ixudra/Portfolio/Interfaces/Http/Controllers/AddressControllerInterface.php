@@ -1,14 +1,10 @@
-<?php namespace Ixudra\Portfolio\Http\Controllers;
+<?php namespace Ixudra\Portfolio\Interfaces\Http\Controllers;
 
 
-use Ixudra\Portfolio\Http\Requests\Address\FilterAddressFormRequestInterface;
-use Ixudra\Portfolio\Http\Requests\Address\CreateAddressFormRequestInterface;
-use Ixudra\Portfolio\Http\Requests\Address\UpdateAddressFormRequestInterface;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentAddressRepositoryInterface;
-use Ixudra\Portfolio\Services\Html\AddressViewFactoryInterface;
-use Ixudra\Portfolio\Services\Factories\AddressFactoryInterface;
-
-use Translate;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\FilterAddressFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\CreateAddressFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\UpdateAddressFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\AddressFactoryInterface;
 
 interface AddressControllerInterface {
 

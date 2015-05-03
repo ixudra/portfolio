@@ -1,14 +1,10 @@
 <?php namespace Ixudra\Portfolio\Interfaces\Http\Controllers;
 
 
-use Translate;
-
-use Ixudra\Portfolio\Http\Requests\People\FilterPersonFormRequestInterface;
-use Ixudra\Portfolio\Http\Requests\People\CreatePersonFormRequestInterface;
-use Ixudra\Portfolio\Http\Requests\People\UpdatePersonFormRequestInterface;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentPersonRepositoryInterface;
-use Ixudra\Portfolio\Services\Html\PersonViewFactoryInterface;
-use Ixudra\Portfolio\Services\Factories\PersonFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\People\FilterPersonFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\People\CreatePersonFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\People\UpdatePersonFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface;
 
 interface PersonControllerInterface {
 

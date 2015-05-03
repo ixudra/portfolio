@@ -1,15 +1,13 @@
 <?php namespace Ixudra\Portfolio\Interfaces\Repositories\Eloquent;
 
 
-use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepositoryInterface;
-
-use Ixudra\Portfolio\Models\ProjectInterface;
-
 interface EloquentProjectRepositoryInterface {
 
-    public function getModel();
+    public function all();
 
-    public function getTable();
+    public function find($id);
+
+    public function findByFilter($filters);
 
     public function search($filters, $resultsPerPage = 25);
 

@@ -1,9 +1,7 @@
 <?php namespace Ixudra\Portfolio\Interfaces\Models;
 
 
-use Translate;
-
-interface PersonInterface extends CustomerModelInterface {
+interface PersonInterface extends CustomerInterface {
 
     public function address();
 
