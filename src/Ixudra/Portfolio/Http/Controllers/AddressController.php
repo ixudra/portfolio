@@ -1,15 +1,15 @@
 <?php namespace Ixudra\Portfolio\Http\Controllers;
 
 
-use Translate;
-
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Http\Requests\Address\FilterAddressFormRequest;
-use Ixudra\Portfolio\Http\Requests\Address\CreateAddressFormRequest;
-use Ixudra\Portfolio\Http\Requests\Address\UpdateAddressFormRequest;
+use Ixudra\Portfolio\Http\Requests\Addresses\FilterAddressFormRequest;
+use Ixudra\Portfolio\Http\Requests\Addresses\CreateAddressFormRequest;
+use Ixudra\Portfolio\Http\Requests\Addresses\UpdateAddressFormRequest;
 use Ixudra\Portfolio\Repositories\Eloquent\EloquentAddressRepository;
 use Ixudra\Portfolio\Services\Html\AddressViewFactory;
 use Ixudra\Portfolio\Services\Factories\AddressFactory;
+
+use Translate;
 
 class AddressController extends BaseController {
 

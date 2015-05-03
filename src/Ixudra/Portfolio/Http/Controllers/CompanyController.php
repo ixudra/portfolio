@@ -1,8 +1,6 @@
 <?php namespace Ixudra\Portfolio\Http\Controllers;
 
 
-use Translate;
-
 use Ixudra\Core\Http\Controllers\BaseController;
 use Ixudra\Portfolio\Http\Requests\Companies\FilterCompanyFormRequest;
 use Ixudra\Portfolio\Http\Requests\Companies\CreateCompanyFormRequest;
@@ -10,6 +8,8 @@ use Ixudra\Portfolio\Http\Requests\Companies\UpdateCompanyFormRequest;
 use Ixudra\Portfolio\Repositories\Eloquent\EloquentCompanyRepository;
 use Ixudra\Portfolio\Services\Html\CompanyViewFactory;
 use Ixudra\Portfolio\Services\Factories\CompanyFactory;
+
+use Translate;
 
 class CompanyController extends BaseController {
 

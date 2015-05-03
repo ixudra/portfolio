@@ -1,11 +1,11 @@
-<?php namespace Ixudra\Portfolio\Http\Requests\ProjectType;
+<?php namespace Ixudra\Portfolio\Http\Requests\ProjectTypes;
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
 
 use App;
 
-class FilterProjectTypeFormRequest extends BaseRequest {
+class UpdateProjectTypeFormRequest extends BaseRequest {
 
     public function authorize()
     {
@@ -15,7 +15,7 @@ class FilterProjectTypeFormRequest extends BaseRequest {
     public function rules()
     {
         return App::make('\Ixudra\Portfolio\Services\Validation\ProjectTypeValidationHelper')
-            ->getFilterValidationRules();
+            ->getFormValidationRules( 'update' );
     }
 
 }

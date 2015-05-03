@@ -1,4 +1,4 @@
-<?php namespace Ixudra\Portfolio\Http\Requests\Project;
+<?php namespace Ixudra\Portfolio\Http\Requests\Projects;
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;

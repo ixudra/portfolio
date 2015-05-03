@@ -1,16 +1,15 @@
 <?php namespace Ixudra\Portfolio\Http\Controllers;
 
 
-use Translate;
-
 use Ixudra\Core\Http\Controllers\BaseController;
-
-use Ixudra\Portfolio\Http\Requests\Project\FilterProjectFormRequest;
-use Ixudra\Portfolio\Http\Requests\Project\CreateProjectFormRequest;
-use Ixudra\Portfolio\Http\Requests\Project\UpdateProjectFormRequest;
+use Ixudra\Portfolio\Http\Requests\Projects\FilterProjectFormRequest;
+use Ixudra\Portfolio\Http\Requests\Projects\CreateProjectFormRequest;
+use Ixudra\Portfolio\Http\Requests\Projects\UpdateProjectFormRequest;
 use Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository;
 use Ixudra\Portfolio\Services\Html\ProjectViewFactory;
 use Ixudra\Portfolio\Services\Factories\ProjectFactory;
+
+use Translate;
 
 class ProjectController extends BaseController {
 

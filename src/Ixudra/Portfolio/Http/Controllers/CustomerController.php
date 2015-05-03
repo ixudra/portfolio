@@ -2,9 +2,9 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Http\Requests\Customer\FilterCustomerFormRequest;
-use Ixudra\Portfolio\Http\Requests\Customer\CreateCustomerFormRequest;
-use Ixudra\Portfolio\Http\Requests\Customer\UpdateCustomerFormRequest;
+use Ixudra\Portfolio\Http\Requests\Customers\FilterCustomerFormRequest;
+use Ixudra\Portfolio\Http\Requests\Customers\CreateCustomerFormRequest;
+use Ixudra\Portfolio\Http\Requests\Customers\UpdateCustomerFormRequest;
 use Ixudra\Portfolio\Repositories\Eloquent\EloquentCustomerRepository;
 use Ixudra\Portfolio\Services\Html\CustomerViewFactory;
 

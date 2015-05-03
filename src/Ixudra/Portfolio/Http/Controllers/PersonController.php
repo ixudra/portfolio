@@ -1,8 +1,6 @@
 <?php namespace Ixudra\Portfolio\Http\Controllers;
 
 
-use Translate;
-
 use Ixudra\Core\Http\Controllers\BaseController;
 use Ixudra\Portfolio\Http\Requests\People\FilterPersonFormRequest;
 use Ixudra\Portfolio\Http\Requests\People\CreatePersonFormRequest;
@@ -10,6 +8,8 @@ use Ixudra\Portfolio\Http\Requests\People\UpdatePersonFormRequest;
 use Ixudra\Portfolio\Repositories\Eloquent\EloquentPersonRepository;
 use Ixudra\Portfolio\Services\Html\PersonViewFactory;
 use Ixudra\Portfolio\Services\Factories\PersonFactory;
+
+use Translate;
 
 class PersonController extends BaseController {
 
