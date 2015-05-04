@@ -1,7 +1,7 @@
 <?php namespace Ixudra\Portfolio\Interfaces\Models;
 
 
-interface PersonInterface extends CustomerInterface {
+interface PersonInterface {
 
     public function address();
 

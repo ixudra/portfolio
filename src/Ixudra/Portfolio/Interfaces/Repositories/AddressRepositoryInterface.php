@@ -1,7 +1,7 @@
-<?php namespace Ixudra\Portfolio\Interfaces\Repositories\Eloquent;
+<?php namespace Ixudra\Portfolio\Interfaces\Repositories;
 
 
-interface EloquentAddressRepositoryInterface {
+interface AddressRepositoryInterface {
 
     public function all();
 

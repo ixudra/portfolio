@@ -3,7 +3,7 @@
 
 use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
 
-interface CompanyViewFactory {
+interface CompanyViewFactoryInterface {
 
     public function index($input = array());
 

@@ -1,7 +1,7 @@
-<?php namespace Ixudra\Portfolio\Interfaces\Repositories\Eloquent;
+<?php namespace Ixudra\Portfolio\Interfaces\Repositories;
 
 
-interface EloquentProjectTypeRepositoryInterface {
+interface PersonRepositoryInterface {
 
     public function all();
 

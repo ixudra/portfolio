@@ -1,7 +1,7 @@
 <?php namespace Ixudra\Portfolio\Interfaces\Models;
 
 
-interface CompanyInterface extends CustomerInterface {
+interface CompanyInterface {
 
     public function corporateAddress();
 

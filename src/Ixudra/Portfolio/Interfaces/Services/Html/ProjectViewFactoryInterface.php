@@ -3,7 +3,7 @@
 
 use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 
-interface ProjectViewFactory {
+interface ProjectViewFactoryInterface {
 
     public function index($input = array());
 

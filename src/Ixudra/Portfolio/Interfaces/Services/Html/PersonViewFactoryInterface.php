@@ -3,7 +3,7 @@
 
 use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
 
-interface PersonViewFactory {
+interface PersonViewFactoryInterface {
 
     public function index($input = array());
 
