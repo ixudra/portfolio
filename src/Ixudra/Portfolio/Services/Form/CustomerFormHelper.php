@@ -1,18 +1,19 @@
 <?php namespace Ixudra\Portfolio\Services\Form;
 
 
+use Ixudra\Core\Services\Form\BaseFormHelper;
+use Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface;
+
 use App;
 
-use Ixudra\Core\Services\Form\BaseFormHelper;
-
-class CustomerFormHelper extends BaseFormHelper {
+class CustomerFormHelper extends BaseFormHelper implements CustomerFormHelperInterface {
 
     protected $repository;
 
 
     public function __construct()
     {
-        $this->repository = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentCustomerRepository');
+        $this->repository = App::make('\Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface');
     }
 
 

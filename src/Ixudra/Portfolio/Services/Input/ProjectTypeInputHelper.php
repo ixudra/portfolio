@@ -2,13 +2,14 @@
 
 
 use Ixudra\Core\Services\Input\BaseInputHelper;
-use Ixudra\Portfolio\Models\ProjectType;
+use Ixudra\Portfolio\Interfaces\Services\Input\ProjectTypeInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface;
 
-class ProjectTypeInputHelper extends BaseInputHelper {
+class ProjectTypeInputHelper extends BaseInputHelper implements ProjectTypeInputHelperInterface {
 
     public function getDefaultInput($prefix = '')
     {
-        return ProjectType::getDefaults();
+        return ProjectTypeInterface::getDefaults();
     }
 
 }

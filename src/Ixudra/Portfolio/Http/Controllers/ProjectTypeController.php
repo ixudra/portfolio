@@ -2,21 +2,24 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Http\Requests\ProjectTypes\FilterProjectTypeFormRequest;
-use Ixudra\Portfolio\Http\Requests\ProjectTypes\CreateProjectTypeFormRequest;
-use Ixudra\Portfolio\Http\Requests\ProjectTypes\UpdateProjectTypeFormRequest;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectTypeRepository;
-use Ixudra\Portfolio\Services\Html\ProjectTypeViewFactory;
-use Ixudra\Portfolio\Services\Factories\ProjectTypeFactory;
+use Ixudra\Portfolio\Interfaces\Http\Controllers\ProjectTypeControllerInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\CreateProjectTypeFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\FilterProjectTypeFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\UpdateProjectTypeFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\ProjectTypeRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\ProjectTypeFactoryInterface;
+use Ixudra\Interfaces\Portfolio\Services\Html\ProjectTypeViewFactoryInterface;
 
 use Translate;
 
-class ProjectTypeController extends BaseController {
+class ProjectTypeController extends BaseController implements ProjectTypeControllerInterface {
+
+    protected $projectTypeRepository;
 
     protected $projectTypeViewFactory;
 
 
-    public function __construct(EloquentProjectTypeRepository $projectTypeRepository, ProjectTypeViewFactory $projectTypeViewFactory)
+    public function __construct(ProjectTypeRepositoryInterface $projectTypeRepository, ProjectTypeViewFactoryInterface $projectTypeViewFactory)
     {
         $this->projectTypeRepository = $projectTypeRepository;
         $this->projectTypeViewFactory = $projectTypeViewFactory;
@@ -28,7 +31,7 @@ class ProjectTypeController extends BaseController {
         return $this->projectTypeViewFactory->index();
     }
 
-    public function filter(FilterProjectTypeFormRequest $request)
+    public function filter(FilterProjectTypeFormRequestInterface $request)
     {
         return $this->projectTypeViewFactory->index( $request->getInput() );
     }
@@ -38,7 +41,7 @@ class ProjectTypeController extends BaseController {
         return $this->projectTypeViewFactory->create();
     }
 
-    public function store(CreateProjectTypeFormRequest $request, ProjectTypeFactory $projectTypeFactory)
+    public function store(CreateProjectTypeFormRequestInterface $request, ProjectTypeFactoryInterface $projectTypeFactory)
     {
         $projectType = $projectTypeFactory->make( $request->getInput() );
 
@@ -65,7 +68,7 @@ class ProjectTypeController extends BaseController {
         return $this->projectTypeViewFactory->edit( $projectType );
     }
 
-    public function update($id, UpdateProjectTypeFormRequest $request, ProjectTypeFactory $projectTypeFactory)
+    public function update($id, UpdateProjectTypeFormRequestInterface $request, ProjectTypeFactoryInterface $projectTypeFactory)
     {
         $projectType = $this->projectTypeRepository->find( $id );
         if( is_null($projectType) ) {

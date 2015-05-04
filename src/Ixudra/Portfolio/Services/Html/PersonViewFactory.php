@@ -1,12 +1,13 @@
 <?php namespace Ixudra\Portfolio\Services\Html;
 
 
+use Ixudra\Core\Services\Html\BaseViewFactory;
+use Ixudra\Portfolio\Interfaces\Services\Html\PersonViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
+
 use App;
 
-use Ixudra\Core\Services\Html\BaseViewFactory;
-use Ixudra\Portfolio\Models\Person;
-
-class PersonViewFactory extends BaseViewFactory {
+class PersonViewFactory extends BaseViewFactory implements PersonViewFactoryInterface {
 
     public function index($input = array())
     {
@@ -22,23 +23,23 @@ class PersonViewFactory extends BaseViewFactory {
     public function create($input = null)
     {
         if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Services\Input\PersonInputHelper')->getDefaultInput();
+            $input = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\PersonInputHelperInterface')->getDefaultInput();
         }
 
         return $this->prepareForm('portfolio::people.create', 'create', $input);
     }
 
-    public function show(Person $person)
+    public function show(PersonInterface $person)
     {
         $this->addParameter('person', $person);
 
         return $this->makeView( 'portfolio::people.show' );
     }
 
-    public function edit(Person $person, $input = null)
+    public function edit(PersonInterface $person, $input = null)
     {
         if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Services\Input\PersonInputHelper')->getInputForModel( $person );
+            $input = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\PersonInputHelperInterface')->getInputForModel( $person );
         }
 
         $this->addParameter('person', $person);
@@ -49,8 +50,8 @@ class PersonViewFactory extends BaseViewFactory {
 
     protected function prepareFilter($template, $input)
     {
-        $searchInput = App::make('\Ixudra\Portfolio\Services\Input\PersonInputHelper')->getInputForSearch( $input );
-        $people = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentPersonRepository')->search( $searchInput );
+        $searchInput = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\PersonInputHelperInterface')->getInputForSearch( $input );
+        $people = App::make('\Ixudra\Portfolio\Interfaces\Repositories\PersonRepositoryInterface')->search( $searchInput );
 
         $this->addParameter('people', $people);
         $this->addParameter('input', $input);
@@ -60,9 +61,9 @@ class PersonViewFactory extends BaseViewFactory {
 
     protected function prepareForm($template, $formName, $input)
     {
-        $countries = App::make('\Ixudra\Portfolio\Services\Form\AddressFormHelper')->getCountriesAsSelectList();
+        $countries = App::make('\Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface')->getCountriesAsSelectList();
 
-        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\PersonValidationHelper')->getRequiredFormFields( $formName );
+        $requiredFields = App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface')->getRequiredFormFields( $formName );
 
         $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);

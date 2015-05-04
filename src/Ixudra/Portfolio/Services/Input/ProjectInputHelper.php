@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Services\Input\BaseInputHelper;
+use Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Ixudra\Imageable\Models\Image;
-use Ixudra\Portfolio\Models\Project;
 
-class ProjectInputHelper extends BaseInputHelper {
+class ProjectInputHelper extends BaseInputHelper implements ProjectInputHelperInterface {
 
     public function getInputForModel($model, $prefix = '')
     {
@@ -18,7 +19,7 @@ class ProjectInputHelper extends BaseInputHelper {
     public function getDefaultInput($prefix = '')
     {
         return array_merge(
-            Project::getDefaults(),
+            ProjectInterface::getDefaults(),
             Image::getDefaults()
         );
     }

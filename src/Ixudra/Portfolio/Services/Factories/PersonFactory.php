@@ -2,17 +2,20 @@
 
 
 use Ixudra\Core\Services\Factories\BaseFactory;
-use Ixudra\Portfolio\Models\Person;
-use Ixudra\Portfolio\Models\Address;
+use Ixudra\Portfolio\Interfaces\Services\Factories\AddressFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\CustomerFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
+use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
 
-class PersonFactory extends BaseFactory {
+class PersonFactory extends BaseFactory implements PersonFactoryInterface {
 
     protected $addressFactory;
 
     protected $customerFactory;
 
 
-    public function __construct(AddressFactory $addressFactory, CustomerFactory $customerFactory)
+    public function __construct(AddressFactoryInterface $addressFactory, CustomerFactoryInterface $customerFactory)
     {
         $this->addressFactory = $addressFactory;
         $this->customerFactory = $customerFactory;
@@ -26,13 +29,13 @@ class PersonFactory extends BaseFactory {
             $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address' ) );
         }
 
-        $person = Person::create( $this->extractPersonInput($address, $input, $prefix) );
+        $person = PersonInterface::create( $this->extractPersonInput($address, $input, $prefix) );
         $this->customerFactory->make( $person );
 
         return $person;
     }
 
-    public function modify($person, $input, $prefix = '')
+    public function modify(PersonInterface $person, $input, $prefix = '')
     {
         $address = $person->address;
         if( $this->includeAddress($input) ) {
@@ -58,12 +61,12 @@ class PersonFactory extends BaseFactory {
 
     protected function extractAddressInput($input, $prefix = '')
     {
-        return $this->extractInput( $input, Address::getDefaults(), $prefix );
+        return $this->extractInput( $input, AddressInterface::getDefaults(), $prefix );
     }
 
     protected function extractPersonInput($address, $input, $prefix)
     {
-        $results = $this->extractInput( $input, Person::getDefaults(), $prefix );
+        $results = $this->extractInput( $input, PersonInterface::getDefaults(), $prefix );
 
         $addressId = 0;
         if( !is_null($address) ) {

@@ -3,9 +3,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Ixudra\Imageable\Traits\ImageableTrait;
+use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Laracasts\Presenter\PresentableTrait;
 
-class Project extends Model {
+class Project extends Model implements ProjectInterface {
 
     use PresentableTrait;
     use ImageableTrait;
@@ -29,6 +30,7 @@ class Project extends Model {
 
     protected $translationKey = 'project';
 
+//    protected $presenter = '\Ixudra\Portfolio\Presenters\ProjectPresenterInterface';
     protected $presenter = '\Ixudra\Portfolio\Presenters\ProjectPresenter';
 
     protected $imagePath = 'images/projects';
@@ -36,17 +38,17 @@ class Project extends Model {
 
     public function contractor()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\Company', 'contractor_id');
+        return $this->belongsTo('\Ixudra\Portfolio\Models\CompanyInterface', 'contractor_id');
     }
 
     public function customer()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\Customer', 'customer_id');
+        return $this->belongsTo('\Ixudra\Portfolio\Models\CustomerInterface', 'customer_id');
     }
 
     public function projectType()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\ProjectType');
+        return $this->belongsTo('\Ixudra\Portfolio\Models\ProjectTypeInterface');
     }
 
     public function image()

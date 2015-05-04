@@ -2,18 +2,20 @@
 
 
 use Ixudra\Core\Services\Input\BaseInputHelper;
-use Ixudra\Portfolio\Models\Company;
-use Ixudra\Portfolio\Models\Address;
-use Ixudra\Portfolio\Models\Person;
+use Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\PersonInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
+use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
 
-class CompanyInputHelper extends BaseInputHelper {
+class CompanyInputHelper extends BaseInputHelper implements CompanyInputHelperInterface {
 
     protected $addressInputHelper;
 
     protected $personInputHelper;
 
 
-    public function __construct(AddressInputHelper $addressInputHelper, PersonInputHelper $personInputHelper)
+    public function __construct(AddressInputHelperInterface $addressInputHelper, PersonInputHelperInterface $personInputHelper)
     {
         $this->addressInputHelper = $addressInputHelper;
         $this->personInputHelper = $personInputHelper;
@@ -23,10 +25,10 @@ class CompanyInputHelper extends BaseInputHelper {
     public function getDefaultInput($prefix = '')
     {
         $input = array_merge(
-            $this->getPrefixedInput( Company::getDefaults(), $prefix ),
+            $this->getPrefixedInput( CompanyInterface::getDefaults(), $prefix ),
             $this->addressInputHelper->getDefaultInput( 'corporate_address' ),
             $this->addressInputHelper->getDefaultInput( 'billing_address' ),
-            $this->getPrefixedInput( Person::getDefaults(), 'representative' )
+            $this->getPrefixedInput( PersonInterface::getDefaults(), 'representative' )
         );
 
         return $input;

@@ -3,9 +3,10 @@
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
 
+use Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface;
 use Ixudra\Portfolio\Models\Customer;
 
-class EloquentCustomerRepository extends BaseEloquentRepository {
+class EloquentCustomerRepository extends BaseEloquentRepository implements CustomerRepositoryInterface {
 
     protected function getModel()
     {

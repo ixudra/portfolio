@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\UpdateCompanyFormRequestInterface;
 
 use App;
 
-class UpdateCompanyFormRequest extends BaseRequest {
+class UpdateCompanyFormRequest extends BaseRequest implements UpdateCompanyFormRequestInterface {
 
     public function authorize()
     {
@@ -14,7 +15,7 @@ class UpdateCompanyFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Services\Validation\CompanyValidationHelper')
+        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface')
             ->getFormValidationRules( 'update' );
     }
 

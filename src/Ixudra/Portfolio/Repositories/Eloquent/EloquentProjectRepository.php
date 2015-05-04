@@ -3,9 +3,10 @@
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
 
+use Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface;
 use Ixudra\Portfolio\Models\Project;
 
-class EloquentProjectRepository extends BaseEloquentRepository {
+class EloquentProjectRepository extends BaseEloquentRepository implements ProjectRepositoryInterface {
 
     public function getModel()
     {

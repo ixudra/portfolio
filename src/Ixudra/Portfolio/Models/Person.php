@@ -2,11 +2,12 @@
 
 
 use Illuminate\Database\Eloquent\Model;
+use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
 use Laracasts\Presenter\PresentableTrait;
 
 use Translate;
 
-class Person extends Model implements CustomerModelInterface {
+class Person extends Model implements PersonInterface, CustomerModelInterface {
 
     use PresentableTrait;
 
@@ -28,27 +29,28 @@ class Person extends Model implements CustomerModelInterface {
 
     protected $translationKey = 'person';
 
+//    protected $presenter = '\Ixudra\Portfolio\Presenters\PersonPresenterInterface';
     protected $presenter = '\Ixudra\Portfolio\Presenters\PersonPresenter';
 
 
     public function address()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\Address');
+        return $this->belongsTo('\Ixudra\Portfolio\Models\AddressInterface');
     }
 
     public function company()
     {
-        return $this->hasOne('\Ixudra\Portfolio\Models\Company', 'representative_id');
+        return $this->hasOne('\Ixudra\Portfolio\Models\CompanyInterface', 'representative_id');
     }
 
     protected function customer()
     {
-        return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer');
+        return $this->morphOne('\Ixudra\Portfolio\Models\CustomerInterface', 'customer');
     }
 
     public function projects()
     {
-        return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer')->first()->projects();
+        return $this->morphOne('\Ixudra\Portfolio\Models\CustomerInterface', 'customer')->first()->projects();
     }
 
 

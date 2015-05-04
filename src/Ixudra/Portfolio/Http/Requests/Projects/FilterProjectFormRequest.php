@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\FilterProjectFormRequestInterface;
 
 use App;
 
-class FilterProjectFormRequest extends BaseRequest {
+class FilterProjectFormRequest extends BaseRequest implements FilterProjectFormRequestInterface {
 
     public function authorize()
     {
@@ -14,7 +15,7 @@ class FilterProjectFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Services\Validation\ProjectValidationHelper')
+        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface')
             ->getFilterValidationRules();
     }
 

@@ -2,11 +2,15 @@
 
 
 use Ixudra\Core\Services\Factories\BaseFactory;
-use Ixudra\Portfolio\Models\Company;
-use Ixudra\Portfolio\Models\Address;
-use Ixudra\Portfolio\Models\Person;
+use Ixudra\Portfolio\Interfaces\Services\Factories\AddressFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\CustomerFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
+use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
+use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
 
-class CompanyFactory extends BaseFactory {
+class CompanyFactory extends BaseFactory implements CompanyFactoryInterface {
 
     protected $addressFactory;
 
@@ -15,7 +19,7 @@ class CompanyFactory extends BaseFactory {
     protected $customerFactory;
 
 
-    public function __construct(AddressFactory $addressFactory, PersonFactory $personFactory, CustomerFactory $customerFactory)
+    public function __construct(AddressFactoryInterface $addressFactory, PersonFactoryInterface $personFactory, CustomerFactoryInterface $customerFactory)
     {
         $this->addressFactory = $addressFactory;
         $this->personFactory = $personFactory;
@@ -28,13 +32,13 @@ class CompanyFactory extends BaseFactory {
         $address = $this->addressFactory->make( $this->extractCorporateAddressInput($input) );
         $representative = $this->personFactory->make( $this->extractRepresentativeInput($input), '', false );
 
-        $company = Company::create( $this->extractCompanyInput( $address, $representative, $input, $prefix ) );
+        $company = CompanyInterface::create( $this->extractCompanyInput( $address, $representative, $input, $prefix ) );
         $this->customerFactory->make( $company );
 
         return $company;
     }
 
-    public function modify($company, $input, $prefix = '')
+    public function modify(CompanyInterface $company, $input, $prefix = '')
     {
         $this->addressFactory->modify( $company->corporateAddress, $this->extractCorporateAddressInput($input) );
         $this->personFactory->modify( $company->representative, $this->extractRepresentativeInput($input), '', false );
@@ -44,17 +48,17 @@ class CompanyFactory extends BaseFactory {
 
     protected function extractCorporateAddressInput($input)
     {
-        return $this->extractInput( $input, Address::getDefaults(), 'corporate_address' );
+        return $this->extractInput( $input, AddressInterface::getDefaults(), 'corporate_address' );
     }
 
     protected function extractRepresentativeInput($input)
     {
-        return $this->extractInput( $input, Person::getDefaults(), 'representative' );
+        return $this->extractInput( $input, PersonInterface::getDefaults(), 'representative' );
     }
 
     protected function extractCompanyInput($address, $representative, $input, $prefix)
     {
-        $results = $this->extractInput( $input, Company::getDefaults(), $prefix );
+        $results = $this->extractInput( $input, CompanyInterface::getDefaults(), $prefix );
 
         $results[ 'corporate_address_id' ] = $address->id;
         $results[ 'billing_address_id' ] = $address->id;

@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\CreateCompanyFormRequestInterface;
 
 use App;
 
-class CreateCompanyFormRequest extends BaseRequest {
+class CreateCompanyFormRequest extends BaseRequest implements CreateCompanyFormRequestInterface {
 
     public function authorize()
     {
@@ -14,7 +15,7 @@ class CreateCompanyFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Services\Validation\CompanyValidationHelper')
+        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface')
             ->getFormValidationRules( 'create' );
     }
 

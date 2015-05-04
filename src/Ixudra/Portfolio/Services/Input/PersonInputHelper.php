@@ -2,15 +2,16 @@
 
 
 use Ixudra\Core\Services\Input\BaseInputHelper;
-use Ixudra\Portfolio\Models\Person;
-use Ixudra\Portfolio\Models\Address;
+use Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\PersonInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
 
-class PersonInputHelper extends BaseInputHelper {
+class PersonInputHelper extends BaseInputHelper implements PersonInputHelperInterface {
 
     protected $addressInputHelper;
 
 
-    public function __construct(AddressInputHelper $addressInputHelper)
+    public function __construct(AddressInputHelperInterface $addressInputHelper)
     {
         $this->addressInputHelper = $addressInputHelper;
     }
@@ -19,7 +20,7 @@ class PersonInputHelper extends BaseInputHelper {
     public function getDefaultInput($prefix = '')
     {
         return array_merge(
-            $this->getPrefixedInput( Person::getDefaults(), $prefix ),
+            $this->getPrefixedInput( PersonInterface::getDefaults(), $prefix ),
             $this->addressInputHelper->getDefaultInput( 'address' )
         );
     }

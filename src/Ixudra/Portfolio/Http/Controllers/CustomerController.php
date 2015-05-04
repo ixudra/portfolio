@@ -2,23 +2,24 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Http\Requests\Customers\FilterCustomerFormRequest;
-use Ixudra\Portfolio\Http\Requests\Customers\CreateCustomerFormRequest;
-use Ixudra\Portfolio\Http\Requests\Customers\UpdateCustomerFormRequest;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentCustomerRepository;
-use Ixudra\Portfolio\Services\Html\CustomerViewFactory;
+use Ixudra\Portfolio\Interfaces\Http\Controllers\CustomerControllerInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\CreateCustomerFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\FilterCustomerFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\UpdateCustomerFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\CustomerViewFactoryInterface;
 
 use App;
 use Translate;
 
-class CustomerController extends BaseController {
+class CustomerController extends BaseController implements CustomerControllerInterface {
 
     protected $customerRepository;
 
     protected $customerViewFactory;
 
 
-    public function __construct(EloquentCustomerRepository $customerRepository, CustomerViewFactory $customerViewFactory)
+    public function __construct(CustomerRepositoryInterface $customerRepository, CustomerViewFactoryInterface $customerViewFactory)
     {
         $this->customerRepository = $customerRepository;
         $this->customerViewFactory = $customerViewFactory;
@@ -30,7 +31,7 @@ class CustomerController extends BaseController {
         return $this->customerViewFactory->index();
     }
 
-    public function filter(FilterCustomerFormRequest $request)
+    public function filter(FilterCustomerFormRequestInterface $request)
     {
         return $this->customerViewFactory->index( $request->getInput() );
     }
@@ -40,7 +41,7 @@ class CustomerController extends BaseController {
         return $this->customerViewFactory->create();
     }
 
-    public function store(CreateCustomerFormRequest $request)
+    public function store(CreateCustomerFormRequestInterface $request)
     {
         $customerType = $request->input('customerType');
         $object = $this->getFactory( $customerType )->make( $request->getInput(), $customerType );
@@ -68,7 +69,7 @@ class CustomerController extends BaseController {
         return $this->customerViewFactory->edit( $customer );
     }
 
-    public function update($id, UpdateCustomerFormRequest $request)
+    public function update($id, UpdateCustomerFormRequestInterface $request)
     {
         $customer = $this->customerRepository->find( $id );
         if( is_null($customer) ) {
@@ -104,9 +105,9 @@ class CustomerController extends BaseController {
 
     protected function getFactory($customerType)
     {
-        $factory = '\Ixudra\Portfolio\Services\Factories\CompanyFactory';
+        $factory = '\Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface';
         if( $customerType == 'person' ) {
-            $factory = '\Ixudra\Portfolio\Services\Factories\PersonFactory';
+            $factory = '\Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface';
         }
 
         return App::make( $factory );

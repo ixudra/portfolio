@@ -2,10 +2,10 @@
 
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
-use Ixudra\Portfolio\Models\Address;
-use Ixudra\Imageable\Models\Image;
+use Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
 
-class AddressValidationHelper extends BaseValidationHelper {
+class AddressValidationHelper extends BaseValidationHelper implements AddressValidationHelperInterface {
 
     public function getFilterValidationRules()
     {
@@ -16,7 +16,7 @@ class AddressValidationHelper extends BaseValidationHelper {
 
     public function getFormValidationRules($formName)
     {
-        return Address::getRules();
+        return AddressInterface::getRules();
     }
 
 }

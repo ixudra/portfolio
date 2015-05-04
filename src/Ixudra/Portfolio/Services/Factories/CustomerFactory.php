@@ -1,14 +1,14 @@
 <?php namespace Ixudra\Portfolio\Services\Factories;
 
 
-use Ixudra\Portfolio\Models\Customer;
-use Ixudra\Portfolio\Models\CustomerModelInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\CustomerFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Models\CustomerInterface;
 
-class CustomerFactory {
+class CustomerFactory implements CustomerFactoryInterface {
 
-    public function make(CustomerModelInterface $object)
+    public function make(CustomerInterface $object)
     {
-        return Customer::create( $this->extractCustomerInput( $object ) );
+        return CustomerInterface::create( $this->extractCustomerInput( $object ) );
     }
 
     protected function extractCustomerInput($object)

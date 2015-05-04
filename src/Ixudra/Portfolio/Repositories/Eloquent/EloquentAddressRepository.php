@@ -2,9 +2,10 @@
 
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
+use Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface;
 use Ixudra\Portfolio\Models\Address;
 
-class EloquentAddressRepository extends BaseEloquentRepository {
+class EloquentAddressRepository extends BaseEloquentRepository implements AddressRepositoryInterface {
 
     protected function getModel()
     {

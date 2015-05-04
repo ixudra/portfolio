@@ -1,11 +1,12 @@
 <?php namespace Ixudra\Portfolio\Presenters;
 
 
-use Laracasts\Presenter\Presenter;
+use Ixudra\Core\Presenters\BasePresenter;
+use Ixudra\Portfolio\Interfaces\Presenters\AddressPresenterInterface;
 
 use Translate;
 
-class AddressPresenter extends Presenter {
+class AddressPresenter extends BasePresenter implements AddressPresenterInterface {
 
     public function name()
     {

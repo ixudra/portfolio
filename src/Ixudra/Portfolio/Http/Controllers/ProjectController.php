@@ -2,21 +2,24 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Http\Requests\Projects\FilterProjectFormRequest;
-use Ixudra\Portfolio\Http\Requests\Projects\CreateProjectFormRequest;
-use Ixudra\Portfolio\Http\Requests\Projects\UpdateProjectFormRequest;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository;
-use Ixudra\Portfolio\Services\Html\ProjectViewFactory;
-use Ixudra\Portfolio\Services\Factories\ProjectFactory;
+use Ixudra\Portfolio\Interfaces\Http\Controllers\ProjectControllerInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\CreateProjectFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\FilterProjectFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\UpdateProjectFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\ProjectFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\ProjectViewFactoryInterface;
 
 use Translate;
 
-class ProjectController extends BaseController {
+class ProjectController extends BaseController implements ProjectControllerInterface {
+
+    protected $projectRepository;
 
     protected $projectViewFactory;
 
 
-    public function __construct(EloquentProjectRepository $projectRepository, ProjectViewFactory $projectViewFactory)
+    public function __construct(ProjectRepositoryInterface $projectRepository, ProjectViewFactoryInterface $projectViewFactory)
     {
         $this->projectRepository = $projectRepository;
         $this->projectViewFactory = $projectViewFactory;
@@ -28,7 +31,7 @@ class ProjectController extends BaseController {
         return $this->projectViewFactory->index();
     }
 
-    public function filter(FilterProjectFormRequest $request)
+    public function filter(FilterProjectFormRequestInterface $request)
     {
         return $this->projectViewFactory->index( $request->getInput() );
     }
@@ -38,7 +41,7 @@ class ProjectController extends BaseController {
         return $this->projectViewFactory->create();
     }
 
-    public function store(CreateProjectFormRequest $request, ProjectFactory $projectFactory)
+    public function store(CreateProjectFormRequestInterface $request, ProjectFactoryInterface $projectFactory)
     {
         $project = $projectFactory->make( $request->getInput(true) );
 
@@ -65,7 +68,7 @@ class ProjectController extends BaseController {
         return $this->projectViewFactory->edit( $project );
     }
 
-    public function update($id, UpdateProjectFormRequest $request, ProjectFactory $projectFactory)
+    public function update($id, UpdateProjectFormRequestInterface $request, ProjectFactoryInterface $projectFactory)
     {
         $project = $this->projectRepository->find( $id );
         if( is_null($project) ) {

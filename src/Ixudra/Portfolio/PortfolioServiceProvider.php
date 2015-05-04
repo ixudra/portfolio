@@ -38,7 +38,8 @@ class PortfolioServiceProvider extends ServiceProvider {
         ], 'config');
 
         // Load package routes
-        include __DIR__.'/../../routes.php';
+        include __DIR__ .'/../../routes.php';
+        include __DIR__ .'/../../bindings.php';
     }
 
     public function register()

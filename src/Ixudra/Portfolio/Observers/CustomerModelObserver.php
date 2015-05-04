@@ -1,7 +1,9 @@
 <?php namespace Ixudra\Portfolio\Observers;
 
 
-class CustomerModelObserver {
+use Ixudra\Portfolio\Interfaces\Observers\CustomerModelObserverInterface;
+
+class CustomerModelObserver implements CustomerModelObserverInterface {
 
     public function updated($model)
     {

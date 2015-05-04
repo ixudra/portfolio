@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\CreateCustomerFormRequestInterface;
 
 use App;
 
-class CreateCustomerFormRequest extends BaseRequest {
+class CreateCustomerFormRequest extends BaseRequest implements CreateCustomerFormRequestInterface {
 
     public function authorize()
     {
@@ -14,7 +15,7 @@ class CreateCustomerFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Services\Validation\CustomerValidationHelper', array( $this->input('customerType') ))
+        return App::make('\Ixudra\Portfolio\Interface\Services\Validation\CustomerValidationHelperInterface', array( $this->input('customerType') ))
             ->getFormValidationRules( 'create' );
     }
 

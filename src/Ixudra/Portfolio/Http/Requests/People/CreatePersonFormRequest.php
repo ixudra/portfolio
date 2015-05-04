@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Http\Requests\People\CreatePersonFormRequestInterface;
 
 use App;
 
-class CreatePersonFormRequest extends BaseRequest {
+class CreatePersonFormRequest extends BaseRequest implements CreatePersonFormRequestInterface {
 
     public function authorize()
     {
@@ -14,7 +15,7 @@ class CreatePersonFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Services\Validation\PersonValidationHelper')
+        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface')
             ->getFormValidationRules( 'create' );
     }
 

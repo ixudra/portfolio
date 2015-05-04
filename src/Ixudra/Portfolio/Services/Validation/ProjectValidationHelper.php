@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
-use Ixudra\Portfolio\Models\Project;
+use Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Ixudra\Imageable\Models\Image;
 
-class ProjectValidationHelper extends BaseValidationHelper {
+class ProjectValidationHelper extends BaseValidationHelper implements ProjectValidationHelperInterface {
 
     public function getFilterValidationRules()
     {
@@ -20,7 +21,7 @@ class ProjectValidationHelper extends BaseValidationHelper {
     public function getFormValidationRules($formName)
     {
         $rules = array_merge(
-            Project::getRules(),
+            ProjectInterface::getRules(),
             Image::getRules()
         );
 

@@ -2,9 +2,10 @@
 
 
 use Illuminate\Database\Eloquent\Model;
+use Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface;
 use Laracasts\Presenter\PresentableTrait;
 
-class ProjectType extends Model {
+class ProjectType extends Model implements ProjectTypeInterface {
 
     use PresentableTrait;
 
@@ -19,7 +20,8 @@ class ProjectType extends Model {
 
     protected $translationKey = 'projectType';
 
-    protected $presenter = 'ProjectTypePresenter';
+//    protected $presenter = '\Ixudra\Portfolio\Interfaces\Presenters\ProjectTypePresenterInterface';
+    protected $presenter = '\Ixudra\Portfolio\Presenters\ProjectTypePresenter';
 
 
     public static function getRules()

@@ -2,21 +2,24 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Http\Requests\Addresses\FilterAddressFormRequest;
-use Ixudra\Portfolio\Http\Requests\Addresses\CreateAddressFormRequest;
-use Ixudra\Portfolio\Http\Requests\Addresses\UpdateAddressFormRequest;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentAddressRepository;
-use Ixudra\Portfolio\Services\Html\AddressViewFactory;
-use Ixudra\Portfolio\Services\Factories\AddressFactory;
+use Ixudra\Portfolio\Interfaces\Http\Controllers\AddressControllerInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\CreateAddressFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\FilterAddressFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\UpdateAddressFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\AddressViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\AddressFactoryInterface;
 
 use Translate;
 
-class AddressController extends BaseController {
+class AddressController extends BaseController implements AddressControllerInterface {
+
+    protected $addressRepository;
 
     protected $addressViewFactory;
 
 
-    public function __construct(EloquentAddressRepository $addressRepository, AddressViewFactory $addressViewFactory)
+    public function __construct(AddressRepositoryInterface $addressRepository, AddressViewFactoryInterface $addressViewFactory)
     {
         $this->addressRepository = $addressRepository;
         $this->addressViewFactory = $addressViewFactory;
@@ -28,7 +31,7 @@ class AddressController extends BaseController {
         return $this->addressViewFactory->index();
     }
 
-    public function filter(FilterAddressFormRequest $request)
+    public function filter(FilterAddressFormRequestInterface $request)
     {
         return $this->addressViewFactory->index( $request->getInput() );
     }
@@ -38,7 +41,7 @@ class AddressController extends BaseController {
         return $this->addressViewFactory->create();
     }
 
-    public function store(CreateAddressFormRequest $request, AddressFactory $addressFactory)
+    public function store(CreateAddressFormRequestInterface $request, AddressFactoryInterface $addressFactory)
     {
         $address = $addressFactory->make( $request->getInput() );
 
@@ -65,7 +68,7 @@ class AddressController extends BaseController {
         return $this->addressViewFactory->edit( $address );
     }
 
-    public function update($id, UpdateAddressFormRequest $request, AddressFactory $addressFactory)
+    public function update($id, UpdateAddressFormRequestInterface $request, AddressFactoryInterface $addressFactory)
     {
         $address = $this->addressRepository->find( $id );
         if( is_null($address) ) {

@@ -1,16 +1,17 @@
 <?php namespace Ixudra\Portfolio\Services\Input;
 
 
+use Ixudra\Core\Services\Input\BaseInputHelper;
+use Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
+
 use App;
 
-use Ixudra\Core\Services\Input\BaseInputHelper;
-use Ixudra\Portfolio\Models\Address;
-
-class AddressInputHelper extends BaseInputHelper {
+class AddressInputHelper extends BaseInputHelper implements AddressInputHelperInterface {
 
     public function getDefaultInput($prefix = '')
     {
-        return $this->getPrefixedInput( Address::getDefaults(), $prefix );
+        return $this->getPrefixedInput( AddressInterface::getDefaults(), $prefix );
     }
 
     public function getInputForSearch($input)
@@ -20,7 +21,7 @@ class AddressInputHelper extends BaseInputHelper {
         }
 
         if( $input[ 'city_id' ] != 0 ) {
-            $address = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentAddressRepository')->find( $input[ 'city_id' ] );
+            $address = App::make('\Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface')->find( $input[ 'city_id' ] );
             if( !is_null($address) ) {
                 $input[ 'city' ] = $address->city;
             }

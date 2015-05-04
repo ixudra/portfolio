@@ -1,13 +1,13 @@
 <?php namespace Ixudra\Portfolio\Services\Html;
 
 
+use Ixudra\Core\Services\Html\BaseViewFactory;
+use Ixudra\Interfaces\Portfolio\Services\Html\ProjectTypeViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface;
+
 use App;
 
-use Ixudra\Core\Services\Html\BaseViewFactory;
-
-use Ixudra\Portfolio\Models\ProjectType;
-
-class ProjectTypeViewFactory extends BaseViewFactory {
+class ProjectTypeViewFactory extends BaseViewFactory implements ProjectTypeViewFactoryInterface {
 
     public function index($input = array())
     {
@@ -23,23 +23,23 @@ class ProjectTypeViewFactory extends BaseViewFactory {
     public function create($input = null)
     {
         if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Services\Input\ProjectTypeInputHelper')->getDefaultInput();
+            $input = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\ProjectTypeInputHelperInterface')->getDefaultInput();
         }
 
         return $this->prepareForm('portfolio::projectTypes.create', 'create', $input);
     }
 
-    public function show(ProjectType $projectType)
+    public function show(ProjectTypeInterface $projectType)
     {
         $this->addParameter('projectType', $projectType);
 
         return $this->makeView( 'portfolio::projectTypes.show' );
     }
 
-    public function edit(ProjectType $projectType, $input = null)
+    public function edit(ProjectTypeInterface $projectType, $input = null)
     {
         if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Services\Input\ProjectTypeInputHelper')->getInputForModel( $projectType );
+            $input = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\ProjectTypeInputHelperInterface')->getInputForModel( $projectType );
         }
 
         $this->addParameter('projectType', $projectType);
@@ -50,8 +50,8 @@ class ProjectTypeViewFactory extends BaseViewFactory {
 
     protected function prepareFilter($template, $input)
     {
-        $searchInput = App::make('\Ixudra\Portfolio\Services\Input\ProjectTypeInputHelper')->getInputForSearch( $input );
-        $projectTypes = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectTypeRepository')->search( $searchInput );
+        $searchInput = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\ProjectTypeInputHelperInterface')->getInputForSearch( $input );
+        $projectTypes = App::make('\Ixudra\Portfolio\Interfaces\Repositories\ProjectTypeRepositoryInterface')->search( $searchInput );
 
         $this->addParameter('projectTypes', $projectTypes);
         $this->addParameter('input', $input);
@@ -61,7 +61,7 @@ class ProjectTypeViewFactory extends BaseViewFactory {
 
     protected function prepareForm($template, $formName, $input)
     {
-        $requiredFields = App::make('\Ixudra\Portfolio\Services\Validation\ProjectTypeValidationHelper')->getRequiredFormFields( $formName );
+        $requiredFields = App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\ProjectTypeValidationHelperInterface')->getRequiredFormFields( $formName );
 
         $this->addParameter('input', $input);
         $this->addParameter('requiredFields', $requiredFields);

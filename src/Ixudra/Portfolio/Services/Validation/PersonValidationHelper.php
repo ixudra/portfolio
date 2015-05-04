@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
-use Ixudra\Portfolio\Models\Person;
-use Ixudra\Portfolio\Models\Address;
+use Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
+use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
 
-class PersonValidationHelper extends BaseValidationHelper {
+class PersonValidationHelper extends BaseValidationHelper implements PersonValidationHelperInterface {
 
     public function getFilterValidationRules()
     {
@@ -18,8 +19,8 @@ class PersonValidationHelper extends BaseValidationHelper {
     {
         if( $formName == 'create' ) {
             return array_merge(
-                $this->getPrefixedRules( Person::getRules(), 'person' ),
-                $this->getPrefixedRules( Address::getRules(), 'address' )
+                $this->getPrefixedRules( PersonInterface::getRules(), 'person' ),
+                $this->getPrefixedRules( AddressInterface::getRules(), 'address' )
             );
         }
 
@@ -35,7 +36,7 @@ class PersonValidationHelper extends BaseValidationHelper {
         );
 
         return array_merge(
-            $this->getPrefixedRules( Person::getRules(), 'person' ),
+            $this->getPrefixedRules( PersonInterface::getRules(), 'person' ),
             $addressRules
         );
     }

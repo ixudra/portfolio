@@ -1,21 +1,20 @@
 <?php namespace Ixudra\Portfolio\Services\Form;
 
 
+use Ixudra\Core\Services\Form\BaseFormHelper;
+use Ixudra\Portfolio\Interfaces\Services\Form\ProjectFormHelperInterface;
+
 use App;
 use Translate;
 
-use Ixudra\Core\Services\Form\BaseFormHelper;
-use Ixudra\Portfolio\Models\Project;
-use Ixudra\Imageable\Models\Image;
-
-class ProjectFormHelper extends BaseFormHelper {
+class ProjectFormHelper extends BaseFormHelper implements ProjectFormHelperInterface {
 
     protected $repository;
 
 
     public function __construct()
     {
-        $this->repository = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentProjectRepository');
+        $this->repository = App::make('\Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface');
     }
 
 

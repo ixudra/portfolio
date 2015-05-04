@@ -2,21 +2,24 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Http\Requests\Companies\FilterCompanyFormRequest;
-use Ixudra\Portfolio\Http\Requests\Companies\CreateCompanyFormRequest;
-use Ixudra\Portfolio\Http\Requests\Companies\UpdateCompanyFormRequest;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentCompanyRepository;
-use Ixudra\Portfolio\Services\Html\CompanyViewFactory;
-use Ixudra\Portfolio\Services\Factories\CompanyFactory;
+use Ixudra\Portfolio\Interfaces\Http\Controllers\CompanyControllerInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\CreateCompanyFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\FilterCompanyFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\UpdateCompanyFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\CompanyViewFactoryInterface;
 
 use Translate;
 
-class CompanyController extends BaseController {
+class CompanyController extends BaseController implements CompanyControllerInterface {
+
+    protected $companyRepository;
 
     protected $companyViewFactory;
 
 
-    public function __construct(EloquentCompanyRepository $companyRepository, CompanyViewFactory $companyViewFactory)
+    public function __construct(CompanyRepositoryInterface $companyRepository, CompanyViewFactoryInterface $companyViewFactory)
     {
         $this->companyRepository = $companyRepository;
         $this->companyViewFactory = $companyViewFactory;
@@ -28,7 +31,7 @@ class CompanyController extends BaseController {
         return $this->companyViewFactory->index();
     }
 
-    public function filter(FilterCompanyFormRequest $request)
+    public function filter(FilterCompanyFormRequestInterface $request)
     {
         return $this->companyViewFactory->index( $request->getInput() );
     }
@@ -38,7 +41,7 @@ class CompanyController extends BaseController {
         return $this->companyViewFactory->create();
     }
 
-    public function store(CreateCompanyFormRequest $request, CompanyFactory $companyFactory)
+    public function store(CreateCompanyFormRequestInterface $request, CompanyFactoryInterface $companyFactory)
     {
         $company = $companyFactory->make( $request->getInput(), 'company' );
 
@@ -65,7 +68,7 @@ class CompanyController extends BaseController {
         return $this->companyViewFactory->edit( $company );
     }
 
-    public function update($id, UpdateCompanyFormRequest $request, CompanyFactory $companyFactory)
+    public function update($id, UpdateCompanyFormRequestInterface $request, CompanyFactoryInterface $companyFactory)
     {
         $company = $this->companyRepository->find( $id );
         if( is_null($company) ) {

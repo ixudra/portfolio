@@ -1,11 +1,12 @@
 <?php namespace Ixudra\Portfolio\Presenters;
 
 
+use Ixudra\Core\Presenters\BasePresenter;
+use Ixudra\Portfolio\Interfaces\Presenters\ProjectPresenterInterface;
+
 use Translate;
 
-use Ixudra\Core\Presenters\BasePresenter;
-
-class ProjectPresenter extends BasePresenter {
+class ProjectPresenter extends BasePresenter implements ProjectPresenterInterface {
 
     public function isHidden()
     {

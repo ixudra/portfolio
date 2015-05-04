@@ -2,21 +2,24 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Http\Requests\People\FilterPersonFormRequest;
-use Ixudra\Portfolio\Http\Requests\People\CreatePersonFormRequest;
-use Ixudra\Portfolio\Http\Requests\People\UpdatePersonFormRequest;
-use Ixudra\Portfolio\Repositories\Eloquent\EloquentPersonRepository;
-use Ixudra\Portfolio\Services\Html\PersonViewFactory;
-use Ixudra\Portfolio\Services\Factories\PersonFactory;
+use Ixudra\Portfolio\Interfaces\Http\Controllers\PersonControllerInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\People\CreatePersonFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\People\FilterPersonFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Http\Requests\People\UpdatePersonFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\PersonRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\PersonViewFactoryInterface;
 
 use Translate;
 
-class PersonController extends BaseController {
+class PersonController extends BaseController implements PersonControllerInterface {
+
+    protected $personRepository;
 
     protected $personViewFactory;
 
 
-    public function __construct(EloquentPersonRepository $personRepository, PersonViewFactory $personViewFactory)
+    public function __construct(PersonRepositoryInterface $personRepository, PersonViewFactoryInterface $personViewFactory)
     {
         $this->personRepository = $personRepository;
         $this->personViewFactory = $personViewFactory;
@@ -28,7 +31,7 @@ class PersonController extends BaseController {
         return $this->personViewFactory->index();
     }
 
-    public function filter(FilterPersonFormRequest $request)
+    public function filter(FilterPersonFormRequestInterface $request)
     {
         return $this->personViewFactory->index( $request->getInput() );
     }
@@ -38,7 +41,7 @@ class PersonController extends BaseController {
         return $this->personViewFactory->create();
     }
 
-    public function store(CreatePersonFormRequest $request, PersonFactory $personFactory)
+    public function store(CreatePersonFormRequestInterface $request, PersonFactoryInterface $personFactory)
     {
         $person = $personFactory->make($request->getInput(), 'person', true);
 
@@ -65,7 +68,7 @@ class PersonController extends BaseController {
         return $this->personViewFactory->edit( $person );
     }
 
-    public function update($id, UpdatePersonFormRequest $request, PersonFactory $personFactory)
+    public function update($id, UpdatePersonFormRequestInterface $request, PersonFactoryInterface $personFactory)
     {
         $person = $this->personRepository->find( $id );
         if( is_null($person) ) {

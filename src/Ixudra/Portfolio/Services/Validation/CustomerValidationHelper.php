@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
+use Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface;
 
 use App;
 
-class CustomerValidationHelper extends BaseValidationHelper {
+class CustomerValidationHelper extends BaseValidationHelper implements CustomerValidationHelperInterface {
 
     protected $customerType;
 
@@ -31,9 +32,9 @@ class CustomerValidationHelper extends BaseValidationHelper {
 
     protected function getCustomerTypeValidationHelper()
     {
-        $validationHelper = '\Ixudra\Portfolio\Services\Validation\CompanyValidationHelper';
+        $validationHelper = '\Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface';
         if( $this->customerType == 'person' ) {
-            $validationHelper = '\Ixudra\Portfolio\Services\Validation\PersonValidationHelper';
+            $validationHelper = '\Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface';
         }
 
         return App::make( $validationHelper );
@@ -44,8 +45,8 @@ class CustomerValidationHelper extends BaseValidationHelper {
         $rules = $this->getFormValidationRules( 'update' );
         if( $formName == 'create' ) {
             $rules = array_merge(
-                App::make('\Ixudra\Portfolio\Services\Validation\CompanyValidationHelper')->getFormValidationRules( $formName ),
-                App::make('\Ixudra\Portfolio\Services\Validation\PersonValidationHelper')->getFormValidationRules( $formName )
+                App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface')->getFormValidationRules( $formName ),
+                App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface')->getFormValidationRules( $formName )
             );
         }
 

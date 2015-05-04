@@ -2,15 +2,18 @@
 
 
 use Ixudra\Core\Services\Input\BaseInputHelper;
+use Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\CustomerInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\PersonInputHelperInterface;
 
-class CustomerInputHelper extends BaseInputHelper {
+class CustomerInputHelper extends BaseInputHelper implements CustomerInputHelperInterface {
 
     protected $companyInputHelper;
 
     protected $personInputHelper;
 
 
-    public function __construct(CompanyInputHelper $companyInputHelper, PersonInputHelper $personInputHelper)
+    public function __construct(CompanyInputHelperInterface $companyInputHelper, PersonInputHelperInterface $personInputHelper)
     {
         $this->companyInputHelper = $companyInputHelper;
         $this->personInputHelper = $personInputHelper;

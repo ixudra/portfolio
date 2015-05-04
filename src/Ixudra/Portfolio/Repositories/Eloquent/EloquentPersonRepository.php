@@ -2,9 +2,10 @@
 
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
+use Ixudra\Portfolio\Interfaces\Repositories\PersonRepositoryInterface;
 use Ixudra\Portfolio\Models\Person;
 
-class EloquentPersonRepository extends BaseEloquentRepository {
+class EloquentPersonRepository extends BaseEloquentRepository implements PersonRepositoryInterface {
 
     protected function getModel()
     {

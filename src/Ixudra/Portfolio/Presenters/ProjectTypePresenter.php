@@ -1,9 +1,10 @@
 <?php namespace Ixudra\Portfolio\Presenters;
 
 
-use Laracasts\Presenter\Presenter;
+use Ixudra\Core\Presenters\BasePresenter;
+use Ixudra\Portfolio\Interfaces\Presenters\ProjectTypePresenterInterface;
 
-class ProjectTypePresenter extends Presenter {
+class ProjectTypePresenter extends BasePresenter implements ProjectTypePresenterInterface{
 
     // ...
 

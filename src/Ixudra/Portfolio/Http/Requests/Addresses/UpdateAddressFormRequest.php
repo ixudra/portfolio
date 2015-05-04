@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\UpdateAddressFormRequestInterface;
 
 use App;
 
-class UpdateAddressFormRequest extends BaseRequest {
+class UpdateAddressFormRequest extends BaseRequest implements UpdateAddressFormRequestInterface {
 
     public function authorize()
     {
@@ -14,7 +15,7 @@ class UpdateAddressFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Services\Validation\AddressValidationHelper')
+        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface')
             ->getFormValidationRules( 'update' );
     }
 

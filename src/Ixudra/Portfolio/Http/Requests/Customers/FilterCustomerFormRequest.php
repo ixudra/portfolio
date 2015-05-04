@@ -2,10 +2,11 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\FilterCustomerFormRequestInterface;
 
 use App;
 
-class FilterCustomerFormRequest extends BaseRequest {
+class FilterCustomerFormRequest extends BaseRequest implements FilterCustomerFormRequestInterface {
 
     public function authorize()
     {
@@ -14,7 +15,7 @@ class FilterCustomerFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Services\Validation\CustomerValidationHelper')
+        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface')
             ->getFilterValidationRules();
     }
 

@@ -2,9 +2,10 @@
 
 
 use Illuminate\Database\Eloquent\Model;
+use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
 use Laracasts\Presenter\PresentableTrait;
 
-class Address extends Model {
+class Address extends Model implements AddressInterface {
 
     use PresentableTrait;
 
@@ -28,6 +29,7 @@ class Address extends Model {
 
     protected $translationKey = 'address';
 
+//    protected $presenter = '\Ixudra\Portfolio\Interfaces\Presenters\AddressPresenterInterface';
     protected $presenter = '\Ixudra\Portfolio\Presenters\AddressPresenter';
 
 

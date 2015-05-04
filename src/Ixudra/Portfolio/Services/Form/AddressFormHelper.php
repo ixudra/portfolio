@@ -2,19 +2,20 @@
 
 
 use Ixudra\Core\Services\Form\BaseFormHelper;
+use Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface;
 
 use App;
 use Config;
 use Translate;
 
-class AddressFormHelper extends BaseFormHelper {
+class AddressFormHelper extends BaseFormHelper implements AddressFormHelperInterface {
 
     protected $repository;
 
 
     public function __construct()
     {
-        $this->repository = App::make('\Ixudra\Portfolio\Repositories\Eloquent\EloquentAddressRepository');
+        $this->repository = App::make('\Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface');
     }
 
 

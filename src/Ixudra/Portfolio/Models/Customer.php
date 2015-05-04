@@ -2,9 +2,10 @@
 
 
 use Illuminate\Database\Eloquent\Model;
+use Ixudra\Portfolio\Interfaces\Models\CustomerInterface;
 use Laracasts\Presenter\PresentableTrait;
 
-class Customer extends Model {
+class Customer extends Model implements CustomerInterface {
 
     use PresentableTrait;
 
@@ -23,6 +24,7 @@ class Customer extends Model {
 
     protected $translationKey = 'customer';
 
+//    protected $presenter = '\Ixudra\Portfolio\Presenters\CustomerPresenterInterface';
     protected $presenter = '\Ixudra\Portfolio\Presenters\CustomerPresenter';
 
 
@@ -33,7 +35,7 @@ class Customer extends Model {
 
     public function projects()
     {
-        return $this->hasMany('\Ixudra\Portfolio\Models\Project');
+        return $this->hasMany('\Ixudra\Portfolio\Models\ProjectInterface');
     }
 
 

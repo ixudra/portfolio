@@ -2,9 +2,10 @@
 
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
-use Ixudra\Portfolio\Models\ProjectType;
+use Ixudra\Portfolio\Interfaces\Services\Validation\ProjectTypeValidationHelperInterface;
+use Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface;
 
-class ProjectTypeValidationHelper extends BaseValidationHelper {
+class ProjectTypeValidationHelper extends BaseValidationHelper implements ProjectTypeValidationHelperInterface {
 
     public function getFilterValidationRules()
     {
@@ -15,7 +16,7 @@ class ProjectTypeValidationHelper extends BaseValidationHelper {
 
     public function getFormValidationRules($formName)
     {
-        return ProjectType::getRules();
+        return ProjectTypeInterface::getRules();
     }
 
 }

@@ -2,8 +2,10 @@
 
 
 use Ixudra\Core\Presenters\BasePresenter;
+use Ixudra\Portfolio\Interfaces\Presenters\CustomerPresenterInterface;
+use Ixudra\Portfolio\Presenters\CustomerPresenterInterface as CustomerInterface;
 
-class CompanyPresenter extends BasePresenter implements CustomerPresenterInterface {
+class CompanyPresenter extends BasePresenter implements CustomerPresenterInterface, CustomerInterface {
 
     public function fullName()
     {

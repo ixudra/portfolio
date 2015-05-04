@@ -2,9 +2,10 @@
 
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
+use Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface;
 use Ixudra\Portfolio\Models\Company;
 
-class EloquentCompanyRepository extends BaseEloquentRepository {
+class EloquentCompanyRepository extends BaseEloquentRepository implements CompanyRepositoryInterface {
 
     protected function getModel()
     {

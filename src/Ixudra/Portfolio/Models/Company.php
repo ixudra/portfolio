@@ -3,9 +3,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
 use Laracasts\Presenter\PresentableTrait;
 
-class Company extends Model implements CustomerModelInterface {
+class Company extends Model implements CompanyInterface, CustomerModelInterface {
 
     use PresentableTrait;
 
@@ -30,32 +31,33 @@ class Company extends Model implements CustomerModelInterface {
 
     protected $translationKey = 'company';
 
+//    protected $presenter = '\Ixudra\Portfolio\Interfaces\Presenters\CompanyPresenterInterface';
     protected $presenter = '\Ixudra\Portfolio\Presenters\CompanyPresenter';
 
 
     public function corporateAddress()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\Address', 'corporate_address_id');
+        return $this->belongsTo('\Ixudra\Portfolio\Models\AddressInterface', 'corporate_address_id');
     }
 
     public function billingAddress()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\Address', 'billing_address_id');
+        return $this->belongsTo('\Ixudra\Portfolio\Models\AddressInterface', 'billing_address_id');
     }
 
     public function representative()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\Person', 'representative_id');
+        return $this->belongsTo('\Ixudra\Portfolio\Models\PersonInterface', 'representative_id');
     }
 
     protected function customer()
     {
-        return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer');
+        return $this->morphOne('\Ixudra\Portfolio\Models\CustomerInterface', 'customer');
     }
 
     public function projects()
     {
-        return $this->morphOne('\Ixudra\Portfolio\Models\Customer', 'customer')->first()->projects();
+        return $this->morphOne('\Ixudra\Portfolio\Models\CustomerInterface', 'customer')->first()->projects();
     }
 
 
