@@ -15,13 +15,13 @@ Pull this package in through Composer.
 
     {
         "require": {
-            "ixudra/portfolio": "5.*"
+            "ixudra/portfolio": "0.*"
         }
     }
 
 ```
 
-Add the service provider to your app.php file
+Add the service provider to your `config/app.php` file
 
 ```php
 
@@ -34,6 +34,26 @@ Add the service provider to your app.php file
 
 ```
 
+Run package migrations using artisan:
+
+```php
+
+    php artisan migrate --package="ixudra/portfolio"
+
+```
+
+Alternatively, you can also publish the migrations using artisan:
+
+```php
+
+    // Publish all resources from all packages
+    php artisan vendor:publish
+    
+    // Publish only the resources of the package
+    php artisan vendor:publish --provider="Ixudra\\Portfolio\\PortfolioServiceProvider"
+
+```
+
 
 
 ## Usage
@@ -42,3 +62,21 @@ Coming soon!
 
 
 That's all there is to it! Have fun!
+
+
+
+
+## License
+
+This template is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+
+
+
+## Contact
+
+Jan Oris (developer)
+
+- Email: jan.oris@ixudra.be
+- Telephone: +32 496 94 20 57
+
