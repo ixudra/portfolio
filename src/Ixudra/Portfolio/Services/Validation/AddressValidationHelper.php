@@ -3,7 +3,8 @@
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
 use Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
+
+use Config;
 
 class AddressValidationHelper extends BaseValidationHelper implements AddressValidationHelperInterface {
 
@@ -16,7 +17,9 @@ class AddressValidationHelper extends BaseValidationHelper implements AddressVal
 
     public function getFormValidationRules($formName)
     {
-        return AddressInterface::getRules();
+        $addressClassName = Config::get('bindings.models.address');
+
+        return $addressClassName::getRules();
     }
 
 }

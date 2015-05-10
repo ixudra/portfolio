@@ -2,11 +2,10 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\FilterCustomerFormRequestInterface;
 
 use App;
 
-class FilterCustomerFormRequest extends BaseRequest implements FilterCustomerFormRequestInterface {
+class FilterCustomerFormRequest extends BaseRequest {
 
     public function authorize()
     {

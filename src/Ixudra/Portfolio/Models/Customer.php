@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use Ixudra\Portfolio\Interfaces\Models\CustomerInterface;
 use Laracasts\Presenter\PresentableTrait;
 
+use Config;
+
 class Customer extends Model implements CustomerInterface {
 
     use PresentableTrait;
@@ -35,7 +37,7 @@ class Customer extends Model implements CustomerInterface {
 
     public function projects()
     {
-        return $this->hasMany('\Ixudra\Portfolio\Models\ProjectInterface');
+        return $this->hasMany( Config::get('bindings.models.project') );
     }
 
 

@@ -5,8 +5,8 @@ use Ixudra\Core\Services\Input\BaseInputHelper;
 use Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface;
 use Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface;
 use Ixudra\Portfolio\Interfaces\Services\Input\PersonInputHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
-use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
+
+use Config;
 
 class CompanyInputHelper extends BaseInputHelper implements CompanyInputHelperInterface {
 
@@ -24,11 +24,14 @@ class CompanyInputHelper extends BaseInputHelper implements CompanyInputHelperIn
 
     public function getDefaultInput($prefix = '')
     {
+        $companyClassName = Config::get('bindings.models.company');
+        $personClassName = Config::get('bindings.models.person');
+
         $input = array_merge(
-            $this->getPrefixedInput( CompanyInterface::getDefaults(), $prefix ),
+            $this->getPrefixedInput( $companyClassName::getDefaults(), $prefix ),
             $this->addressInputHelper->getDefaultInput( 'corporate_address' ),
             $this->addressInputHelper->getDefaultInput( 'billing_address' ),
-            $this->getPrefixedInput( PersonInterface::getDefaults(), 'representative' )
+            $this->getPrefixedInput( $personClassName::getDefaults(), 'representative' )
         );
 
         return $input;

@@ -5,9 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
 use Laracasts\Presenter\PresentableTrait;
 
+use Config;
 use Translate;
 
-class Person extends Model implements PersonInterface, CustomerModelInterface {
+class Person extends Model implements PersonInterface {
 
     use PresentableTrait;
 
@@ -35,22 +36,22 @@ class Person extends Model implements PersonInterface, CustomerModelInterface {
 
     public function address()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\AddressInterface');
+        return $this->belongsTo( Config::get('bindings.models.address') );
     }
 
     public function company()
     {
-        return $this->hasOne('\Ixudra\Portfolio\Models\CompanyInterface', 'representative_id');
+        return $this->hasOne( Config::get('bindings.models.company'), 'representative_id' );
     }
 
     protected function customer()
     {
-        return $this->morphOne('\Ixudra\Portfolio\Models\CustomerInterface', 'customer');
+        return $this->morphOne( Config::get('bindings.models.customer'), 'customer' );
     }
 
     public function projects()
     {
-        return $this->morphOne('\Ixudra\Portfolio\Models\CustomerInterface', 'customer')->first()->projects();
+        return $this->morphOne( Config::get('bindings.models.customer'), 'customer' )->first()->projects();
     }
 
 

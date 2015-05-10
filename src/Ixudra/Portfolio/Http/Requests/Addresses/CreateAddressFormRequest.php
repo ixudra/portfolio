@@ -2,11 +2,10 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\CreateAddressFormRequestInterface;
 
 use App;
 
-class CreateAddressFormRequest extends BaseRequest implements CreateAddressFormRequestInterface {
+class CreateAddressFormRequest extends BaseRequest {
 
     public function authorize()
     {

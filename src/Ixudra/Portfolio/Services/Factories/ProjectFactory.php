@@ -6,6 +6,8 @@ use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Ixudra\Imageable\Services\Factories\ImageFactory;
 use Ixudra\Imageable\Traits\ImageFactoryTrait;
 
+use App;
+
 class ProjectFactory implements ProjectFactoryInterface {
 
     use ImageFactoryTrait;
@@ -22,7 +24,9 @@ class ProjectFactory implements ProjectFactoryInterface {
 
     public function make($input)
     {
-        $project = ProjectInterface::create( $input );
+        $project = $this->createModel( $input );
+        $project->save();
+
         $this->imageFactory->make( $this->extractImageInput( $input ), $project );
 
         return $project;
@@ -34,6 +38,11 @@ class ProjectFactory implements ProjectFactoryInterface {
         $this->imageFactory->modify( $project->image, $this->extractImageInput( $input ), $project );
 
         return $project;
+    }
+
+    protected function createModel($input = array())
+    {
+        return App::make('\Ixudra\Portfolio\Interfaces\Models\ProjectInterface', array($input));
     }
 
 }

@@ -5,8 +5,10 @@ use Ixudra\Core\Services\Factories\BaseFactory;
 use Ixudra\Portfolio\Interfaces\Services\Factories\AddressFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\CustomerFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface;
-use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
 use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
+
+use App;
+use Config;
 
 class PersonFactory extends BaseFactory implements PersonFactoryInterface {
 
@@ -29,7 +31,9 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
             $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address' ) );
         }
 
-        $person = PersonInterface::create( $this->extractPersonInput($address, $input, $prefix) );
+        $person = $this->createModel( $this->extractPersonInput($address, $input, $prefix) );
+        $person->save();
+
         $this->customerFactory->make( $person );
 
         return $person;
@@ -61,12 +65,16 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
 
     protected function extractAddressInput($input, $prefix = '')
     {
-        return $this->extractInput( $input, AddressInterface::getDefaults(), $prefix );
+        $addressClassName = Config::get('bindings.models.address');
+
+        return $this->extractInput( $input, $addressClassName::getDefaults(), $prefix );
     }
 
     protected function extractPersonInput($address, $input, $prefix)
     {
-        $results = $this->extractInput( $input, PersonInterface::getDefaults(), $prefix );
+        $personClassName = Config::get('bindings.models.person');
+
+        $results = $this->extractInput( $input, $personClassName::getDefaults(), $prefix );
 
         $addressId = 0;
         if( !is_null($address) ) {
@@ -76,6 +84,11 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
         $results[ 'address_id' ] = $addressId;
 
         return $results;
+    }
+
+    protected function createModel($input = array())
+    {
+        return App::make('\Ixudra\Portfolio\Interfaces\Models\PersonInterface', array($input));
     }
 
 }

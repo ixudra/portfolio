@@ -2,13 +2,18 @@
 
 
 use Ixudra\Portfolio\Interfaces\Services\Factories\CustomerFactoryInterface;
-use Ixudra\Portfolio\Interfaces\Models\CustomerInterface;
+use Ixudra\Portfolio\Interfaces\Models\CustomerModelInterface;
+
+use App;
 
 class CustomerFactory implements CustomerFactoryInterface {
 
-    public function make(CustomerInterface $object)
+    public function make(CustomerModelInterface $object)
     {
-        return CustomerInterface::create( $this->extractCustomerInput( $object ) );
+        $customer = $this->createModel( $this->extractCustomerInput( $object ) );
+        $customer->save();
+
+        return $customer;
     }
 
     protected function extractCustomerInput($object)
@@ -18,6 +23,11 @@ class CustomerFactory implements CustomerFactoryInterface {
             'customer_id'           => $object->id,
             'customer_type'         => get_class( $object )
         );
+    }
+
+    protected function createModel($input = array())
+    {
+        return App::make('\Ixudra\Portfolio\Interfaces\Models\CustomerInterface', array($input));
     }
 
 }

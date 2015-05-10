@@ -3,8 +3,9 @@
 
 use Ixudra\Core\Services\Input\BaseInputHelper;
 use Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Ixudra\Imageable\Models\Image;
+
+use Config;
 
 class ProjectInputHelper extends BaseInputHelper implements ProjectInputHelperInterface {
 
@@ -18,8 +19,10 @@ class ProjectInputHelper extends BaseInputHelper implements ProjectInputHelperIn
 
     public function getDefaultInput($prefix = '')
     {
+        $projectClassName = Config::get('bindings.models.project');
+
         return array_merge(
-            ProjectInterface::getDefaults(),
+            $projectClassName::getDefaults(),
             Image::getDefaults()
         );
     }

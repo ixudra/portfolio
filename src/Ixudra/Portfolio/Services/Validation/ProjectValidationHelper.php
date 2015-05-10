@@ -3,8 +3,9 @@
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
 use Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Ixudra\Imageable\Models\Image;
+
+use Config;
 
 class ProjectValidationHelper extends BaseValidationHelper implements ProjectValidationHelperInterface {
 
@@ -20,8 +21,10 @@ class ProjectValidationHelper extends BaseValidationHelper implements ProjectVal
 
     public function getFormValidationRules($formName)
     {
+        $projectClassName = Config::get('bindings.models.project');
+
         $rules = array_merge(
-            ProjectInterface::getRules(),
+            $projectClassName::getRules(),
             Image::getRules()
         );
 

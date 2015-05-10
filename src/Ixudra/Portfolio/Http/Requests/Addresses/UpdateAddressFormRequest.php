@@ -2,11 +2,10 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Addresses\UpdateAddressFormRequestInterface;
 
 use App;
 
-class UpdateAddressFormRequest extends BaseRequest implements UpdateAddressFormRequestInterface {
+class UpdateAddressFormRequest extends BaseRequest {
 
     public function authorize()
     {

@@ -6,6 +6,8 @@ use Ixudra\Imageable\Traits\ImageableTrait;
 use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Laracasts\Presenter\PresentableTrait;
 
+use Config;
+
 class Project extends Model implements ProjectInterface {
 
     use PresentableTrait;
@@ -38,17 +40,17 @@ class Project extends Model implements ProjectInterface {
 
     public function contractor()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\CompanyInterface', 'contractor_id');
+        return $this->belongsTo( Config::get('bindings.models.company'), 'contractor_id' );
     }
 
     public function customer()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\CustomerInterface', 'customer_id');
+        return $this->belongsTo( Config::get('bindings.models.customer'), 'customer_id' );
     }
 
     public function projectType()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\ProjectTypeInterface');
+        return $this->belongsTo( Config::get('bindings.models.projectType') );
     }
 
     public function image()

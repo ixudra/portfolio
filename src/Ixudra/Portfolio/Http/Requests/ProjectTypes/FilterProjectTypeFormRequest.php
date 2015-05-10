@@ -2,11 +2,10 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\FilterProjectTypeFormRequestInterface;
 
 use App;
 
-class FilterProjectTypeFormRequest extends BaseRequest implements FilterProjectTypeFormRequestInterface {
+class FilterProjectTypeFormRequest extends BaseRequest {
 
     public function authorize()
     {

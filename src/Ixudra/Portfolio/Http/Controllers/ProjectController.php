@@ -2,17 +2,16 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Interfaces\Http\Controllers\ProjectControllerInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\CreateProjectFormRequestInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\FilterProjectFormRequestInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\UpdateProjectFormRequestInterface;
 use Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\ProjectFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Html\ProjectViewFactoryInterface;
+use Ixudra\Portfolio\Http\Requests\Projects\CreateProjectFormRequest;
+use Ixudra\Portfolio\Http\Requests\Projects\FilterProjectFormRequest;
+use Ixudra\Portfolio\Http\Requests\Projects\UpdateProjectFormRequest;
 
 use Translate;
 
-class ProjectController extends BaseController implements ProjectControllerInterface {
+class ProjectController extends BaseController {
 
     protected $projectRepository;
 
@@ -31,7 +30,7 @@ class ProjectController extends BaseController implements ProjectControllerInter
         return $this->projectViewFactory->index();
     }
 
-    public function filter(FilterProjectFormRequestInterface $request)
+    public function filter(FilterProjectFormRequest $request)
     {
         return $this->projectViewFactory->index( $request->getInput() );
     }
@@ -41,7 +40,7 @@ class ProjectController extends BaseController implements ProjectControllerInter
         return $this->projectViewFactory->create();
     }
 
-    public function store(CreateProjectFormRequestInterface $request, ProjectFactoryInterface $projectFactory)
+    public function store(CreateProjectFormRequest $request, ProjectFactoryInterface $projectFactory)
     {
         $project = $projectFactory->make( $request->getInput(true) );
 
@@ -68,7 +67,7 @@ class ProjectController extends BaseController implements ProjectControllerInter
         return $this->projectViewFactory->edit( $project );
     }
 
-    public function update($id, UpdateProjectFormRequestInterface $request, ProjectFactoryInterface $projectFactory)
+    public function update($id, UpdateProjectFormRequest $request, ProjectFactoryInterface $projectFactory)
     {
         $project = $this->projectRepository->find( $id );
         if( is_null($project) ) {

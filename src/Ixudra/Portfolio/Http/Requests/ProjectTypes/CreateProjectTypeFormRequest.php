@@ -2,11 +2,10 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\CreateProjectTypeFormRequestInterface;
 
 use App;
 
-class CreateProjectTypeFormRequest extends BaseRequest implements CreateProjectTypeFormRequestInterface {
+class CreateProjectTypeFormRequest extends BaseRequest {
 
     public function authorize()
     {

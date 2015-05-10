@@ -2,17 +2,16 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Interfaces\Http\Controllers\CompanyControllerInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\CreateCompanyFormRequestInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\FilterCompanyFormRequestInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\UpdateCompanyFormRequestInterface;
 use Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Html\CompanyViewFactoryInterface;
+use Ixudra\Portfolio\Http\Requests\Companies\CreateCompanyFormRequest;
+use Ixudra\Portfolio\Http\Requests\Companies\FilterCompanyFormRequest;
+use Ixudra\Portfolio\Http\Requests\Companies\UpdateCompanyFormRequest;
 
 use Translate;
 
-class CompanyController extends BaseController implements CompanyControllerInterface {
+class CompanyController extends BaseController {
 
     protected $companyRepository;
 
@@ -31,7 +30,7 @@ class CompanyController extends BaseController implements CompanyControllerInter
         return $this->companyViewFactory->index();
     }
 
-    public function filter(FilterCompanyFormRequestInterface $request)
+    public function filter(FilterCompanyFormRequest $request)
     {
         return $this->companyViewFactory->index( $request->getInput() );
     }
@@ -41,7 +40,7 @@ class CompanyController extends BaseController implements CompanyControllerInter
         return $this->companyViewFactory->create();
     }
 
-    public function store(CreateCompanyFormRequestInterface $request, CompanyFactoryInterface $companyFactory)
+    public function store(CreateCompanyFormRequest $request, CompanyFactoryInterface $companyFactory)
     {
         $company = $companyFactory->make( $request->getInput(), 'company' );
 
@@ -68,7 +67,7 @@ class CompanyController extends BaseController implements CompanyControllerInter
         return $this->companyViewFactory->edit( $company );
     }
 
-    public function update($id, UpdateCompanyFormRequestInterface $request, CompanyFactoryInterface $companyFactory)
+    public function update($id, UpdateCompanyFormRequest $request, CompanyFactoryInterface $companyFactory)
     {
         $company = $this->companyRepository->find( $id );
         if( is_null($company) ) {

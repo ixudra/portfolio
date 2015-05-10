@@ -3,15 +3,17 @@
 
 use Ixudra\Core\Services\Input\BaseInputHelper;
 use Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
 
 use App;
+use Config;
 
 class AddressInputHelper extends BaseInputHelper implements AddressInputHelperInterface {
 
     public function getDefaultInput($prefix = '')
     {
-        return $this->getPrefixedInput( AddressInterface::getDefaults(), $prefix );
+        $addressClassName = Config::get('bindings.models.address');
+
+        return $this->getPrefixedInput( $addressClassName::getDefaults(), $prefix );
     }
 
     public function getInputForSearch($input)

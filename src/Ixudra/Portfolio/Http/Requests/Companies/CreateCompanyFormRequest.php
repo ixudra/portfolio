@@ -2,11 +2,10 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Companies\CreateCompanyFormRequestInterface;
 
 use App;
 
-class CreateCompanyFormRequest extends BaseRequest implements CreateCompanyFormRequestInterface {
+class CreateCompanyFormRequest extends BaseRequest {
 
     public function authorize()
     {

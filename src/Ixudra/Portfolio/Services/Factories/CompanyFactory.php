@@ -6,9 +6,10 @@ use Ixudra\Portfolio\Interfaces\Services\Factories\AddressFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\CustomerFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface;
-use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
 use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
-use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
+
+use App;
+use Config;
 
 class CompanyFactory extends BaseFactory implements CompanyFactoryInterface {
 
@@ -32,7 +33,9 @@ class CompanyFactory extends BaseFactory implements CompanyFactoryInterface {
         $address = $this->addressFactory->make( $this->extractCorporateAddressInput($input) );
         $representative = $this->personFactory->make( $this->extractRepresentativeInput($input), '', false );
 
-        $company = CompanyInterface::create( $this->extractCompanyInput( $address, $representative, $input, $prefix ) );
+        $company = $this->createModel( $this->extractCompanyInput( $address, $representative, $input, $prefix ) );
+        $company->save();
+
         $this->customerFactory->make( $company );
 
         return $company;
@@ -48,23 +51,34 @@ class CompanyFactory extends BaseFactory implements CompanyFactoryInterface {
 
     protected function extractCorporateAddressInput($input)
     {
-        return $this->extractInput( $input, AddressInterface::getDefaults(), 'corporate_address' );
+        $addressClassName = Config::get('bindings.models.address');
+
+        return $this->extractInput( $input, $addressClassName::getDefaults(), 'corporate_address' );
     }
 
     protected function extractRepresentativeInput($input)
     {
-        return $this->extractInput( $input, PersonInterface::getDefaults(), 'representative' );
+        $personClassName = Config::get('bindings.models.person');
+
+        return $this->extractInput( $input, $personClassName::getDefaults(), 'representative' );
     }
 
     protected function extractCompanyInput($address, $representative, $input, $prefix)
     {
-        $results = $this->extractInput( $input, CompanyInterface::getDefaults(), $prefix );
+        $companyClassName = Config::get('bindings.models.company');
+
+        $results = $this->extractInput( $input, $companyClassName::getDefaults(), $prefix );
 
         $results[ 'corporate_address_id' ] = $address->id;
         $results[ 'billing_address_id' ] = $address->id;
         $results[ 'representative_id' ] = $representative->id;
 
         return $results;
+    }
+
+    protected function createModel($input = array())
+    {
+        return App::make('\Ixudra\Portfolio\Interfaces\Models\CompanyInterface', array($input));
     }
 
 }

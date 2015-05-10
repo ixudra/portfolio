@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface;
 use Laracasts\Presenter\PresentableTrait;
 
+use Config;
+
 class ProjectType extends Model implements ProjectTypeInterface {
 
     use PresentableTrait;

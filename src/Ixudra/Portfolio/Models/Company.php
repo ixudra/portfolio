@@ -6,7 +6,9 @@ use Illuminate\Support\Collection;
 use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
 use Laracasts\Presenter\PresentableTrait;
 
-class Company extends Model implements CompanyInterface, CustomerModelInterface {
+use Config;
+
+class Company extends Model implements CompanyInterface {
 
     use PresentableTrait;
 
@@ -37,27 +39,27 @@ class Company extends Model implements CompanyInterface, CustomerModelInterface 
 
     public function corporateAddress()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\AddressInterface', 'corporate_address_id');
+        return $this->belongsTo( Config::get('bindings.models.address'), 'corporate_address_id' );
     }
 
     public function billingAddress()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\AddressInterface', 'billing_address_id');
+        return $this->belongsTo( Config::get('bindings.models.address'), 'billing_address_id' );
     }
 
     public function representative()
     {
-        return $this->belongsTo('\Ixudra\Portfolio\Models\PersonInterface', 'representative_id');
+        return $this->belongsTo( Config::get('bindings.models.person'), 'representative_id' );
     }
 
     protected function customer()
     {
-        return $this->morphOne('\Ixudra\Portfolio\Models\CustomerInterface', 'customer');
+        return $this->morphOne( Config::get('bindings.models.customer'), 'customer' );
     }
 
     public function projects()
     {
-        return $this->morphOne('\Ixudra\Portfolio\Models\CustomerInterface', 'customer')->first()->projects();
+        return $this->morphOne( Config::get('bindings.models.customer'), 'customer' )->first()->projects();
     }
 
 

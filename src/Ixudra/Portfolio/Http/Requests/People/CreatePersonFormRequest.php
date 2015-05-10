@@ -2,11 +2,10 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Interfaces\Http\Requests\People\CreatePersonFormRequestInterface;
 
 use App;
 
-class CreatePersonFormRequest extends BaseRequest implements CreatePersonFormRequestInterface {
+class CreatePersonFormRequest extends BaseRequest {
 
     public function authorize()
     {

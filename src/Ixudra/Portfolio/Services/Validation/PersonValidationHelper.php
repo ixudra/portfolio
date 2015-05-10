@@ -3,8 +3,8 @@
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
 use Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
-use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
+
+use Config;
 
 class PersonValidationHelper extends BaseValidationHelper implements PersonValidationHelperInterface {
 
@@ -17,10 +17,13 @@ class PersonValidationHelper extends BaseValidationHelper implements PersonValid
 
     public function getFormValidationRules($formName)
     {
+        $personClassName = Config::get('bindings.models.person');
+        $addressClassName = Config::get('bindings.models.address');
+
         if( $formName == 'create' ) {
             return array_merge(
-                $this->getPrefixedRules( PersonInterface::getRules(), 'person' ),
-                $this->getPrefixedRules( AddressInterface::getRules(), 'address' )
+                $this->getPrefixedRules( $personClassName::getRules(), 'person' ),
+                $this->getPrefixedRules( $addressClassName::getRules(), 'address' )
             );
         }
 
@@ -36,7 +39,7 @@ class PersonValidationHelper extends BaseValidationHelper implements PersonValid
         );
 
         return array_merge(
-            $this->getPrefixedRules( PersonInterface::getRules(), 'person' ),
+            $this->getPrefixedRules( $personClassName::getRules(), 'person' ),
             $addressRules
         );
     }

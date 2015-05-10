@@ -3,9 +3,8 @@
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
 use Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
-use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
-use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
+
+use Config;
 
 class CompanyValidationHelper extends BaseValidationHelper implements CompanyValidationHelperInterface {
 
@@ -18,11 +17,15 @@ class CompanyValidationHelper extends BaseValidationHelper implements CompanyVal
 
     public function getFormValidationRules($formName)
     {
+        $companyClassName = Config::get('bindings.models.company');
+        $addressClassName = Config::get('bindings.models.address');
+        $personClassName = Config::get('bindings.models.person');
+
         return array_merge(
-            $this->getPrefixedRules( CompanyInterface::getRules(), 'company' ),
-            $this->getPrefixedRules( AddressInterface::getRules(), 'corporate_address' ),
-            $this->getPrefixedRules( AddressInterface::getRules(), 'billing_address', true ),
-            $this->getPrefixedRules( PersonInterface::getRules(), 'representative' )
+            $this->getPrefixedRules( $companyClassName::getRules(), 'company' ),
+            $this->getPrefixedRules( $addressClassName::getRules(), 'corporate_address' ),
+            $this->getPrefixedRules( $addressClassName::getRules(), 'billing_address', true ),
+            $this->getPrefixedRules( $personClassName::getRules(), 'representative' )
         );
     }
 

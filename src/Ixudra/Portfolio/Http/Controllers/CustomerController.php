@@ -2,17 +2,16 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Interfaces\Http\Controllers\CustomerControllerInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\CreateCustomerFormRequestInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\FilterCustomerFormRequestInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Customers\UpdateCustomerFormRequestInterface;
 use Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Html\CustomerViewFactoryInterface;
+use Ixudra\Portfolio\Http\Requests\Customers\CreateCustomerFormRequest;
+use Ixudra\Portfolio\Http\Requests\Customers\FilterCustomerFormRequest;
+use Ixudra\Portfolio\Http\Requests\Customers\UpdateCustomerFormRequest;
 
 use App;
 use Translate;
 
-class CustomerController extends BaseController implements CustomerControllerInterface {
+class CustomerController extends BaseController {
 
     protected $customerRepository;
 
@@ -31,7 +30,7 @@ class CustomerController extends BaseController implements CustomerControllerInt
         return $this->customerViewFactory->index();
     }
 
-    public function filter(FilterCustomerFormRequestInterface $request)
+    public function filter(FilterCustomerFormRequest $request)
     {
         return $this->customerViewFactory->index( $request->getInput() );
     }
@@ -41,7 +40,7 @@ class CustomerController extends BaseController implements CustomerControllerInt
         return $this->customerViewFactory->create();
     }
 
-    public function store(CreateCustomerFormRequestInterface $request)
+    public function store(CreateCustomerFormRequest $request)
     {
         $customerType = $request->input('customerType');
         $object = $this->getFactory( $customerType )->make( $request->getInput(), $customerType );
@@ -69,7 +68,7 @@ class CustomerController extends BaseController implements CustomerControllerInt
         return $this->customerViewFactory->edit( $customer );
     }
 
-    public function update($id, UpdateCustomerFormRequestInterface $request)
+    public function update($id, UpdateCustomerFormRequest $request)
     {
         $customer = $this->customerRepository->find( $id );
         if( is_null($customer) ) {

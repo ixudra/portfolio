@@ -3,16 +3,16 @@
 
 use Ixudra\Core\Http\Controllers\BaseController;
 use Ixudra\Portfolio\Interfaces\Http\Controllers\ProjectTypeControllerInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\CreateProjectTypeFormRequestInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\FilterProjectTypeFormRequestInterface;
-use Ixudra\Portfolio\Interfaces\Http\Requests\ProjectTypes\UpdateProjectTypeFormRequestInterface;
 use Ixudra\Portfolio\Interfaces\Repositories\ProjectTypeRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\ProjectTypeFactoryInterface;
 use Ixudra\Interfaces\Portfolio\Services\Html\ProjectTypeViewFactoryInterface;
+use Ixudra\Portfolio\Http\Requests\ProjectTypes\CreateProjectTypeFormRequest;
+use Ixudra\Portfolio\Http\Requests\ProjectTypes\FilterProjectTypeFormRequest;
+use Ixudra\Portfolio\Http\Requests\ProjectTypes\UpdateProjectTypeFormRequest;
 
 use Translate;
 
-class ProjectTypeController extends BaseController implements ProjectTypeControllerInterface {
+class ProjectTypeController extends BaseController {
 
     protected $projectTypeRepository;
 
@@ -31,7 +31,7 @@ class ProjectTypeController extends BaseController implements ProjectTypeControl
         return $this->projectTypeViewFactory->index();
     }
 
-    public function filter(FilterProjectTypeFormRequestInterface $request)
+    public function filter(FilterProjectTypeFormRequest $request)
     {
         return $this->projectTypeViewFactory->index( $request->getInput() );
     }
@@ -41,7 +41,7 @@ class ProjectTypeController extends BaseController implements ProjectTypeControl
         return $this->projectTypeViewFactory->create();
     }
 
-    public function store(CreateProjectTypeFormRequestInterface $request, ProjectTypeFactoryInterface $projectTypeFactory)
+    public function store(CreateProjectTypeFormRequest $request, ProjectTypeFactoryInterface $projectTypeFactory)
     {
         $projectType = $projectTypeFactory->make( $request->getInput() );
 
@@ -68,7 +68,7 @@ class ProjectTypeController extends BaseController implements ProjectTypeControl
         return $this->projectTypeViewFactory->edit( $projectType );
     }
 
-    public function update($id, UpdateProjectTypeFormRequestInterface $request, ProjectTypeFactoryInterface $projectTypeFactory)
+    public function update($id, UpdateProjectTypeFormRequest $request, ProjectTypeFactoryInterface $projectTypeFactory)
     {
         $projectType = $this->projectTypeRepository->find( $id );
         if( is_null($projectType) ) {

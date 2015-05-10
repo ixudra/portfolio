@@ -4,7 +4,8 @@
 use Ixudra\Core\Services\Input\BaseInputHelper;
 use Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface;
 use Ixudra\Portfolio\Interfaces\Services\Input\PersonInputHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
+
+use Config;
 
 class PersonInputHelper extends BaseInputHelper implements PersonInputHelperInterface {
 
@@ -19,8 +20,10 @@ class PersonInputHelper extends BaseInputHelper implements PersonInputHelperInte
 
     public function getDefaultInput($prefix = '')
     {
+        $personClassName = Config::get('bindings.models.person');
+
         return array_merge(
-            $this->getPrefixedInput( PersonInterface::getDefaults(), $prefix ),
+            $this->getPrefixedInput( $personClassName::getDefaults(), $prefix ),
             $this->addressInputHelper->getDefaultInput( 'address' )
         );
     }

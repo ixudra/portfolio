@@ -19,23 +19,24 @@ class PortfolioServiceProvider extends ServiceProvider {
 
         // Publish language files
         $this->publishes(array(
-            __DIR__ .'/../../resources/lang' => base_path('resources/lang'),
+            __DIR__ .'/../../resources/lang'                => base_path('resources/lang'),
         ));
 
         // Publish views
         $this->publishes(array(
-            __DIR__ .'/../../resources/views' => base_path('resources/views/bootstrap'),
+            __DIR__ .'/../../resources/views'               => base_path('resources/views/bootstrap'),
         ));
 
         // Publish migrations
         $this->publishes(array(
-            __DIR__ .'/../../database/migrations/' => base_path('database/migrations')
+            __DIR__ .'/../../database/migrations/'          => base_path('database/migrations')
         ), 'migrations');
 
         // Publish configuration files
-        $this->publishes([
-            __DIR__ .'/../../config/international.php' => config_path('international.php')
-        ], 'config');
+        $this->publishes(array(
+            __DIR__ .'/../../config/bindings.php'           => config_path('bindings.php'),
+            __DIR__ .'/../../config/international.php'      => config_path('international.php'),
+        ), 'config');
 
         // Load package routes
         include __DIR__ .'/../../routes.php';

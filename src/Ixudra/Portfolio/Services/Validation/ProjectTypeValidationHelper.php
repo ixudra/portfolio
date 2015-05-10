@@ -3,7 +3,8 @@
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
 use Ixudra\Portfolio\Interfaces\Services\Validation\ProjectTypeValidationHelperInterface;
-use Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface;
+
+use Config;
 
 class ProjectTypeValidationHelper extends BaseValidationHelper implements ProjectTypeValidationHelperInterface {
 
@@ -16,7 +17,9 @@ class ProjectTypeValidationHelper extends BaseValidationHelper implements Projec
 
     public function getFormValidationRules($formName)
     {
-        return ProjectTypeInterface::getRules();
+        $projectTypeClassName = Config::get('bindings.models.projectType');
+
+        return $projectTypeClassName::getRules();
     }
 
 }
