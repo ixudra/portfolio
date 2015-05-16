@@ -68,7 +68,7 @@ That's all there is to it! Have fun!
 
 ## License
 
-This template is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
 
 
