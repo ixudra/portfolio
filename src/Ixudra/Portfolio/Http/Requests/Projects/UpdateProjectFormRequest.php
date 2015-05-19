@@ -6,7 +6,7 @@ use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\UpdateProjectFormRequestI
 
 use App;
 
-class UpdateProjectFormRequest extends BaseRequest implements UpdateProjectFormRequestInterface {
+class UpdateProjectFormRequest extends BaseRequest {
 
     public function authorize()
     {
