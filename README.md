@@ -35,6 +35,8 @@ Add the service provider to your `config/app.php` file. Additionally, you will a
 
     ),
 
+```
+
 Though the package does not have a facade on itself, it does rely on several facades of dependencies in order to function correctly. You will need to add these to your `config/app.php` file as well:
 
 ```php
