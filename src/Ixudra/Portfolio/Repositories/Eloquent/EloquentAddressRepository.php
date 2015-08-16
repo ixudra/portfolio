@@ -18,7 +18,7 @@ class EloquentAddressRepository extends BaseEloquentRepository implements Addres
     }
 
 
-    public function search($filters, $resultsPerPage = 25)
+    public function search($filters, $size = 25)
     {
         $results = $this->getModel();
 
@@ -27,11 +27,7 @@ class EloquentAddressRepository extends BaseEloquentRepository implements Addres
                 ->where( 'city', '=', $filters[ 'city' ] );
         }
 
-        return $results
-            ->select($this->getTable() .'.*')
-            ->paginate($resultsPerPage)
-            ->appends($filters)
-            ->appends('size', $resultsPerPage);
+        return $this->paginated($results, $filters, $size);
     }
 
 }

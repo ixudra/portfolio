@@ -9,6 +9,6 @@ interface AddressRepositoryInterface {
 
     public function findByFilter($filters);
 
-    public function search($filters, $resultsPerPage = 25);
+    public function search($filters, $size = 25);
 
 }

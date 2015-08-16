@@ -19,31 +19,9 @@ class AddressFormHelper extends BaseFormHelper implements AddressFormHelperInter
     }
 
 
-    protected function convertToSelectList($includeNull, $models)
+    protected function getName($model)
     {
-        $results = array();
-        if( $includeNull ) {
-            $results[ 0 ] = '';
-        }
-
-        foreach( $models as $model ) {
-            $results[ $model->id ] = $model->present()->name;
-        }
-
-        return $results;
-    }
-
-    protected function convertToAutoComplete($models)
-    {
-        $results = array();
-        foreach( $models as $model ) {
-            $results[] = array(
-                'data'          => $model->id,
-                'value'         => $model->present()->name
-            );
-        }
-
-        return $results;
+        return $model->present()->name;
     }
 
     public function getCitiesAsSelectList($includeNull = false)

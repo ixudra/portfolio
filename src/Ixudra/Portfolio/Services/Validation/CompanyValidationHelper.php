@@ -15,7 +15,7 @@ class CompanyValidationHelper extends BaseValidationHelper implements CompanyVal
         );
     }
 
-    public function getFormValidationRules($formName)
+    public function getFormValidationRules($formName, $prefix = '')
     {
         $companyClassName = Config::get('bindings.models.company');
         $addressClassName = Config::get('bindings.models.address');

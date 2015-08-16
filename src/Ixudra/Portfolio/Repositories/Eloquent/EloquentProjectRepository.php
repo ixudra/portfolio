@@ -18,7 +18,7 @@ class EloquentProjectRepository extends BaseEloquentRepository implements Projec
         return 'projects';
     }
 
-    public function search($filters, $resultsPerPage = 25)
+    public function search($filters, $size = 25)
     {
         $foreignKeys = array(
             'customer_id',
@@ -35,12 +35,17 @@ class EloquentProjectRepository extends BaseEloquentRepository implements Projec
                 ->where('projects.name', 'like', $query);
         }
 
+        return $this->paginated($results, $filters, $size);
+    }
+
+    protected function paginated($results, $filters = array(), $size = 25)
+    {
         return $results
             ->select($this->getTable() .'.*')
             ->with('projectType', 'customer', 'image')
-            ->paginate($resultsPerPage)
+            ->paginate($size)
             ->appends($filters)
-            ->appends('size', $resultsPerPage);
+            ->appends('size', $size);
     }
 
 }

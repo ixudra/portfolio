@@ -25,9 +25,9 @@ class CustomerValidationHelper extends BaseValidationHelper implements CustomerV
         );
     }
 
-    public function getFormValidationRules($formName)
+    public function getFormValidationRules($formName, $prefix = '')
     {
-        return $this->getCustomerTypeValidationHelper()->getFormValidationRules( $formName );
+        return $this->getCustomerTypeValidationHelper()->getFormValidationRules( $formName, $prefix );
     }
 
     protected function getCustomerTypeValidationHelper()
@@ -40,9 +40,9 @@ class CustomerValidationHelper extends BaseValidationHelper implements CustomerV
         return App::make( $validationHelper );
     }
 
-    public function getRequiredFormFields($formName)
+    public function getRequiredFormFields($formName, $prefix = '')
     {
-        $rules = $this->getFormValidationRules( 'update' );
+        $rules = $this->getFormValidationRules( 'update', $prefix );
         if( $formName == 'create' ) {
             $rules = array_merge(
                 App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface')->getFormValidationRules( $formName ),

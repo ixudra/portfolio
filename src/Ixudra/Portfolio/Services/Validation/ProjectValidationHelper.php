@@ -19,7 +19,7 @@ class ProjectValidationHelper extends BaseValidationHelper implements ProjectVal
         );
     }
 
-    public function getFormValidationRules($formName)
+    public function getFormValidationRules($formName, $prefix = '')
     {
         $projectClassName = Config::get('bindings.models.project');
 

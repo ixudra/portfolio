@@ -27,7 +27,7 @@ class EloquentCustomerRepository extends BaseEloquentRepository implements Custo
             ->get();
     }
 
-    public function search($filters, $resultsPerPage = 25)
+    public function search($filters, $size = 25)
     {
         $results = $this->getModel();
 
@@ -62,13 +62,18 @@ class EloquentCustomerRepository extends BaseEloquentRepository implements Custo
                 ->orWhere('people.last_name', 'like', $query);
         }
 
+        return $this->paginated($results, $filters, $size);
+    }
+
+    protected function paginated($results, $filters = array(), $size = 25)
+    {
         return $results
             ->select($this->getTable() .'.*')
             ->orderBy('name', 'asc')
             ->distinct()
-            ->paginate($resultsPerPage)
+            ->paginate($size)
             ->appends($filters)
-            ->appends('size', $resultsPerPage);
+            ->appends('size', $size);
     }
 
 }

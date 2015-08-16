@@ -24,31 +24,10 @@ class CustomerFormHelper extends BaseFormHelper implements CustomerFormHelperInt
         return $this->convertToSelectList($includeNull, $models);
     }
 
-    protected function convertToSelectList($includeNull, $models)
+
+    protected function getName($model)
     {
-        $results = array();
-        if( $includeNull ) {
-            $results[ 0 ] = '';
-        }
-
-        foreach( $models as $model ) {
-            $results[ $model->id ] = $model->object->present()->fullName;
-        }
-
-        return $results;
-    }
-
-    protected function convertToAutoComplete($models)
-    {
-        $results = array();
-        foreach( $models as $model ) {
-            $results[] = array(
-                'data'          => $model->id,
-                'value'         => $model->object->present()->fullName
-            );
-        }
-
-        return $results;
+        return $model->present()->fullName;
     }
 
     public function getWithProjectOptionsAsSelectList($includeNull = false)

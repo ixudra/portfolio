@@ -17,18 +17,9 @@ class PersonFormHelper extends BaseFormHelper implements PersonFormHelperInterfa
     }
 
 
-    protected function convertToSelectList($includeNull, $models)
+    protected function getName($model)
     {
-        $results = array();
-        if( $includeNull ) {
-            $results[ 0 ] = '';
-        }
-
-        foreach( $models as $model ) {
-            $results[ $model->id ] = $model->present()->fullName;
-        }
-
-        return $results;
+        return $model->present()->fullName;
     }
 
 }

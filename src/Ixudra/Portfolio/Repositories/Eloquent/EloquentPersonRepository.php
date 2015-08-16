@@ -18,7 +18,7 @@ class EloquentPersonRepository extends BaseEloquentRepository implements PersonR
     }
 
 
-    public function search($filters, $resultsPerPage = 25)
+    public function search($filters, $size = 25)
     {
         $results = $this->getModel();
 
@@ -30,11 +30,7 @@ class EloquentPersonRepository extends BaseEloquentRepository implements PersonR
                 ->orWhere('email', 'like', $query);
         }
 
-        return $results
-            ->select($this->getTable() .'.*')
-            ->paginate($resultsPerPage)
-            ->appends($filters)
-            ->appends('size', $resultsPerPage);
+        return $this->paginated($results, $filters, $size);
     }
 
 }

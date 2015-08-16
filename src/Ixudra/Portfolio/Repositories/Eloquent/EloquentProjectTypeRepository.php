@@ -18,7 +18,7 @@ class EloquentProjectTypeRepository extends BaseEloquentRepository implements Pr
         return 'project_types';
     }
 
-    public function search($filters, $resultsPerPage = 25)
+    public function search($filters, $size = 25)
     {
         $results = $this->getModel();
         foreach( $filters as $key => $value ) {
@@ -29,11 +29,7 @@ class EloquentProjectTypeRepository extends BaseEloquentRepository implements Pr
             $results = $results->where( $key, 'like', '%'. $value .'%' );
         }
 
-        return $results
-            ->select($this->getTable() .'.*')
-            ->paginate($resultsPerPage)
-            ->appends($filters)
-            ->appends('size', $resultsPerPage);
+        return $this->paginated($results, $filters, $size);
     }
 
 }

@@ -15,7 +15,7 @@ class PersonValidationHelper extends BaseValidationHelper implements PersonValid
         );
     }
 
-    public function getFormValidationRules($formName)
+    public function getFormValidationRules($formName, $prefix = '')
     {
         $personClassName = Config::get('bindings.models.person');
         $addressClassName = Config::get('bindings.models.address');

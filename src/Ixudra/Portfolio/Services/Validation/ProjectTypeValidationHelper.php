@@ -15,7 +15,7 @@ class ProjectTypeValidationHelper extends BaseValidationHelper implements Projec
         );
     }
 
-    public function getFormValidationRules($formName)
+    public function getFormValidationRules($formName, $prefix = '')
     {
         $projectTypeClassName = Config::get('bindings.models.projectType');
 

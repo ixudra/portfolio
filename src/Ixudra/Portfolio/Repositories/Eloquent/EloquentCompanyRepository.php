@@ -18,7 +18,7 @@ class EloquentCompanyRepository extends BaseEloquentRepository implements Compan
     }
 
 
-    public function search($filters, $resultsPerPage = 25)
+    public function search($filters, $size = 25)
     {
         $results = $this->getModel();
 
@@ -30,12 +30,17 @@ class EloquentCompanyRepository extends BaseEloquentRepository implements Compan
                 ->orWhere('email', 'like', $query);
         }
 
+        return $this->paginated($results, $filters, $size);
+    }
+
+    protected function paginated($results, $filters = array(), $size = 25)
+    {
         return $results
             ->select($this->getTable() .'.*')
             ->with('corporateAddress', 'representative')
-            ->paginate($resultsPerPage)
+            ->paginate($size)
             ->appends($filters)
-            ->appends('size', $resultsPerPage);
+            ->appends('size', $size);
     }
 
 }

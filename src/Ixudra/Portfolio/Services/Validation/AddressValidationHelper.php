@@ -15,7 +15,7 @@ class AddressValidationHelper extends BaseValidationHelper implements AddressVal
         );
     }
 
-    public function getFormValidationRules($formName)
+    public function getFormValidationRules($formName, $prefix = '')
     {
         $addressClassName = Config::get('bindings.models.address');
 

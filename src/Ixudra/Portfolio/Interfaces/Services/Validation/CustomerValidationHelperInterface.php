@@ -5,8 +5,8 @@ interface CustomerValidationHelperInterface {
 
     public function getFilterValidationRules();
 
-    public function getFormValidationRules($formName);
+    public function getFormValidationRules($formName, $prefix = '');
 
-    public function getRequiredFormFields($formName);
+    public function getRequiredFormFields($formName, $prefix = '');
 
 }
