@@ -27,7 +27,7 @@ class CustomerFormHelper extends BaseFormHelper implements CustomerFormHelperInt
 
     protected function getName($model)
     {
-        return $model->present()->fullName;
+        return $model->object->present()->fullName;
     }
 
     public function getWithProjectOptionsAsSelectList($includeNull = false)

@@ -8,7 +8,7 @@ class CustomerPresenter extends BasePresenter implements CustomerPresenterInterf
 
     public function fullName()
     {
-        return $this->first_name .' '. $this->last_name;
+        return $this->entity->customer->present()->fullName;
     }
 
 }
