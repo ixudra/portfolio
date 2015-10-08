@@ -74,10 +74,10 @@ Alternatively, you can also publish the migrations using artisan:
     php artisan vendor:publish
 
     // Publish only the resources of the package
-    php artisan vendor:publish --provider="Ixudra\\Portfolio\\PortfolioServiceProvider"
+    php artisan vendor:publish --provider="Ixudra\\Portfolio\\PortfolioServiceProvider" --tag="migrations"
 
     // Publish only the resources of ixudra/imageable package
-    php artisan vendor:publish --provider="Ixudra\\Imageable\\ImageableServiceProvider"
+    php artisan vendor:publish --provider="Ixudra\\Imageable\\ImageableServiceProvider" --tag="migrations"
 
 ```
 
@@ -94,6 +94,9 @@ Once all dependencies have been included and migrations have been run, you can s
 
     // controller is accessible via the url http://yourAppName/admin/projects
     <li>{!! HTML::linkRoute('admin.projects.index', Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'project'))) !!}</li>
+
+    // controller is accessible via the url http://yourAppName/admin/projectTypes
+    <li>{!! HTML::linkRoute('admin.projectTypes.index', Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'projectType'))) !!}</li>
 
 ```
 

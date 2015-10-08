@@ -2,7 +2,7 @@
 
 
 use Ixudra\Core\Services\Html\BaseViewFactory;
-use Ixudra\Interfaces\Portfolio\Services\Html\ProjectTypeViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\ProjectTypeViewFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface;
 
 use App;

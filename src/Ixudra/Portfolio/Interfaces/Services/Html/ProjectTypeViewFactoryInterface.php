@@ -1,4 +1,4 @@
-<?php namespace Ixudra\Interfaces\Portfolio\Services\Html;
+<?php namespace Ixudra\Portfolio\Interfaces\Services\Html;
 
 
 use Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface;

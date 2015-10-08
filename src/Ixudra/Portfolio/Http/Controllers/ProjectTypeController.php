@@ -2,10 +2,9 @@
 
 
 use Ixudra\Core\Http\Controllers\BaseController;
-use Ixudra\Portfolio\Interfaces\Http\Controllers\ProjectTypeControllerInterface;
 use Ixudra\Portfolio\Interfaces\Repositories\ProjectTypeRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\ProjectTypeFactoryInterface;
-use Ixudra\Interfaces\Portfolio\Services\Html\ProjectTypeViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\ProjectTypeViewFactoryInterface;
 use Ixudra\Portfolio\Http\Requests\ProjectTypes\CreateProjectTypeFormRequest;
 use Ixudra\Portfolio\Http\Requests\ProjectTypes\FilterProjectTypeFormRequest;
 use Ixudra\Portfolio\Http\Requests\ProjectTypes\UpdateProjectTypeFormRequest;
