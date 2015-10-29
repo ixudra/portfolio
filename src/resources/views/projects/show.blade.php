@@ -25,10 +25,6 @@
                 </div>
             </div>
             <div class='col-md-10'>
-                <div class='col-md-4'>{{ Translate::recursive('portfolio::members.description') }}:</div>
-                <div class='col-md-8'>{{ $project->description }}</div>
-            </div>
-            <div class='col-md-10'>
                 <div class='col-md-4'>{{ Translate::recursive('portfolio::members.start_date') }}:</div>
                 <div class='col-md-8'>{{ $project->start_date }}</div>
             </div>
@@ -44,6 +40,15 @@
                 <div class='col-md-4'>{{ Translate::recursive('portfolio::members.hidden') }}:</div>
                 <div class='col-md-8'>{{ $project->present()->isHidden }}</div>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3>{{ Translate::recursive('portfolio::members.description') }}</h3>
+    </div>
+    <div class="row">
+        <div class="well well-large col-md-12">
+            <div class='col-md-10'>{!! $project->description !!}</div>
         </div>
     </div>
 
