@@ -3,13 +3,16 @@
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
 use Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface;
-use Ixudra\Portfolio\Models\Company;
+
+use Config;
 
 class EloquentCompanyRepository extends BaseEloquentRepository implements CompanyRepositoryInterface {
 
     protected function getModel()
     {
-        return new Company;
+        $className = Config::get('bindings.models.company');
+
+        return new $className;
     }
 
     protected function getTable()

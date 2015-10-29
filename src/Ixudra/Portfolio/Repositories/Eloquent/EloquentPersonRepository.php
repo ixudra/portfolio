@@ -3,13 +3,16 @@
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
 use Ixudra\Portfolio\Interfaces\Repositories\PersonRepositoryInterface;
-use Ixudra\Portfolio\Models\Person;
+
+use Config;
 
 class EloquentPersonRepository extends BaseEloquentRepository implements PersonRepositoryInterface {
 
     protected function getModel()
     {
-        return new Person;
+        $className = Config::get('bindings.models.person');
+
+        return new $className;
     }
 
     protected function getTable()

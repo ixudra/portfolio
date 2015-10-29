@@ -4,13 +4,16 @@
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
 
 use Ixudra\Portfolio\Interfaces\Repositories\ProjectTypeRepositoryInterface;
-use Ixudra\Portfolio\Models\ProjectType;
+
+use Config;
 
 class EloquentProjectTypeRepository extends BaseEloquentRepository implements ProjectTypeRepositoryInterface {
 
     protected function getModel()
     {
-        return new ProjectType;
+        $className = Config::get('bindings.models.projectType');
+
+        return new $className;
     }
 
     protected function getTable()

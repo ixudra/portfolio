@@ -2,15 +2,17 @@
 
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
-
 use Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface;
-use Ixudra\Portfolio\Models\Customer;
+
+use Config;
 
 class EloquentCustomerRepository extends BaseEloquentRepository implements CustomerRepositoryInterface {
 
     protected function getModel()
     {
-        return new Customer;
+        $className = Config::get('bindings.models.customer');
+
+        return new $className;
     }
 
     protected function getTable()

@@ -3,13 +3,16 @@
 
 use Ixudra\Core\Repositories\Eloquent\BaseEloquentRepository;
 use Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface;
-use Ixudra\Portfolio\Models\Address;
+
+use Config;
 
 class EloquentAddressRepository extends BaseEloquentRepository implements AddressRepositoryInterface {
 
     protected function getModel()
     {
-        return new Address;
+        $className = Config::get('bindings.models.address');
+
+        return new $className;
     }
 
     protected function getTable()
