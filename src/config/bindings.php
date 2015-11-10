@@ -56,12 +56,12 @@
 
         'models'                            => array(
 
-            'address'                           => 'Ixudra\Portfolio\models\Address',
-            'company'                           => 'Ixudra\Portfolio\models\Company',
-            'customer'                          => 'Ixudra\Portfolio\models\Customer',
-            'person'                            => 'Ixudra\Portfolio\models\Person',
-            'project'                           => 'Ixudra\Portfolio\models\Project',
-            'projectType'                       => 'Ixudra\Portfolio\models\ProjectType',
+            'address'                           => 'Ixudra\Portfolio\Models\Address',
+            'company'                           => 'Ixudra\Portfolio\Models\Company',
+            'customer'                          => 'Ixudra\Portfolio\Models\Customer',
+            'person'                            => 'Ixudra\Portfolio\Models\Person',
+            'project'                           => 'Ixudra\Portfolio\Models\Project',
+            'projectType'                       => 'Ixudra\Portfolio\Models\ProjectType',
 
         ),
 
