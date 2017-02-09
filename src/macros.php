@@ -57,6 +57,6 @@ HTML::macro('iconRoute', function($route = '', $data, $iconType, $parameters = a
  * Model observers
  */
 
-Ixudra\Portfolio\Models\Company::observe(new \Ixudra\Portfolio\Observers\CustomerModelObserver());
-Ixudra\Portfolio\Models\Person::observe(new \Ixudra\Portfolio\Observers\CustomerModelObserver());
+Ixudra\Portfolio\Models\Company::observe( new \Ixudra\Portfolio\Observers\CustomerModelObserver() );
+Ixudra\Portfolio\Models\Person::observe( new \Ixudra\Portfolio\Observers\CustomerModelObserver() );
 

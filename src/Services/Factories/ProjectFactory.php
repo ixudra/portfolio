@@ -10,9 +10,6 @@ use App;
 
 class ProjectFactory implements ProjectFactoryInterface {
 
-    use ImageFactoryTrait;
-
-
     protected $imageFactory;
 
 
@@ -27,7 +24,7 @@ class ProjectFactory implements ProjectFactoryInterface {
         $project = $this->createModel( $input );
         $project->save();
 
-        $this->imageFactory->make( $this->extractImageInput( $input ), $project );
+        $this->imageFactory->make( $input, $project );
 
         return $project;
     }
@@ -35,7 +32,7 @@ class ProjectFactory implements ProjectFactoryInterface {
     public function modify(ProjectInterface $project, $input)
     {
         $project->update( $input );
-        $this->imageFactory->modify( $project->image, $this->extractImageInput( $input ), $project );
+        $this->imageFactory->modify( $project->image, $input, $project );
 
         return $project;
     }
