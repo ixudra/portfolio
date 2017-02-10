@@ -1,7 +1,7 @@
 {
     "name": "ixudra/portfolio",
     "description": "Custom PHP Portfolio library for the Laravel 5 framework - developed by Ixudra",
-    "version": "0.0.10",
+    "version": "0.2.0",
     "keywords": ["Ixudra", "Laravel", "Portfolio", "Project"],
     "homepage": "http://ixudra.be",
     "license": "MIT",
@@ -16,10 +16,10 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "~5.0",
-        "illuminate/html": "~5.0",
+        "laravelcollective/html": "~5.0",
         "ixudra/core": "~5.0",
         "ixudra/translation": "~5.1",
-        "ixudra/imageable": "~5.0",
+        "ixudra/imageable": "~6.0",
         "laracasts/presenter": "0.2.*"
     },
 
@@ -27,10 +27,8 @@
         "classmap": [
             "src/database/migrations"
         ],
-        "psr-0": {
+        "psr-4": {
             "Ixudra\\Portfolio\\": "src/"
         }
-    },
-
-    "minimum-stability": "stable"
+    }
 }
