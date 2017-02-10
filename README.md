@@ -124,8 +124,8 @@ Register the model observers in the AppServiceProvider:
      * Model observers
      */
 
-    Ixudra\Portfolio\Models\Company::observe( new \Ixudra\Portfolio\Observers\CustomerModelObserver() );
-    Ixudra\Portfolio\Models\Person::observe( new \Ixudra\Portfolio\Observers\CustomerModelObserver() );
+    \Ixudra\Portfolio\Models\Company::observe( new \Ixudra\Portfolio\Observers\CustomerModelObserver() );
+    \Ixudra\Portfolio\Models\Person::observe( new \Ixudra\Portfolio\Observers\CustomerModelObserver() );
 
 ```
 
@@ -137,14 +137,14 @@ Once all dependencies have been included and migrations have been run, you can s
 
 ```php
 
-    // Controller is accessible via the url http://yourAppName/admin/customers
-    <li>{!! HTML::linkRoute('admin.customers.index', Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'customer'))) !!}</li>
+    // Controller is accessible via the url http://yourAppName/customers
+    <li>{!! HTML::linkRoute('customers.index', Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'customer'))) !!}</li>
 
-    // Controller is accessible via the url http://yourAppName/admin/projects
-    <li>{!! HTML::linkRoute('admin.projects.index', Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'project'))) !!}</li>
+    // Controller is accessible via the url http://yourAppName/projects
+    <li>{!! HTML::linkRoute('projects.index', Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'project'))) !!}</li>
 
-    // Controller is accessible via the url http://yourAppName/admin/projectTypes
-    <li>{!! HTML::linkRoute('admin.projectTypes.index', Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'projectType'))) !!}</li>
+    // Controller is accessible via the url http://yourAppName/projectTypes
+    <li>{!! HTML::linkRoute('projectTypes.index', Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'projectType'))) !!}</li>
 
 ```
 
