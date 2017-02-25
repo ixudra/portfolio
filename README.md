@@ -87,7 +87,7 @@ Register the routes for the application with the correct middleware and/or prefi
 
 ```php
 
-    Route::group(array('middleware' => array('auth')), function()
+    Route::group(array('middleware' => array('web', 'auth')), function()
     {
         Route::get(     'customers/filter',                         array('as' => 'customers.filter',                        'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@filter'));
         Route::post(    'customers/filter',                         array('as' => 'customers.filter.process',                'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@filter'));
@@ -100,7 +100,7 @@ Register the routes for the application with the correct middleware and/or prefi
         Route::get(     'projectTypes/filter',                      array('as' => 'projectTypes.filter',                    'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@filter'));
         Route::post(    'projectTypes/filter',                      array('as' => 'projectTypes.filter.process',            'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@filter'));
         Route::resource('projectTypes', '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController');
-    
+
         Route::get(     'addresses/filter',                         array('as' => 'addresses.filter',                       'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
         Route::post(    'addresses/filter',                         array('as' => 'addresses.filter.process',               'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
         Route::resource('addresses', '\Ixudra\Portfolio\Http\Controllers\AddressController');
@@ -116,7 +116,9 @@ Register the routes for the application with the correct middleware and/or prefi
 
 ```
 
-Register the model observers in the AppServiceProvider:
+In a normal installation, only the routes belonging to the `CustomerController`, `ProjectController` and the `ProjectTypeController` must be registered. All other resources are used and accessed through these routes. However, they can be added as well if necessary for your app.
+
+Register the model observers in the `register()` method of the `AppServiceProvider`:
 
 ```php
 

@@ -23,7 +23,7 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
     public function create($input = null)
     {
         if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface')->getDefaultInput();
+            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface' )->getDefaultInput();
         }
 
         return $this->prepareForm('portfolio::companies.create', 'create', $input);
@@ -39,7 +39,7 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
     public function edit(CompanyInterface $company, $input = null)
     {
         if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface')->getInputForModel( $company );
+            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface' )->getInputForModel( $company );
         }
 
         $this->addParameter('company', $company);
@@ -50,8 +50,8 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
 
     protected function prepareFilter($template, $input)
     {
-        $searchInput = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface')->getInputForSearch( $input );
-        $companies = App::make('\Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface')->search( $searchInput );
+        $searchInput = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface' )->getInputForSearch( $input );
+        $companies = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface' )->search( $searchInput );
 
         $this->addParameter('companies', $companies);
         $this->addParameter('input', $input);
@@ -61,9 +61,9 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
 
     protected function prepareForm($template, $formName, $input)
     {
-        $countries = App::make('\Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface')->getCountriesAsSelectList();
+        $countries = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface' )->getCountriesAsSelectList();
 
-        $requiredFields = App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface')->getRequiredFormFields( $formName );
+        $requiredFields = App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface' )->getRequiredFormFields( $formName );
 
         $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);

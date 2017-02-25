@@ -15,7 +15,7 @@ class FilterProjectFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface')
+        return App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface' )
             ->getFilterValidationRules();
     }
 

@@ -88,7 +88,7 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
 
     protected function createModel($input = array())
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Models\PersonInterface', array($input));
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\PersonInterface', array($input) );
     }
 
 }

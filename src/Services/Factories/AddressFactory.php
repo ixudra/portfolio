@@ -23,7 +23,7 @@ class AddressFactory implements AddressFactoryInterface {
 
     protected function createModel($input = array())
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Models\AddressInterface', array($input));
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\AddressInterface', array($input) );
     }
 
 }

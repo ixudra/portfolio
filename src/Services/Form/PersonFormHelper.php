@@ -13,7 +13,7 @@ class PersonFormHelper extends BaseFormHelper implements PersonFormHelperInterfa
 
     public function __construct()
     {
-        $this->repository = App::make('\Ixudra\Portfolio\Interfaces\Repositories\PersonRepositoryInterface');
+        $this->repository = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\PersonRepositoryInterface' );
     }
 
 

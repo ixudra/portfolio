@@ -33,7 +33,7 @@ class EloquentProjectRepositoryTest extends BaseRepositoryTestCase {
         $projects = $this->projectRepository->all();
 
         $this->assertCount(5, $projects);
-        $this->assertContainsOnlyInstancesOf('\Ixudra\Portfolio\Models\Project', $projects);
+        $this->assertContainsOnlyInstancesOf('Ixudra\Portfolio\Models\Project', $projects);
     }
 
     /**
@@ -45,7 +45,7 @@ class EloquentProjectRepositoryTest extends BaseRepositoryTestCase {
 
         $result = $this->projectRepository->find($project->id);
 
-        $this->assertInstanceOf('\Ixudra\Portfolio\Project', $result);
+        $this->assertInstanceOf('Ixudra\Portfolio\Models\Project', $result);
         $this->assertEquals('Project 1', $result->name);
     }
 
@@ -77,7 +77,7 @@ class EloquentProjectRepositoryTest extends BaseRepositoryTestCase {
         $projects = $this->projectRepository->findByFilter($filter);
 
         $this->assertCount(1, $projects);
-        $this->assertCollectionWithOnlyInstancesOf('\Ixudra\Portfolio\Models\Project', $projects);
+        $this->assertCollectionWithOnlyInstancesOf('Ixudra\Portfolio\Models\Project', $projects);
         $this->assertCollectionContains( array($project2), $projects );
     }
 
@@ -118,7 +118,7 @@ class EloquentProjectRepositoryTest extends BaseRepositoryTestCase {
 //        $projects = $paginator->getCollection();
 //
 //        $this->assertCount(5, $projects);
-//        $this->assertCollectionWithOnlyInstancesOf('\Ixudra\Portfolio\Project', $projects);
+//        $this->assertCollectionWithOnlyInstancesOf('Ixudra\Portfolio\Project', $projects);
 //        $this->assertCollectionContains( array($project1), $projects );
 //    }
 
@@ -139,7 +139,7 @@ class EloquentProjectRepositoryTest extends BaseRepositoryTestCase {
         $projects = $paginator->getCollection();
 
         $this->assertCount(5, $projects);
-        $this->assertCollectionWithOnlyInstancesOf('\Ixudra\Portfolio\Models\Project', $projects);
+        $this->assertCollectionWithOnlyInstancesOf('Ixudra\Portfolio\Models\Project', $projects);
     }
 
     /**
@@ -159,7 +159,7 @@ class EloquentProjectRepositoryTest extends BaseRepositoryTestCase {
         $projects = $paginator->getCollection();
 
         $this->assertCount(2, $projects);
-        $this->assertCollectionWithOnlyInstancesOf('\Ixudra\Portfolio\Models\Project', $projects);
+        $this->assertCollectionWithOnlyInstancesOf('Ixudra\Portfolio\Models\Project', $projects);
     }
 
 }

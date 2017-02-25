@@ -27,7 +27,7 @@ class CustomerFactory implements CustomerFactoryInterface {
 
     protected function createModel($input = array())
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Models\CustomerInterface', array($input));
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\CustomerInterface', array($input) );
     }
 
 }

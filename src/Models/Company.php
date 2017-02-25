@@ -2,8 +2,8 @@
 
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
+use Ixudra\Portfolio\Presenters\CompanyPresenter;
 use Laracasts\Presenter\PresentableTrait;
 
 use Config;
@@ -33,8 +33,7 @@ class Company extends Model implements CompanyInterface {
 
     protected $translationKey = 'company';
 
-//    protected $presenter = '\Ixudra\Portfolio\Interfaces\Presenters\CompanyPresenterInterface';
-    protected $presenter = '\Ixudra\Portfolio\Presenters\CompanyPresenter';
+    protected $presenter = CompanyPresenter::class;
 
 
     public function corporateAddress()

@@ -39,7 +39,7 @@ class ProjectFactory implements ProjectFactoryInterface {
 
     protected function createModel($input = array())
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Models\ProjectInterface', array($input));
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\ProjectInterface', array($input) );
     }
 
 }

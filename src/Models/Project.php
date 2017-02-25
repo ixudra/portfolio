@@ -4,14 +4,14 @@
 use Illuminate\Database\Eloquent\Model;
 use Ixudra\Imageable\Traits\ImageableTrait;
 use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
+use Ixudra\Portfolio\Presenters\ProjectPresenter;
 use Laracasts\Presenter\PresentableTrait;
 
 use Config;
 
 class Project extends Model implements ProjectInterface {
 
-    use PresentableTrait;
-    use ImageableTrait;
+    use PresentableTrait, ImageableTrait;
 
 
     protected $table = 'projects';
@@ -32,8 +32,7 @@ class Project extends Model implements ProjectInterface {
 
     protected $translationKey = 'project';
 
-//    protected $presenter = '\Ixudra\Portfolio\Presenters\ProjectPresenterInterface';
-    protected $presenter = '\Ixudra\Portfolio\Presenters\ProjectPresenter';
+    protected $presenter = ProjectPresenter::class;
 
     protected $imagePath = 'images/projects';
 
@@ -55,7 +54,7 @@ class Project extends Model implements ProjectInterface {
 
     public function image()
     {
-        return $this->morphOne('Ixudra\Imageable\Models\Image', 'imageable');
+        return $this->morphOne( Image::class, 'imageable' );
     }
 
 

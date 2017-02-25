@@ -14,7 +14,7 @@ class CreateCustomerFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface', array( $this->input('customerType') ))
+        return App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface', array( $this->input('customerType') ) )
             ->getFormValidationRules( 'create' );
     }
 

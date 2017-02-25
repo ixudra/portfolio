@@ -14,7 +14,7 @@ class CreateAddressFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface')
+        return App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface' )
             ->getFormValidationRules( 'create' );
     }
 

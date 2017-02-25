@@ -23,7 +23,7 @@ class AddressInputHelper extends BaseInputHelper implements AddressInputHelperIn
         }
 
         if( $input[ 'city_id' ] != 0 ) {
-            $address = App::make('\Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface')->find( $input[ 'city_id' ] );
+            $address = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface' )->find( $input[ 'city_id' ] );
             if( !is_null($address) ) {
                 $input[ 'city' ] = $address->city;
             }

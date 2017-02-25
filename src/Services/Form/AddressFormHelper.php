@@ -15,7 +15,7 @@ class AddressFormHelper extends BaseFormHelper implements AddressFormHelperInter
 
     public function __construct()
     {
-        $this->repository = App::make('\Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface');
+        $this->repository = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface' );
     }
 
 

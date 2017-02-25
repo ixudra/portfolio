@@ -3,6 +3,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Ixudra\Portfolio\Interfaces\Models\CustomerInterface;
+use Ixudra\Portfolio\Presenters\CustomerPresenter;
 use Laracasts\Presenter\PresentableTrait;
 
 use Config;
@@ -26,8 +27,7 @@ class Customer extends Model implements CustomerInterface {
 
     protected $translationKey = 'customer';
 
-//    protected $presenter = '\Ixudra\Portfolio\Presenters\CustomerPresenterInterface';
-    protected $presenter = '\Ixudra\Portfolio\Presenters\CustomerPresenter';
+    protected $presenter = CustomerPresenter::class;
 
 
     public function object()

@@ -104,9 +104,9 @@ class CustomerController extends BaseController {
 
     protected function getFactory($customerType)
     {
-        $factory = '\Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface';
+        $factory = 'Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface';
         if( $customerType == 'person' ) {
-            $factory = '\Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface';
+            $factory = 'Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface';
         }
 
         return App::make( $factory );

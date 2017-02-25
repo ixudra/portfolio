@@ -3,6 +3,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
+use Ixudra\Portfolio\Presenters\AddressPresenter;
 use Laracasts\Presenter\PresentableTrait;
 
 class Address extends Model implements AddressInterface {
@@ -29,8 +30,7 @@ class Address extends Model implements AddressInterface {
 
     protected $translationKey = 'address';
 
-//    protected $presenter = '\Ixudra\Portfolio\Interfaces\Presenters\AddressPresenterInterface';
-    protected $presenter = '\Ixudra\Portfolio\Presenters\AddressPresenter';
+    protected $presenter = AddressPresenter::class;
 
 
     public static function getRules()

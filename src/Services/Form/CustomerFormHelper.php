@@ -13,7 +13,7 @@ class CustomerFormHelper extends BaseFormHelper implements CustomerFormHelperInt
 
     public function __construct()
     {
-        $this->repository = App::make('\Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface');
+        $this->repository = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface' );
     }
 
 

@@ -14,7 +14,7 @@ class FilterCustomerFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface')
+        return App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface' )
             ->getFilterValidationRules();
     }
 

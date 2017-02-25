@@ -27,7 +27,7 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
     public function create($input = null)
     {
         if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface')->getDefaultInput();
+            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface' )->getDefaultInput();
         }
 
         return $this->prepareForm('portfolio::projects.create', 'create', $input);
@@ -43,7 +43,7 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
     public function edit(ProjectInterface $project, $input = null)
     {
         if( $input == null ) {
-            $input = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface')->getInputForModel( $project );
+            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface' )->getInputForModel( $project );
         }
 
         $this->addParameter('project', $project);
@@ -54,12 +54,12 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
 
     protected function prepareFilter($template, $input)
     {
-        $searchInput = App::make('\Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface')->getInputForSearch( $input );
-        $projects = App::make('\Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface')->search( $searchInput );
+        $searchInput = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface' )->getInputForSearch( $input );
+        $projects = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface' )->search( $searchInput );
 
-        $customers = App::make('\Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface')->getUsedAsSelectList(true);
-        $projectTypes = App::make('\Ixudra\Portfolio\Interfaces\Services\Form\ProjectTypeFormHelperInterface')->getAllAsSelectList(true);
-        $visibilityOptions = App::make('\Ixudra\Portfolio\Interfaces\Services\Form\ProjectFormHelperInterface')->getVisibilityOptionsAsSelectList(true);
+        $customers = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface' )->getUsedAsSelectList(true);
+        $projectTypes = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\ProjectTypeFormHelperInterface' )->getAllAsSelectList(true);
+        $visibilityOptions = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\ProjectFormHelperInterface' )->getVisibilityOptionsAsSelectList(true);
 
         $this->addParameter('projects', $projects);
         $this->addParameter('customers', $customers);
@@ -72,10 +72,10 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
 
     protected function prepareForm($template, $formName, $input)
     {
-        $statuses = App::make('\Ixudra\Portfolio\Interfaces\Services\Form\ProjectFormHelperInterface')->getStatusesAsSelectList();
-        $projectTypes = App::make('\Ixudra\Portfolio\Interfaces\Services\Form\ProjectTypeFormHelperInterface')->getAllAsSelectList();
-        $customers = App::make('\Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface')->getAllAsSelectList();
-        $requiredFields = App::make('\Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface')->getRequiredFormFields( $formName );
+        $statuses = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\ProjectFormHelperInterface' )->getStatusesAsSelectList();
+        $projectTypes = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\ProjectTypeFormHelperInterface' )->getAllAsSelectList();
+        $customers = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface' )->getAllAsSelectList();
+        $requiredFields = App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface' )->getRequiredFormFields( $formName );
 
         $this->addParameter('statuses', $statuses);
         $this->addParameter('customers', $customers);

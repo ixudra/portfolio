@@ -23,7 +23,7 @@ class ProjectTypeFactory implements ProjectTypeFactoryInterface {
 
     protected function createModel($input = array())
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface', array($input));
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface', array($input) );
     }
 
 }

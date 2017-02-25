@@ -3,10 +3,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Ixudra\Portfolio\Interfaces\Models\PersonInterface;
+use Ixudra\Portfolio\Presenters\PersonPresenter;
 use Laracasts\Presenter\PresentableTrait;
 
 use Config;
-use Translate;
 
 class Person extends Model implements PersonInterface {
 
@@ -30,8 +30,7 @@ class Person extends Model implements PersonInterface {
 
     protected $translationKey = 'person';
 
-//    protected $presenter = '\Ixudra\Portfolio\Presenters\PersonPresenterInterface';
-    protected $presenter = '\Ixudra\Portfolio\Presenters\PersonPresenter';
+    protected $presenter = PersonPresenter::class;
 
 
     public function address()

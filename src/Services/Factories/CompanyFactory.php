@@ -78,7 +78,7 @@ class CompanyFactory extends BaseFactory implements CompanyFactoryInterface {
 
     protected function createModel($input = array())
     {
-        return App::make('\Ixudra\Portfolio\Interfaces\Models\CompanyInterface', array($input));
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\CompanyInterface', array($input) );
     }
 
 }

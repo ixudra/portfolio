@@ -14,7 +14,7 @@ class ProjectFormHelper extends BaseFormHelper implements ProjectFormHelperInter
 
     public function __construct()
     {
-        $this->repository = App::make('\Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface');
+        $this->repository = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface' );
     }
 
 
