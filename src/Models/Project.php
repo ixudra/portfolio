@@ -2,6 +2,7 @@
 
 
 use Illuminate\Database\Eloquent\Model;
+use Ixudra\Imageable\Models\Image;
 use Ixudra\Imageable\Traits\ImageableTrait;
 use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Ixudra\Portfolio\Presenters\ProjectPresenter;
