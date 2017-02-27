@@ -10,7 +10,8 @@ class CustomerFactory implements CustomerFactoryInterface {
 
     public function make(CustomerModelInterface $object)
     {
-        $customer = $this->createModel( $this->extractCustomerInput( $object ) );
+        $customer = $this->createModel();
+        $customer->fill( $this->extractCustomerInput( $object ) );
         $customer->save();
 
         return $customer;
@@ -25,9 +26,9 @@ class CustomerFactory implements CustomerFactoryInterface {
         );
     }
 
-    protected function createModel($input = array())
+    protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\CustomerInterface', array($input) );
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\CustomerInterface' );
     }
 
 }

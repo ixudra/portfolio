@@ -10,7 +10,8 @@ class ProjectTypeFactory implements ProjectTypeFactoryInterface {
 
     public function make($input)
     {
-        $projectType = $this->createModel( $input );
+        $projectType = $this->createModel();
+        $projectType->fill( $input );
         $projectType->save();
 
         return $projectType;
@@ -21,9 +22,9 @@ class ProjectTypeFactory implements ProjectTypeFactoryInterface {
         return $projectType->update( $input );
     }
 
-    protected function createModel($input = array())
+    protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface', array($input) );
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface' );
     }
 
 }

@@ -10,7 +10,8 @@ class AddressFactory implements AddressFactoryInterface {
 
     public function make($input)
     {
-        $address = $this->createModel( $input );
+        $address = $this->createModel();
+        $address->fill( $input );
         $address->save();
 
         return $address;
@@ -21,9 +22,9 @@ class AddressFactory implements AddressFactoryInterface {
         return $address->update( $input );
     }
 
-    protected function createModel($input = array())
+    protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\AddressInterface', array($input) );
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\AddressInterface' );
     }
 
 }

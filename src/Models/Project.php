@@ -26,7 +26,7 @@ class Project extends Model implements ProjectInterface {
         'end_date',
         'status',
         'project_type_id',
-        'hidden'
+        'hidden',
     );
 
     protected $hidden = array();

@@ -21,7 +21,8 @@ class ProjectFactory implements ProjectFactoryInterface {
 
     public function make($input)
     {
-        $project = $this->createModel( $input );
+        $project = $this->createModel();
+        $project->fill( $input );
         $project->save();
 
         $this->imageFactory->make( $input, $project );
@@ -37,9 +38,9 @@ class ProjectFactory implements ProjectFactoryInterface {
         return $project;
     }
 
-    protected function createModel($input = array())
+    protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\ProjectInterface', array($input) );
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\ProjectInterface' );
     }
 
 }

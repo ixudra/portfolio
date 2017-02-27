@@ -33,7 +33,8 @@ class CompanyFactory extends BaseFactory implements CompanyFactoryInterface {
         $address = $this->addressFactory->make( $this->extractCorporateAddressInput($input) );
         $representative = $this->personFactory->make( $this->extractRepresentativeInput($input), '', false );
 
-        $company = $this->createModel( $this->extractCompanyInput( $address, $representative, $input, $prefix ) );
+        $company = $this->createModel();
+        $company->fill( $this->extractCompanyInput( $address, $representative, $input, $prefix ) );
         $company->save();
 
         $this->customerFactory->make( $company );
@@ -76,9 +77,9 @@ class CompanyFactory extends BaseFactory implements CompanyFactoryInterface {
         return $results;
     }
 
-    protected function createModel($input = array())
+    protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\CompanyInterface', array($input) );
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\CompanyInterface' );
     }
 
 }

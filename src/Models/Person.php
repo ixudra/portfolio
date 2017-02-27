@@ -59,7 +59,7 @@ class Person extends Model implements PersonInterface {
         return array(
             'first_name'                => 'required|max:256',
             'last_name'                 => 'required|max:256',
-            'birth_date'                => 'required|date|date_format:Y-m-d',
+            'birth_date'                => 'date|date_format:Y-m-d',
             'email'                     => 'required|email|max:256',
             'cellphone'                 => 'required|max:32',
         );

@@ -31,7 +31,8 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
             $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address' ) );
         }
 
-        $person = $this->createModel( $this->extractPersonInput($address, $input, $prefix) );
+        $person = $this->createModel();
+        $person->fill( $this->extractPersonInput( $address, $input, $prefix ) );
         $person->save();
 
         $this->customerFactory->make( $person );
@@ -86,9 +87,9 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
         return $results;
     }
 
-    protected function createModel($input = array())
+    protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\PersonInterface', array($input) );
+        return App::make( 'Ixudra\Portfolio\Interfaces\Models\PersonInterface' );
     }
 
 }
