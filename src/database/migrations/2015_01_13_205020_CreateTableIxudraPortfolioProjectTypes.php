@@ -11,8 +11,10 @@ class CreateTableIxudraPortfolioProjectTypes extends Migration {
         Schema::create('project_types', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name', 64);
+            $table->string('name', 64)->nullable()->default(null);
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

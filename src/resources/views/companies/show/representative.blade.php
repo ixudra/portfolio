@@ -1,6 +1,8 @@
 
     <div class="row">
-        <h2>{{ Translate::recursive('portfolio::members.representative') }}</h2>
+        <div class="col-md-12">
+            <h2>{{ Translate::recursive('portfolio::members.representative') }}</h2>
+        </div>
     </div>
 
     <div class="row">

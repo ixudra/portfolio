@@ -19,7 +19,7 @@
 
         @include($form['template'], array('input' => $input, 'prefix' => $prefix))
 
-        <div class="action-button">
+        <div class="action-button pull-right">
             {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
             {!! HTML::linkRoute('admin.customers.show', Translate::recursive('common.cancel'), array($customer->id), array('class' => 'btn btn-default')) !!}
         </div>

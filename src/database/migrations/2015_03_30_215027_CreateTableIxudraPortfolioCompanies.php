@@ -11,16 +11,18 @@ class CreateTableIxudraPortfolioCompanies extends Migration {
         Schema::create('companies', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name', 256);
-            $table->string('vat_nr', 32);
-            $table->string('email', 256);
-            $table->string('url', 256);
-            $table->string('phone', 32);
-            $table->string('fax', 32);
-            $table->integer('billing_address_id');
-            $table->integer('corporate_address_id');
-            $table->integer('representative_id');
+            $table->string('name', 256)->nullable()->default(null);
+            $table->string('vat_nr', 32)->nullable()->default(null);
+            $table->string('email', 256)->nullable()->default(null);
+            $table->string('url', 256)->nullable()->default(null);
+            $table->string('phone', 32)->nullable()->default(null);
+            $table->string('fax', 32)->nullable()->default(null);
+            $table->integer('billing_address_id')->nullable()->default(null);
+            $table->integer('corporate_address_id')->nullable()->default(null);
+            $table->integer('representative_id')->nullable()->default(null);
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

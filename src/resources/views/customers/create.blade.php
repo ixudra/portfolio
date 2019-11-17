@@ -15,12 +15,10 @@
 
     <ul role="tablist" class="nav nav-tabs" id="createCustomerTab">
         <li class="active" role="presentation">
-            <a aria-controls="company" data-toggle="tab" data-customer-type="company" role="tab" aria-expanded="true"
-                id="company-tab" href="#company">Company</a>
+            <a aria-controls="company" data-toggle="tab" data-customer-type="company" role="tab" aria-expanded="true" id="company-tab" href="#company">Company</a>
         </li>
         <li role="presentation">
-            <a aria-controls="person" data-toggle="tab" data-customer-type="person" role="tab"
-                id="person-tab" href="#person">Person</a>
+            <a aria-controls="person" data-toggle="tab" data-customer-type="person" role="tab" id="person-tab" href="#person">Person</a>
         </li>
     </ul>
 
@@ -33,7 +31,7 @@
 
                 @include('portfolio::companies.form.full', array('input' => $input, 'prefix' => 'company_'))
 
-                <div class="action-button">
+                <div class="action-button pull-right">
                     {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
                     {!! HTML::linkRoute('admin.customers.index', Translate::recursive('common.cancel'), array(), array('class' => 'btn btn-default')) !!}
                 </div>
@@ -43,7 +41,7 @@
 
                 @include('portfolio::people.form.full', array('input' => $input, 'prefix' => 'person_'))
 
-                <div class="action-button">
+                <div class="action-button pull-right">
                     {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
                     {!! HTML::linkRoute('admin.customers.index', Translate::recursive('common.cancel'), array(), array('class' => 'btn btn-default')) !!}
                 </div>

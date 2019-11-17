@@ -11,10 +11,12 @@ class CreateTableIxudraPortfolioCustomers extends Migration {
         Schema::create('customers', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name', 128);
-            $table->string('customer_type', 64);
-            $table->integer('customer_id');
+            $table->string('name', 128)->nullable()->default(null);
+            $table->string('customer_type', 64)->nullable()->default(null);
+            $table->integer('customer_id')->nullable()->default(null);
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

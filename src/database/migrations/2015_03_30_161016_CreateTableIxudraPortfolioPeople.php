@@ -11,13 +11,15 @@ class CreateTableIxudraPortfolioPeople extends Migration {
         Schema::create('people', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('first_name', 256);
-            $table->string('last_name', 256);
-            $table->string('email', 256);
-            $table->date('birth_date');
-            $table->string('cellphone', 32);
-            $table->string('address_id');
+            $table->string('first_name', 256)->nullable()->default(null);
+            $table->string('last_name', 256)->nullable()->default(null);
+            $table->string('email', 256)->nullable()->default(null);
+            $table->date('birth_date')->nullable()->default(null);
+            $table->string('cellphone', 32)->nullable()->default(null);
+            $table->integer('address_id')->nullable()->default(null);
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

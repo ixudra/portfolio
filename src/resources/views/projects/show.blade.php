@@ -51,7 +51,9 @@
     </div>
 
     <div class="row">
-        <h3>{{ Translate::recursive('portfolio::members.description') }}</h3>
+        <div class="col-md-12">
+            <h3>{{ Translate::recursive('portfolio::members.description') }}</h3>
+        </div>
     </div>
     <div class="row">
         <div class="well well-large col-md-12">
@@ -60,8 +62,11 @@
     </div>
 
     <div class="row">
-        <h3>{{ Translate::recursive('portfolio::members.image') }}</h3>
+        <div class="col-md-12">
+            <h3>{{ Translate::recursive('portfolio::members.image') }}</h3>
+        </div>
     </div>
+
     @include('imageable::images/data', array('imageable' => $project))
 
 @endsection

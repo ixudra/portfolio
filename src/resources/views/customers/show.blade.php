@@ -1,6 +1,11 @@
 @extends('bootstrap.layouts.master')
 
 
+@section('page-title')
+    {{ $customer->object->present()->fullName }}
+@endsection
+
+
 @section('content-title')
     {{ $customer->object->present()->fullName }}
 @endsection

@@ -18,15 +18,21 @@
 
     @if( !is_null($person->address) )
         <div class="row">
-            <h2>{{ Translate::recursive('portfolio::models.address.singular') }}</h2>
+            <div class="col-md-12">
+                <h2>{{ Translate::recursive('portfolio::models.address.singular') }}</h2>
+            </div>
         </div>
+
         @include('portfolio::addresses.data', array('address' => $person->address))
     @endif
 
     @if( !is_null($person->company) )
         <div class="row">
-            <h2>{{ Translate::recursive('portfolio::models.company.singular') }}</h2>
+            <div class="col-md-12">
+                <h2>{{ Translate::recursive('portfolio::models.company.singular') }}</h2>
+            </div>
         </div>
+
         @include('portfolio::companies.show.data', array('company' => $person->company, 'includeName' => true))
     @endif
 

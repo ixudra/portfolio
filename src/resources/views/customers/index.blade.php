@@ -15,7 +15,7 @@
 
     <div class="row">
         <p>
-            {!! HTML::linkRoute('admin.customers.create', Translate::recursive('common.new'), array(), array('class' => 'btn btn-default')) !!}
+            {!! HTML::iconRoute('admin.customers.create', Translate::recursive('common.new'), 'plus', array(), array('class' => 'btn btn-primary')) !!}
         </p>
     </div>
 

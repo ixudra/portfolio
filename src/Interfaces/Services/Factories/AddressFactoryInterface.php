@@ -5,8 +5,8 @@ use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
 
 interface AddressFactoryInterface {
 
-    public function make($input);
+    public function make($input, $reference, $prefix = '');
 
-    public function modify(AddressInterface $address, $input);
+    public function modify(AddressInterface $address, $input, $prefix = '');
 
 }
