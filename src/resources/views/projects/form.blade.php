@@ -1,4 +1,4 @@
-{!! Form::open(array('url' => $url, 'method' => $method, 'id' => $formId, 'class' => 'form-horizontal', 'role' => 'form', 'files' => true)) !!}
+{!! Form::open(array('route' => $route, 'method' => $method, 'id' => $formId, 'class' => 'form-horizontal', 'role' => 'form', 'files' => true)) !!}
 
     <div class="well well-large">
         <div class='form-group {{ $errors->has('name') ? 'has-error' : '' }} {{ in_array('name', $requiredFields) ? 'required' : '' }}'>
@@ -62,7 +62,7 @@
 
     @include('imageable::images/fields')
 
-    <div class="action-button">
+    <div class="action-button pull-right">
         {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
         {!! HTML::linkRoute($redirectUrl, Translate::recursive('common.cancel'), $redirectParameters, array('class' => 'btn btn-default')) !!}
     </div>

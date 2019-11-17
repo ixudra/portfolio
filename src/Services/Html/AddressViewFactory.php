@@ -2,7 +2,11 @@
 
 
 use Ixudra\Core\Services\Html\BaseViewFactory;
+use Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface;
 use Ixudra\Portfolio\Interfaces\Services\Html\AddressViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface;
 use Ixudra\Portfolio\Interfaces\Models\AddressInterface;
 
 use App;
@@ -23,7 +27,7 @@ class AddressViewFactory extends BaseViewFactory implements AddressViewFactoryIn
     public function create($input = null)
     {
         if( $input == null ) {
-            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface' )->getDefaultInput();
+            $input = App::make( AddressInputHelperInterface::class )->getDefaultInput();
         }
 
         return $this->prepareForm('portfolio::addresses.create', 'create', $input);
@@ -39,7 +43,7 @@ class AddressViewFactory extends BaseViewFactory implements AddressViewFactoryIn
     public function edit(AddressInterface $address, $input = null)
     {
         if( $input == null ) {
-            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface' )->getInputForModel( $address );
+            $input = App::make( AddressInputHelperInterface::class )->getInputForModel( $address );
         }
 
         $this->addParameter('address', $address);
@@ -50,10 +54,10 @@ class AddressViewFactory extends BaseViewFactory implements AddressViewFactoryIn
 
     protected function prepareFilter($template, $input)
     {
-        $searchInput = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface' )->getInputForSearch( $input );
-        $addresses = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface' )->search( $searchInput );
+        $searchInput = App::make( AddressInputHelperInterface::class )->getInputForSearch( $input );
+        $addresses = App::make( AddressRepositoryInterface::class )->search( $searchInput );
 
-        $cities = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface' )->getCitiesAsSelectList( true );
+        $cities = App::make( AddressFormHelperInterface::class )->getCitiesAsSelectList( true );
 
         $this->addParameter('addresses', $addresses);
         $this->addParameter('cities', $cities);
@@ -64,9 +68,9 @@ class AddressViewFactory extends BaseViewFactory implements AddressViewFactoryIn
 
     protected function prepareForm($template, $formName, $input)
     {
-        $countries = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface' )->getCountriesAsSelectList();
+        $countries = App::make( AddressFormHelperInterface::class )->getCountriesAsSelectList();
 
-        $requiredFields = App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface' )->getRequiredFormFields( $formName );
+        $requiredFields = App::make( AddressValidationHelperInterface::class )->getRequiredFormFields( $formName );
 
         $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);

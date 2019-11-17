@@ -3,6 +3,7 @@
 
 use Ixudra\Core\Services\Input\BaseInputHelper;
 use Ixudra\Portfolio\Interfaces\Services\Input\AddressInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface;
 
 use App;
 use Config;
@@ -23,7 +24,7 @@ class AddressInputHelper extends BaseInputHelper implements AddressInputHelperIn
         }
 
         if( $input[ 'city_id' ] != 0 ) {
-            $address = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface' )->find( $input[ 'city_id' ] );
+            $address = App::make( AddressRepositoryInterface::class )->find( $input[ 'city_id' ] );
             if( !is_null($address) ) {
                 $input[ 'city' ] = $address->city;
             }

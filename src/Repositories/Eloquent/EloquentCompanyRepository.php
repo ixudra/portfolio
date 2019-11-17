@@ -25,7 +25,7 @@ class EloquentCompanyRepository extends BaseEloquentRepository implements Compan
     {
         $results = $this->getModel();
 
-        if( array_key_exists('query', $filters) && $filters[ 'query' ] != '' ) {
+        if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
             $query = '%'. $filters[ 'query' ] .'%';
             $results = $results
                 ->where('name', 'like', $query)

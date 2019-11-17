@@ -4,6 +4,7 @@
 use App;
 
 use Ixudra\Core\Services\Form\BaseFormHelper;
+use Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Form\CompanyFormHelperInterface;
 
 class CompanyFormHelper extends BaseFormHelper implements CompanyFormHelperInterface {
@@ -13,7 +14,7 @@ class CompanyFormHelper extends BaseFormHelper implements CompanyFormHelperInter
 
     public function __construct()
     {
-        $this->repository = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface' );
+        $this->repository = App::make( CompanyRepositoryInterface::class );
     }
 
 }

@@ -1,6 +1,11 @@
 @extends('bootstrap.layouts.master')
 
 
+@section('page-title')
+    {{ Translate::recursive('portfolio::admin.menu.title.edit', array('model' => 'customer')) }}
+@endsection
+
+
 @section('content-title')
     {{ Translate::recursive('portfolio::admin.menu.title.edit', array('model' => 'customer')) }}
 @endsection
@@ -8,7 +13,7 @@
 
 @section('content')
 
-    {!! Form::open(array('url' => 'admin/customers/'. $customer->id, 'method' => 'put', 'id' => 'editCustomer', 'class' => 'form-horizontal', 'role' => 'form')) !!}
+    {!! Form::open(array('route' => array('admin.customers.show', $customer->id), 'method' => 'put', 'id' => 'editCustomer', 'class' => 'form-horizontal', 'role' => 'form')) !!}
 
         {!! Form::hidden('customerType', $form['customerType']) !!}
 

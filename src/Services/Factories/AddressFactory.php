@@ -24,7 +24,7 @@ class AddressFactory implements AddressFactoryInterface {
 
     protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\AddressInterface' );
+        return App::make( AddressInterface::class );
     }
 
 }

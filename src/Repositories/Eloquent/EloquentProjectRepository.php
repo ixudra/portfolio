@@ -31,7 +31,7 @@ class EloquentProjectRepository extends BaseEloquentRepository implements Projec
         $results = $this->applyBoolean( $results, array('hidden'), $filters );
         $results = $this->applyForeignKeys( $results, $foreignKeys, $filters );
 
-        if( array_key_exists('query', $filters) && $filters[ 'query' ] != '' ) {
+        if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
             $query = '%'. $filters[ 'query' ] .'%';
             $results = $results
                 ->where('projects.name', 'like', $query);

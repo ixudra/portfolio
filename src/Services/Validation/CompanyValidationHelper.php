@@ -11,7 +11,7 @@ class CompanyValidationHelper extends BaseValidationHelper implements CompanyVal
     public function getFilterValidationRules()
     {
         return array(
-            'query'             => 'required'
+            'query'             => 'required',
         );
     }
 

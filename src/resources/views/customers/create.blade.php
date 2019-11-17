@@ -1,6 +1,11 @@
 @extends('bootstrap.layouts.master')
 
 
+@section('page-title')
+    {{ Translate::recursive('portfolio::admin.menu.title.new', array('model' => 'customer')) }}
+@endsection
+
+
 @section('content-title')
     {{ Translate::recursive('portfolio::admin.menu.title.new', array('model' => 'customer')) }}
 @endsection
@@ -19,7 +24,7 @@
         </li>
     </ul>
 
-    {!! Form::open(array('url' => 'admin/customers', 'method' => 'post', 'id' => 'createCompany', 'class' => 'form-horizontal', 'role' => 'form')) !!}
+    {!! Form::open(array('route' => array('admin.customers.index'), 'method' => 'post', 'id' => 'createCompany', 'class' => 'form-horizontal', 'role' => 'form')) !!}
         <div class="tab-content" id="createCustomerTabContent">
 
             {!! Form::hidden('customerType', 'company', array('id' => 'customerType')) !!}

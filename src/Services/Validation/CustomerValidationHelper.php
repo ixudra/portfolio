@@ -3,6 +3,8 @@
 
 use Ixudra\Core\Services\Validation\BaseValidationHelper;
 use Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface;
 
 use App;
 
@@ -21,7 +23,7 @@ class CustomerValidationHelper extends BaseValidationHelper implements CustomerV
     {
         return array(
             'query'             => '',
-            'withProject'       => 'boolean'
+            'withProject'       => 'boolean',
         );
     }
 
@@ -32,9 +34,9 @@ class CustomerValidationHelper extends BaseValidationHelper implements CustomerV
 
     protected function getCustomerTypeValidationHelper()
     {
-        $validationHelper = 'Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface';
+        $validationHelper = CompanyValidationHelperInterface::class;
         if( $this->customerType === 'person' ) {
-            $validationHelper = 'Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface';
+            $validationHelper = PersonValidationHelperInterface::class;
         }
 
         return App::make( $validationHelper );
@@ -45,8 +47,8 @@ class CustomerValidationHelper extends BaseValidationHelper implements CustomerV
         $rules = $this->getFormValidationRules( 'update', $prefix );
         if( $formName === 'create' ) {
             $rules = array_merge(
-                App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface' )->getFormValidationRules( $formName ),
-                App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\PersonValidationHelperInterface' )->getFormValidationRules( $formName )
+                App::make( CompanyValidationHelperInterface::class )->getFormValidationRules( $formName ),
+                App::make( PersonValidationHelperInterface::class )->getFormValidationRules( $formName )
             );
         }
 

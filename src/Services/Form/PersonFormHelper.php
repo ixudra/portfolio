@@ -2,6 +2,7 @@
 
 
 use Ixudra\Core\Services\Form\BaseFormHelper;
+use Ixudra\Portfolio\Interfaces\Repositories\PersonRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Form\PersonFormHelperInterface;
 
 use App;
@@ -13,7 +14,7 @@ class PersonFormHelper extends BaseFormHelper implements PersonFormHelperInterfa
 
     public function __construct()
     {
-        $this->repository = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\PersonRepositoryInterface' );
+        $this->repository = App::make( PersonRepositoryInterface::class );
     }
 
 

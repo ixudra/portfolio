@@ -11,7 +11,7 @@ class PersonValidationHelper extends BaseValidationHelper implements PersonValid
     public function getFilterValidationRules()
     {
         return array(
-            'query'         => 'required'
+            'query'         => 'required',
         );
     }
 
@@ -20,7 +20,7 @@ class PersonValidationHelper extends BaseValidationHelper implements PersonValid
         $personClassName = Config::get('bindings.models.person');
         $addressClassName = Config::get('bindings.models.address');
 
-        if( $formName == 'create' ) {
+        if( $formName === 'create' ) {
             return array_merge(
                 $this->getPrefixedRules( $personClassName::getRules(), 'person' ),
                 $this->getPrefixedRules( $addressClassName::getRules(), 'address' )

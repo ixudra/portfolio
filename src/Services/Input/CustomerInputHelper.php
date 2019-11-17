@@ -33,7 +33,7 @@ class CustomerInputHelper extends BaseInputHelper implements CustomerInputHelper
 
     public function getInputForModel($model, $prefix = '')
     {
-        if( $model->object->getPlural() == 'companies' ) {
+        if( $model->object->getPlural() === 'companies' ) {
             $input = $this->companyInputHelper->getInputForModel( $model->object, $prefix );
         } else {
             $input = $this->personInputHelper->getInputForModel( $model->object, $prefix );

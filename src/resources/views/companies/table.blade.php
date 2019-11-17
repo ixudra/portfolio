@@ -25,8 +25,8 @@
                                 {{ Translate::recursive('common.actions') }} <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li>{!! HTML::linkRoute('admin.companies.edit', Translate::recursive('common.edit'), array($company->id), array('class' => 'btn btn-actions')) !!}</li>
-                                <li>{!! HTML::linkRoute('admin.companies.show', Translate::recursive('common.delete'), array($company->id, '_token' => csrf_token()), array('class' => 'btn btn-actions rest', 'data-method' => 'DELETE')) !!}</li>
+                                <li>{!! HTML::iconRoute('admin.companies.edit', Translate::recursive('common.edit'), 'edit', array($company->id), array('class' => 'btn btn-actions pull-left')) !!}</li>
+                                <li>{!! HTML::iconRoute('admin.companies.show', Translate::recursive('common.delete'), 'trash', array($company->id, '_token' => csrf_token()), array('class' => 'btn btn-actions pull-left rest', 'data-method' => 'DELETE')) !!}</li>
                             </ul>
                         </div>
                     </td>

@@ -1,6 +1,11 @@
 @extends('bootstrap.layouts.master')
 
 
+@section('page-title')
+    {{ $project->name }}
+@endsection
+
+
 @section('content-title')
     {{ $project->name }}
 @endsection
@@ -9,11 +14,13 @@
 @section('content')
 
     <div class="row">
-        {!! Form::open(array('url' => '/admin/projects/'. $project->id, 'method' => 'delete')) !!}
-            {!! HTML::linkRoute('admin.projects.edit', Translate::recursive('common.edit'), array($project->id), array('class' => 'btn btn-default')) !!}
-            {!! Form::submit(Translate::recursive('common.delete'), array('class' => 'btn btn-danger')) !!}
+        {!! Form::open(array('route' => array('admin.projects.show', $project->id), 'method' => 'delete')) !!}
+            {!! HTML::iconRoute('admin.projects.edit', Translate::recursive('common.edit'), 'edit', array($project->id), array('class' => 'btn btn-default')) !!}
+            {!! Form::iconSubmit(Translate::recursive('common.delete'), 'trash', array('class' => 'btn btn-danger')) !!}
         {!! Form:: close() !!}
     </div>
+
+    <div class="row col-md-12">&nbsp;</div>
 
     <div class="row">
         <div class="well well-large col-md-12">

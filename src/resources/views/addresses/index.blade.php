@@ -1,6 +1,11 @@
 @extends('bootstrap.layouts.master')
 
 
+@section('page-title')
+    {{ Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'address')) }}
+@endsection
+
+
 @section('content-title')
     {{ Translate::recursive('portfolio::admin.menu.title.index', array('model' => 'address')) }}
 @endsection

@@ -3,10 +3,9 @@ ixudra/portfolio
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ixudra/portfolio.svg?style=flat-square)](https://packagist.org/packages/ixudra/portfolio)
 [![license](https://img.shields.io/github/license/ixudra/portfolio.svg)]()
-[![StyleCI](https://styleci.io/repos/32549687/shield)](https://styleci.io/repos/32549687)
 [![Total Downloads](https://img.shields.io/packagist/dt/ixudra/portfolio.svg?style=flat-square)](https://packagist.org/packages/ixudra/portfolio)
 
-Custom PHP portfolio package for the Laravel 5 framework - developed by [Ixudra](http://ixudra.be).
+Custom PHP portfolio package for the Laravel 6 framework - developed by [Ixudra](http://ixudra.be).
 
 This package can be used by anyone at any given time, but keep in mind that it is optimized for my personal custom workflow. It may not suit your project perfectly and modifications may be in order.
 
@@ -20,7 +19,7 @@ Pull this package in through Composer:
 
     {
         "require": {
-            "ixudra/portfolio": "1.*"
+            "ixudra/portfolio": "2.*"
         }
     }
 
@@ -94,29 +93,71 @@ Register the routes for the application with the correct middleware and/or prefi
 
     Route::group(array('middleware' => array('web', 'auth')), function()
     {
-        Route::get(     'customers/filter',                         array('as' => 'customers.filter',                        'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@filter'));
-        Route::post(    'customers/filter',                         array('as' => 'customers.filter.process',                'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@filter'));
-        Route::resource('customers', '\Ixudra\Portfolio\Http\Controllers\CustomerController');
+        Route::get(     'customers',                                array('as' => 'customers.index',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@index'));
+        Route::post(    'customers',                                array('as' => 'customers.index.process',                            'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@index'));
+        Route::get(     'customers/create',                         array('as' => 'customers.create',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@create'));
+        Route::post(    'customers',                                array('as' => 'customers.store',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@store'));
+        Route::get(     'customers/{id}',                           array('as' => 'customers.show',                                     'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@show'));
+        Route::get(     'customers/{id}/edit',                      array('as' => 'customers.edit',                                     'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@edit'));
+        Route::put(     'customers/{id}',                           array('as' => 'customers.edit.process',                             'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@update'));
+        Route::delete(  'customers/{id}',                           array('as' => 'customers.delete',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@destroy'));
+        Route::get(     'customers/filter',                         array('as' => 'customers.filter',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@filter'));
+        Route::post(    'customers/filter',                         array('as' => 'customers.filter.process',                           'uses' => '\Ixudra\Portfolio\Http\Controllers\CustomerController@filter'));
 
-        Route::get(     'projects/filter',                          array('as' => 'projects.filter',                        'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@filter'));
-        Route::post(    'projects/filter',                          array('as' => 'projects.filter.process',                'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@filter'));
-        Route::resource('projects', '\Ixudra\Portfolio\Http\Controllers\ProjectController');
+        Route::get(     'projects',                                 array('as' => 'projects.index',                                     'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@index'));
+        Route::post(    'projects',                                 array('as' => 'projects.index.process',                             'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@index'));
+        Route::get(     'projects/create',                          array('as' => 'projects.create',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@create'));
+        Route::post(    'projects',                                 array('as' => 'projects.store',                                     'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@store'));
+        Route::get(     'projects/{id}',                            array('as' => 'projects.show',                                      'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@show'));
+        Route::get(     'projects/{id}/edit',                       array('as' => 'projects.edit',                                      'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@edit'));
+        Route::put(     'projects/{id}',                            array('as' => 'projects.edit.process',                              'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@update'));
+        Route::delete(  'projects/{id}',                            array('as' => 'projects.delete',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@destroy'));
+        Route::get(     'projects/filter',                          array('as' => 'projects.filter',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@filter'));
+        Route::post(    'projects/filter',                          array('as' => 'projects.filter.process',                            'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectController@filter'));
 
-        Route::get(     'projectTypes/filter',                      array('as' => 'projectTypes.filter',                    'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@filter'));
-        Route::post(    'projectTypes/filter',                      array('as' => 'projectTypes.filter.process',            'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@filter'));
-        Route::resource('projectTypes', '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController');
+        Route::get(     'project-types',                            array('as' => 'projectTypes.index',                                 'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@index'));
+        Route::post(    'project-types',                            array('as' => 'projectTypes.index.process',                         'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@index'));
+        Route::get(     'project-types/create',                     array('as' => 'projectTypes.create',                                'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@create'));
+        Route::post(    'project-types',                            array('as' => 'projectTypes.store',                                 'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@store'));
+        Route::get(     'project-types/{id}',                       array('as' => 'projectTypes.show',                                  'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@show'));
+        Route::get(     'project-types/{id}/edit',                  array('as' => 'projectTypes.edit',                                  'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@edit'));
+        Route::put(     'project-types/{id}',                       array('as' => 'projectTypes.edit.process',                          'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@update'));
+        Route::delete(  'project-types/{id}',                       array('as' => 'projectTypes.delete',                                'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@destroy'));
+        Route::get(     'project-types/filter',                     array('as' => 'projectTypes.filter',                                'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@filter'));
+        Route::post(    'project-types/filter',                     array('as' => 'projectTypes.filter.process',                        'uses' => '\Ixudra\Portfolio\Http\Controllers\ProjectTypeController@filter'));
 
-        Route::get(     'addresses/filter',                         array('as' => 'addresses.filter',                       'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
-        Route::post(    'addresses/filter',                         array('as' => 'addresses.filter.process',               'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
-        Route::resource('addresses', '\Ixudra\Portfolio\Http\Controllers\AddressController');
+        Route::get(     'addresses',                                array('as' => 'addresses.index',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@index'));
+        Route::post(    'addresses',                                array('as' => 'addresses.index.process',                            'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@index'));
+        Route::get(     'addresses/create',                         array('as' => 'addresses.create',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@create'));
+        Route::post(    'addresses',                                array('as' => 'addresses.store',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@store'));
+        Route::get(     'addresses/{id}',                           array('as' => 'addresses.show',                                     'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@show'));
+        Route::get(     'addresses/{id}/edit',                      array('as' => 'addresses.edit',                                     'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@edit'));
+        Route::put(     'addresses/{id}',                           array('as' => 'addresses.edit.process',                             'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@update'));
+        Route::delete(  'addresses/{id}',                           array('as' => 'addresses.delete',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@destroy'));
+        Route::get(     'addresses/filter',                         array('as' => 'addresses.filter',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
+        Route::post(    'addresses/filter',                         array('as' => 'addresses.filter.process',                           'uses' => '\Ixudra\Portfolio\Http\Controllers\AddressController@filter'));
 
-        Route::get(     'people/filter',                            array('as' => 'people.filter',                          'uses' => '\Ixudra\Portfolio\Http\Controllers\PersonController@filter'));
-        Route::post(    'people/filter',                            array('as' => 'people.filter.process',                  'uses' => '\Ixudra\Portfolio\Http\Controllers\PersonController@filter'));
-        Route::resource('people', '\Ixudra\Portfolio\Http\Controllers\PersonController');
+        Route::get(     'people',                                   array('as' => 'people.index',                                       'uses' => '\Ixudra\Portfolio\Http\Controllers\PeopleController@index'));
+        Route::post(    'people',                                   array('as' => 'people.index.process',                               'uses' => '\Ixudra\Portfolio\Http\Controllers\PeopleController@index'));
+        Route::get(     'people/create',                            array('as' => 'people.create',                                      'uses' => '\Ixudra\Portfolio\Http\Controllers\PeopleController@create'));
+        Route::post(    'people',                                   array('as' => 'people.store',                                       'uses' => '\Ixudra\Portfolio\Http\Controllers\PeopleController@store'));
+        Route::get(     'people/{id}',                              array('as' => 'people.show',                                        'uses' => '\Ixudra\Portfolio\Http\Controllers\PeopleController@show'));
+        Route::get(     'people/{id}/edit',                         array('as' => 'people.edit',                                        'uses' => '\Ixudra\Portfolio\Http\Controllers\PeopleController@edit'));
+        Route::put(     'people/{id}',                              array('as' => 'people.edit.process',                                'uses' => '\Ixudra\Portfolio\Http\Controllers\PeopleController@update'));
+        Route::delete(  'people/{id}',                              array('as' => 'people.delete',                                      'uses' => '\Ixudra\Portfolio\Http\Controllers\PeopleController@destroy'));
+        Route::get(     'people/filter',                            array('as' => 'people.filter',                                      'uses' => '\Ixudra\Portfolio\Http\Controllers\PersonController@filter'));
+        Route::post(    'people/filter',                            array('as' => 'people.filter.process',                              'uses' => '\Ixudra\Portfolio\Http\Controllers\PersonController@filter'));
 
-        Route::get(     'companies/filter',                         array('as' => 'companies.filter',                       'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@filter'));
-        Route::post(    'companies/filter',                         array('as' => 'companies.filter.process',               'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@filter'));
-        Route::resource('companies', '\Ixudra\Portfolio\Http\Controllers\CompanyController');
+        Route::get(     'companies',                                array('as' => 'companies.index',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@index'));
+        Route::post(    'companies',                                array('as' => 'companies.index.process',                            'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@index'));
+        Route::get(     'companies/create',                         array('as' => 'companies.create',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@create'));
+        Route::post(    'companies',                                array('as' => 'companies.store',                                    'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@store'));
+        Route::get(     'companies/{id}',                           array('as' => 'companies.show',                                     'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@show'));
+        Route::get(     'companies/{id}/edit',                      array('as' => 'companies.edit',                                     'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@edit'));
+        Route::put(     'companies/{id}',                           array('as' => 'companies.edit.process',                             'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@update'));
+        Route::delete(  'companies/{id}',                           array('as' => 'companies.delete',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@destroy'));
+        Route::get(     'companies/filter',                         array('as' => 'companies.filter',                                   'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@filter'));
+        Route::post(    'companies/filter',                         array('as' => 'companies.filter.process',                           'uses' => '\Ixudra\Portfolio\Http\Controllers\CompanyController@filter'));
     });
 
 ```

@@ -4,8 +4,12 @@
 use App;
 
 use Ixudra\Core\Services\Html\BaseViewFactory;
-use Ixudra\Portfolio\Interfaces\Services\Html\CompanyViewFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Models\CompanyInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\CompanyViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface;
 
 class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryInterface {
 
@@ -13,7 +17,7 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
     {
         if( empty($input) ) {
             $input = array(
-                'query'         => ''
+                'query'         => '',
             );
         }
 
@@ -22,8 +26,8 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
 
     public function create($input = null)
     {
-        if( $input == null ) {
-            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface' )->getDefaultInput();
+        if( $input === null ) {
+            $input = App::make( CompanyInputHelperInterface::class )->getDefaultInput();
         }
 
         return $this->prepareForm('portfolio::companies.create', 'create', $input);
@@ -38,8 +42,8 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
 
     public function edit(CompanyInterface $company, $input = null)
     {
-        if( $input == null ) {
-            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface' )->getInputForModel( $company );
+        if( $input === null ) {
+            $input = App::make( CompanyInputHelperInterface::class )->getInputForModel( $company );
         }
 
         $this->addParameter('company', $company);
@@ -50,8 +54,8 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
 
     protected function prepareFilter($template, $input)
     {
-        $searchInput = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CompanyInputHelperInterface' )->getInputForSearch( $input );
-        $companies = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\CompanyRepositoryInterface' )->search( $searchInput );
+        $searchInput = App::make( CompanyInputHelperInterface::class )->getInputForSearch( $input );
+        $companies = App::make( CompanyRepositoryInterface::class )->search( $searchInput );
 
         $this->addParameter('companies', $companies);
         $this->addParameter('input', $input);
@@ -61,9 +65,9 @@ class CompanyViewFactory extends BaseViewFactory implements CompanyViewFactoryIn
 
     protected function prepareForm($template, $formName, $input)
     {
-        $countries = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface' )->getCountriesAsSelectList();
+        $countries = App::make( AddressFormHelperInterface::class )->getCountriesAsSelectList();
 
-        $requiredFields = App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface' )->getRequiredFormFields( $formName );
+        $requiredFields = App::make( CompanyValidationHelperInterface::class )->getRequiredFormFields( $formName );
 
         $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);

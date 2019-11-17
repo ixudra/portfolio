@@ -4,7 +4,6 @@
 use Ixudra\Portfolio\Interfaces\Services\Factories\ProjectFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
 use Ixudra\Imageable\Services\Factories\ImageFactory;
-use Ixudra\Imageable\Traits\ImageFactoryTrait;
 
 use App;
 
@@ -40,7 +39,7 @@ class ProjectFactory implements ProjectFactoryInterface {
 
     protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\ProjectInterface' );
+        return App::make( ProjectInterface::class );
     }
 
 }

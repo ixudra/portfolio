@@ -2,8 +2,13 @@
 
 
 use Ixudra\Core\Services\Html\BaseViewFactory;
-use Ixudra\Portfolio\Interfaces\Services\Html\CustomerViewFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Models\CustomerInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\CustomerViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\CustomerInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface;
 
 use App;
 
@@ -24,7 +29,7 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
     public function create($input = null)
     {
         if( $input == null ) {
-            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CustomerInputHelperInterface' )->getDefaultInput();
+            $input = App::make( CustomerInputHelperInterface::class )->getDefaultInput();
         }
 
         return $this->prepareForm('portfolio::customers.create', 'create', $input);
@@ -43,7 +48,7 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
     {
         $customerType = $customer->object->getSingular();
         if( $input == null ) {
-            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CustomerInputHelperInterface' )->getInputForModel( $customer, $customerType );
+            $input = App::make( CustomerInputHelperInterface::class )->getInputForModel( $customer, $customerType );
         }
 
         $form = array(
@@ -59,9 +64,9 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
 
     protected function prepareFilter($template, $input)
     {
-        $searchInput = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\CustomerInputHelperInterface' )->getInputForSearch( $input );
-        $customers = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface' )->search( $searchInput );
-        $withProjectOptions = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface' )->getWithProjectOptionsAsSelectList( true );
+        $searchInput = App::make( CustomerInputHelperInterface::class )->getInputForSearch( $input );
+        $customers = App::make( CustomerRepositoryInterface::class )->search( $searchInput );
+        $withProjectOptions = App::make( CustomerFormHelperInterface::class )->getWithProjectOptionsAsSelectList( true );
 
         $this->addParameter('customers', $customers);
         $this->addParameter('withProjectOptions', $withProjectOptions);
@@ -72,14 +77,14 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
 
     protected function prepareForm($template, $formName, $input, $customer = null)
     {
-        $countries = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface' )->getCountriesAsSelectList();
+        $countries = App::make( AddressFormHelperInterface::class )->getCountriesAsSelectList();
 
         $customerType = 'company';
         if( !is_null($customer) ) {
             $customerType = $customer->object->getSingular();
             $this->addParameter('prefix', $customerType .'_');
         }
-        $requiredFields = App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\CustomerValidationHelperInterface', array($customerType))->getRequiredFormFields( $formName );
+        $requiredFields = App::make( CustomerValidationHelperInterface::class, array($customerType))->getRequiredFormFields( $formName );
 
         $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);

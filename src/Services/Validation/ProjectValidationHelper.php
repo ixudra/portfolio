@@ -28,7 +28,7 @@ class ProjectValidationHelper extends BaseValidationHelper implements ProjectVal
             Image::getRules()
         );
 
-        if( $formName == 'update' ) {
+        if( $formName === 'update' ) {
             $rules[ 'file' ] = $this->makeOptional( $rules[ 'file' ] );
         }
 

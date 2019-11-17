@@ -56,7 +56,7 @@
 
         'models'                            => array(
 
-            'address'                           => 'Ixudra\Portfolio\Models\Address',
+            'address'                           => 'EasyOffice\Models\PupsEnZo\Address',
             'company'                           => 'Ixudra\Portfolio\Models\Company',
             'customer'                          => 'Ixudra\Portfolio\Models\Customer',
             'person'                            => 'Ixudra\Portfolio\Models\Person',

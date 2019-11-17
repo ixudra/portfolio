@@ -24,7 +24,7 @@ class ProjectTypeFactory implements ProjectTypeFactoryInterface {
 
     protected function createModel()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Models\ProjectTypeInterface' );
+        return App::make( ProjectTypeInterface::class );
     }
 
 }

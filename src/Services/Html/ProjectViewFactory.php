@@ -2,8 +2,14 @@
 
 
 use Ixudra\Core\Services\Html\BaseViewFactory;
-use Ixudra\Portfolio\Interfaces\Services\Html\ProjectViewFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Models\ProjectInterface;
+use Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Form\ProjectFormHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Form\ProjectTypeFormHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Html\ProjectViewFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface;
+use Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface;
 
 use App;
 
@@ -17,7 +23,7 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
                 'query'                 => '',
                 'customer_id'           => '',
                 'project_type_id'       => '',
-                'shown'                 => ''
+                'shown'                 => '',
             );
         }
 
@@ -27,7 +33,7 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
     public function create($input = null)
     {
         if( $input == null ) {
-            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface' )->getDefaultInput();
+            $input = App::make( ProjectInputHelperInterface::class )->getDefaultInput();
         }
 
         return $this->prepareForm('portfolio::projects.create', 'create', $input);
@@ -42,8 +48,8 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
 
     public function edit(ProjectInterface $project, $input = null)
     {
-        if( $input == null ) {
-            $input = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface' )->getInputForModel( $project );
+        if( $input === null ) {
+            $input = App::make( ProjectInputHelperInterface::class )->getInputForModel( $project );
         }
 
         $this->addParameter('project', $project);
@@ -54,12 +60,12 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
 
     protected function prepareFilter($template, $input)
     {
-        $searchInput = App::make( 'Ixudra\Portfolio\Interfaces\Services\Input\ProjectInputHelperInterface' )->getInputForSearch( $input );
-        $projects = App::make( 'Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface' )->search( $searchInput );
+        $searchInput = App::make( ProjectInputHelperInterface::class )->getInputForSearch( $input );
+        $projects = App::make( ProjectRepositoryInterface::class )->search( $searchInput );
 
-        $customers = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface' )->getUsedAsSelectList(true);
-        $projectTypes = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\ProjectTypeFormHelperInterface' )->getAllAsSelectList(true);
-        $visibilityOptions = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\ProjectFormHelperInterface' )->getVisibilityOptionsAsSelectList(true);
+        $customers = App::make( CustomerFormHelperInterface::class )->getUsedAsSelectList(true);
+        $projectTypes = App::make( ProjectTypeFormHelperInterface::class )->getAllAsSelectList(true);
+        $visibilityOptions = App::make( ProjectFormHelperInterface::class )->getVisibilityOptionsAsSelectList(true);
 
         $this->addParameter('projects', $projects);
         $this->addParameter('customers', $customers);
@@ -72,10 +78,10 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
 
     protected function prepareForm($template, $formName, $input)
     {
-        $statuses = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\ProjectFormHelperInterface' )->getStatusesAsSelectList();
-        $projectTypes = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\ProjectTypeFormHelperInterface' )->getAllAsSelectList();
-        $customers = App::make( 'Ixudra\Portfolio\Interfaces\Services\Form\CustomerFormHelperInterface' )->getAllAsSelectList();
-        $requiredFields = App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface' )->getRequiredFormFields( $formName );
+        $statuses = App::make( ProjectFormHelperInterface::class )->getStatusesAsSelectList();
+        $projectTypes = App::make( ProjectTypeFormHelperInterface::class )->getAllAsSelectList();
+        $customers = App::make( CustomerFormHelperInterface::class )->getAllAsSelectList();
+        $requiredFields = App::make( ProjectValidationHelperInterface::class )->getRequiredFormFields( $formName );
 
         $this->addParameter('statuses', $statuses);
         $this->addParameter('customers', $customers);

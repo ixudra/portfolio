@@ -9,11 +9,13 @@
 @section('content')
 
     <div class="row">
-        {!! Form::open(array('url' => '/admin/customers/'. $customer->id, 'method' => 'delete')) !!}
-            {!! HTML::linkRoute('admin.customers.edit', Translate::recursive('common.edit'), array($customer->id), array('class' => 'btn btn-default')) !!}
-            {!! Form::submit(Translate::recursive('common.delete'), array('class' => 'btn btn-danger')) !!}
+        {!! Form::open(array('route' => array('admin.customers.show', $customer->id), 'method' => 'delete')) !!}
+            {!! HTML::iconRoute('admin.customers.edit', Translate::recursive('common.edit'), 'edit', array($customer->id), array('class' => 'btn btn-default')) !!}
+            {!! Form::iconSubmit(Translate::recursive('common.delete'), 'trash', array('class' => 'btn btn-danger')) !!}
         {!! Form:: close() !!}
     </div>
+
+    <div class="row col-md-12">&nbsp;</div>
 
     @include( $contentTemplate, $contentParameters )
 
