@@ -66,11 +66,11 @@ class Company extends Model implements CompanyInterface {
     {
         return array(
             'name'                  => 'required|max:256',
-            'vat_nr'                => 'max:32',
+            'vat_nr'                => 'nullable|max:32',
             'email'                 => 'required|max:256',
-            'url'                   => 'max:256',
-            'phone'                 => 'required|max:32',
-            'fax'                   => 'max:32',
+            'url'                   => 'nullable|max:256',
+            'phone'                 => 'nullable|max:32',
+            'fax'                   => 'nullable|max:32',
         );
     }
 

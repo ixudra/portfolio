@@ -23,13 +23,8 @@ class AddressInputHelper extends BaseInputHelper implements AddressInputHelperIn
             unset( $input[ '_token' ] );
         }
 
-        if( $input[ 'city_id' ] != 0 ) {
-            $address = App::make( AddressRepositoryInterface::class )->find( $input[ 'city_id' ] );
-            if( !is_null($address) ) {
-                $input[ 'city' ] = $address->city;
-            }
-
-            unset( $input[ 'city_id' ] );
+        if( array_key_exists('query', $input) && $input[ 'query' ] != '' ) {
+            $input[ 'query' ] = '%'. $input[ 'query' ] .'%';
         }
 
         return $input;

@@ -26,14 +26,16 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
 
     public function make($input, $prefix = '')
     {
-        $address = null;
-        if( $this->includeAddress($input) ) {
-            $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address' ) );
-        }
-
         $person = $this->createModel();
-        $person->fill( $this->extractPersonInput( $address, $input, $prefix ) );
+        $person->fill( $this->extractPersonInput( $input, $prefix, true ) );
         $person->save();
+
+        $address = null;
+        if( $this->includeAddress( $input ) ) {
+            $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address', true ), $person );
+            $person->address_id = $address->id;
+            $person->save();
+        }
 
         $this->customerFactory->make( $person );
 
@@ -44,13 +46,13 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
     {
         $address = $person->address;
         if( $this->includeAddress($input) ) {
-            if( is_null($address) ) {
-                $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address' ) );
+            if( $address === null ) {
+                $address = $this->addressFactory->make( $this->extractAddressInput( $input, 'address', true ), $person );
             } else {
                 $this->addressFactory->modify( $address, $this->extractAddressInput( $input, 'address' ) );
             }
         } else {
-            if( !is_null($address) ) {
+            if( $address !== null ) {
                 $address->delete();
                 $address = null;
             }
@@ -61,24 +63,24 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
 
     protected function includeAddress($input)
     {
-        return array_key_exists('address_street_1', $input) && $input[ 'address_street_1' ] != '';
+        return array_key_exists('address_street_1', $input) && $input[ 'address_street_1' ] !== '';
     }
 
-    protected function extractAddressInput($input, $prefix = '')
+    protected function extractAddressInput($input, $prefix = '', $includeDefaults = false)
     {
         $addressClassName = Config::get('bindings.models.address');
 
-        return $this->extractInput( $input, $addressClassName::getDefaults(), $prefix );
+        return $this->extractInput( $input, $addressClassName::getDefaults(), $prefix, $includeDefaults );
     }
 
-    protected function extractPersonInput($address, $input, $prefix)
+    protected function extractPersonInput($address, $input, $prefix, $includeDefaults = false)
     {
         $personClassName = Config::get('bindings.models.person');
 
-        $results = $this->extractInput( $input, $personClassName::getDefaults(), $prefix );
+        $results = $this->extractInput( $input, $personClassName::getDefaults(), $prefix, $includeDefaults );
 
         $addressId = 0;
-        if( !is_null($address) ) {
+        if( $address !== null ) {
             $addressId = $address->id;
         }
 

@@ -3,8 +3,6 @@
 
 interface AddressFormHelperInterface {
 
-    public function getCitiesAsSelectList($includeNull = false);
-
     public function getCountriesAsSelectList($includeNull = false);
 
 }

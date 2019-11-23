@@ -1,5 +1,5 @@
 <div class="row">
-    {!! Form::open(array('url' => '/admin/companies/filter', 'method' => 'POST', 'id' => 'filterCompanies', 'class' => 'form-inline', 'role' => 'form')) !!}
+    {!! Form::open(array('route' => array('admin.companies.filter'), 'method' => 'POST', 'id' => 'filterCompanies', 'class' => 'form-inline', 'role' => 'form')) !!}
         <div class="form-group">
             {!! Form::label('query', Translate::recursive('common.query') .': ', array('class' => 'sr-only')) !!}
             {!! Form::text('query', $input['query'], array('placeholder' => Translate::recursive('common.query'), 'class' => 'form-control', 'id' => 'query')) !!}

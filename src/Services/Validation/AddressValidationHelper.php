@@ -11,7 +11,7 @@ class AddressValidationHelper extends BaseValidationHelper implements AddressVal
     public function getFilterValidationRules()
     {
         return array(
-            'city_id'           => 'required|integer',
+            'query'             => 'required',
         );
     }
 

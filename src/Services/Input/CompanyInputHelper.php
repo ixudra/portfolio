@@ -46,4 +46,17 @@ class CompanyInputHelper extends BaseInputHelper implements CompanyInputHelperIn
         );
     }
 
+    public function getInputForSearch($input)
+    {
+        if( array_key_exists('_token', $input) ) {
+            unset( $input[ '_token' ] );
+        }
+
+        if( array_key_exists('query', $input) && $input[ 'query' ] != '' ) {
+            $input[ 'query' ] = '%'. $input[ 'query' ] .'%';
+        }
+
+        return $input;
+    }
+
 }

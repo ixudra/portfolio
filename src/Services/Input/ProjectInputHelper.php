@@ -33,6 +33,10 @@ class ProjectInputHelper extends BaseInputHelper implements ProjectInputHelperIn
             unset( $input[ '_token' ] );
         }
 
+        if( array_key_exists('query', $input) && $input[ 'query' ] != '' ) {
+            $input[ 'query' ] = '%'. $input[ 'query' ] .'%';
+        }
+
         $hidden = '';
         if( $input[ 'shown' ] === '1' ) {
             $hidden = '0';

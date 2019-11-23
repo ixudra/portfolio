@@ -1,7 +1,7 @@
 <?php namespace Ixudra\Portfolio\Services\Form;
 
 
-use Ixudra\Core\Services\Form\BaseFormHelper;
+use Ixudra\Addressable\Services\Form\AddressFormHelper as AddressableFormHelper;
 use Ixudra\Portfolio\Interfaces\Repositories\AddressRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Form\AddressFormHelperInterface;
 
@@ -9,7 +9,7 @@ use App;
 use Config;
 use Translate;
 
-class AddressFormHelper extends BaseFormHelper implements AddressFormHelperInterface {
+class AddressFormHelper extends AddressableFormHelper implements AddressFormHelperInterface {
 
     protected $repository;
 
@@ -23,24 +23,6 @@ class AddressFormHelper extends BaseFormHelper implements AddressFormHelperInter
     protected function getName($model)
     {
         return $model->present()->name;
-    }
-
-    public function getCitiesAsSelectList($includeNull = false)
-    {
-        $models = $this->repository->all();
-
-        $results = array();
-        if( $includeNull ) {
-            $results[ 0 ] = Translate::recursive('portfolio::members.city') .'...';
-        }
-
-        foreach( $models as $model ) {
-            if( !in_array( $model->city, $results ) ) {
-                $results[ $model->id ] = $model->city;
-            }
-        }
-
-        return $results;
     }
 
     public function getCountriesAsSelectList($includeNull = false)

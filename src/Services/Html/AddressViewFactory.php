@@ -17,7 +17,7 @@ class AddressViewFactory extends BaseViewFactory implements AddressViewFactoryIn
     {
         if( empty($input) ) {
             $input = array(
-                'city_id'           => ''
+                'query'             => '',
             );
         }
 
@@ -26,7 +26,7 @@ class AddressViewFactory extends BaseViewFactory implements AddressViewFactoryIn
 
     public function create($input = null)
     {
-        if( $input == null ) {
+        if( $input === null ) {
             $input = App::make( AddressInputHelperInterface::class )->getDefaultInput();
         }
 
@@ -42,7 +42,7 @@ class AddressViewFactory extends BaseViewFactory implements AddressViewFactoryIn
 
     public function edit(AddressInterface $address, $input = null)
     {
-        if( $input == null ) {
+        if( $input === null ) {
             $input = App::make( AddressInputHelperInterface::class )->getInputForModel( $address );
         }
 
@@ -57,10 +57,7 @@ class AddressViewFactory extends BaseViewFactory implements AddressViewFactoryIn
         $searchInput = App::make( AddressInputHelperInterface::class )->getInputForSearch( $input );
         $addresses = App::make( AddressRepositoryInterface::class )->search( $searchInput );
 
-        $cities = App::make( AddressFormHelperInterface::class )->getCitiesAsSelectList( true );
-
         $this->addParameter('addresses', $addresses);
-        $this->addParameter('cities', $cities);
         $this->addParameter('input', $input);
 
         return $this->makeView( $template );
