@@ -27,7 +27,7 @@
 
             {!! Form::hidden('customerType', 'company', array('id' => 'customerType')) !!}
 
-            <div aria-labelledby="company-tab" id="company" class="tab-pane fade in active" role="tabpanel">
+            <div aria-labelledby="company-tab" id="customer-company-form" class="tab-pane fade in active" role="tabpanel">
 
                 @include('portfolio::companies.form.full', array('input' => $input, 'prefix' => 'company_'))
 
@@ -37,7 +37,7 @@
                 </div>
 
             </div>
-            <div aria-labelledby="person-tab" id="person" class="tab-pane fade" role="tabpanel">
+            <div aria-labelledby="person-tab" id="customer-person-form" class="tab-pane fade" role="tabpanel">
 
                 @include('portfolio::people.form.full', array('input' => $input, 'prefix' => 'person_'))
 
