@@ -1,6 +1,7 @@
 <?php namespace Ixudra\Portfolio\Http\Controllers;
 
 
+use Illuminate\Http\Request;
 use Ixudra\Core\Http\Controllers\BaseController;
 use Ixudra\Portfolio\Interfaces\Repositories\ProjectRepositoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Factories\ProjectFactoryInterface;
@@ -35,9 +36,9 @@ class ProjectController extends BaseController {
         return $this->projectViewFactory->index( $request->getInput() );
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return $this->projectViewFactory->create();
+        return $this->projectViewFactory->create( $request->all() );
     }
 
     public function store(CreateProjectFormRequest $request, ProjectFactoryInterface $projectFactory)

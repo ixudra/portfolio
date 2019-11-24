@@ -4,6 +4,12 @@
     </div>
 
     <div class="row">
+        {!! HTML::iconRoute('admin.projects.create', Translate::recursive('portfolio::admin.menu.title.new', array('model' => 'project')), 'plus', array('customer_id' => $customer->id), array('class' => 'btn btn-primary')) !!}
+    </div>
+
+    <div class="row col-md-12">&nbsp;</div>
+
+    <div class="row">
         <table class="table table-striped">
             <thead>
                 <tr>

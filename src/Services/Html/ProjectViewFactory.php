@@ -15,7 +15,6 @@ use App;
 
 class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryInterface {
 
-
     public function index($input = array())
     {
         if( empty($input) ) {
@@ -32,11 +31,15 @@ class ProjectViewFactory extends BaseViewFactory implements ProjectViewFactoryIn
 
     public function create($input = null)
     {
-        if( $input == null ) {
-            $input = App::make( ProjectInputHelperInterface::class )->getDefaultInput();
+        $defaultInput = App::make( ProjectInputHelperInterface::class )->getDefaultInput();
+        if( $input !== null ) {
+            $defaultInput = array_merge(
+                $defaultInput,
+                $input
+            );
         }
 
-        return $this->prepareForm('portfolio::projects.create', 'create', $input);
+        return $this->prepareForm( 'portfolio::projects.create', 'create', $defaultInput );
     }
 
     public function show(ProjectInterface $project)

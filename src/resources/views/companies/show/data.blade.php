@@ -4,7 +4,7 @@
             @if( $includeName )
             <div class='col-md-12'>
                 <div class='col-md-4'>{{ Translate::recursive('portfolio::members.name') }}:</div>
-                <div class='col-md-8'>{{ $company->name }}</div>
+                <div class='col-md-8'>{!! HTML::linkRoute('admin.customers.show', $company->name, array($company->customer->id)) !!}</div>
             </div>
             @endif
             <div class='col-md-12'>
