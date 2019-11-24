@@ -52,7 +52,7 @@ class CompanyFactory extends BaseFactory implements CompanyFactoryInterface {
         $this->addressFactory->modify( $company->corporateAddress, $this->extractCorporateAddressInput( $input ) );
         $this->personFactory->modify( $company->representative, $this->extractRepresentativeInput( $input ), '' );
 
-        return $company->update( $this->extractCompanyInput( $company->corporateAddress, $company->representative, $input, $prefix ) );
+        return $company->update( $this->extractCompanyInput( $input, $prefix ) );
     }
 
     protected function extractCorporateAddressInput($input, $includeDefaults = false)

@@ -84,7 +84,7 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
             $customerType = $customer->object->getSingular();
             $this->addParameter('prefix', $customerType .'_');
         }
-        $requiredFields = App::makeWith( CustomerValidationHelperInterface::class, array($customerType))->getRequiredFormFields( $formName );
+        $requiredFields = App::makeWith( CustomerValidationHelperInterface::class, array('customerType' => $customerType))->getRequiredFormFields( $formName );
 
         $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);

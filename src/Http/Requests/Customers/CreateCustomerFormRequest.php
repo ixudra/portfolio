@@ -15,7 +15,7 @@ class CreateCustomerFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::makeWith( CustomerValidationHelperInterface::class, array( $this->input('customerType') ) )
+        return App::makeWith( CustomerValidationHelperInterface::class, array( 'customerType' => $this->input('customerType') ) )
             ->getFormValidationRules( 'create' );
     }
 

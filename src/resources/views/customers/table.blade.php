@@ -23,6 +23,7 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li>{!! HTML::iconRoute('admin.customers.edit', Translate::recursive('common.edit'), 'edit', array($customer->id), array('class' => 'btn btn-actions pull-left')) !!}</li>
+                                <li>{!! HTML::iconRoute('admin.projects.create', Translate::recursive('portfolio::admin.menu.title.new', array('model' => 'project')), 'plus', array('customer_id' => $customer->id), array('class' => 'btn btn-actions pull-left')) !!}</li>
                                 <li>{!! HTML::iconRoute('admin.customers.show', Translate::recursive('common.delete'), 'trash', array($customer->id, '_token' => csrf_token()), array('class' => 'btn btn-actions pull-left rest', 'data-method' => 'DELETE')) !!}</li>
                             </ul>
                         </div>
