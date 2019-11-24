@@ -73,18 +73,11 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
         return $this->extractInput( $input, $addressClassName::getDefaults(), $prefix, $includeDefaults );
     }
 
-    protected function extractPersonInput($address, $input, $prefix, $includeDefaults = false)
+    protected function extractPersonInput($input, $prefix, $includeDefaults = false)
     {
         $personClassName = Config::get('bindings.models.person');
 
         $results = $this->extractInput( $input, $personClassName::getDefaults(), $prefix, $includeDefaults );
-
-        $addressId = 0;
-        if( $address !== null ) {
-            $addressId = $address->id;
-        }
-
-        $results[ 'address_id' ] = $addressId;
 
         return $results;
     }

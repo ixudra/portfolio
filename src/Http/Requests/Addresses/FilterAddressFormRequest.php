@@ -2,6 +2,7 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface;
 
 use App;
 
@@ -14,7 +15,7 @@ class FilterAddressFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\AddressValidationHelperInterface' )
+        return App::make( AddressValidationHelperInterface::class )
             ->getFilterValidationRules();
     }
 

@@ -17,7 +17,7 @@
             </div>
             <div class='col-md-12'>
                 <div class='col-md-4'>{{ Translate::recursive('portfolio::members.email') }}:</div>
-                <div class='col-md-8'>{!! link_to('mailto:'. $person->email, $person->email) !!}</div>
+                <div class='col-md-8'>{!! HTML::email($person->email) !!}</div>
             </div>
             <div class='col-md-12'>
                 <div class='col-md-4'>{{ Translate::recursive('portfolio::members.cellphone') }}:</div>

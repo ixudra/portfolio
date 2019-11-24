@@ -2,6 +2,7 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface;
 
 use App;
 
@@ -14,7 +15,7 @@ class FilterCompanyFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\CompanyValidationHelperInterface' )
+        return App::make( CompanyValidationHelperInterface::class )
             ->getFilterValidationRules();
     }
 

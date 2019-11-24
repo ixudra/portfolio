@@ -2,7 +2,7 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
-use Ixudra\Portfolio\Interfaces\Http\Requests\Projects\UpdateProjectFormRequestInterface;
+use Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface;
 
 use App;
 
@@ -15,7 +15,7 @@ class UpdateProjectFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface' )
+        return App::make( ProjectValidationHelperInterface::class )
             ->getFormValidationRules( 'update' );
     }
 

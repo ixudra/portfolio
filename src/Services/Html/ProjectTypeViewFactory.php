@@ -16,7 +16,7 @@ class ProjectTypeViewFactory extends BaseViewFactory implements ProjectTypeViewF
     {
         if( empty($input) ) {
             $input = array(
-                'name'              => ''
+                'query'             => '',
             );
         }
 

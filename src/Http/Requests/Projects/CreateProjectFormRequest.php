@@ -2,6 +2,7 @@
 
 
 use Ixudra\Core\Http\Requests\BaseRequest;
+use Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface;
 
 use App;
 
@@ -14,7 +15,7 @@ class CreateProjectFormRequest extends BaseRequest {
 
     public function rules()
     {
-        return App::make( 'Ixudra\Portfolio\Interfaces\Services\Validation\ProjectValidationHelperInterface' )
+        return App::make( ProjectValidationHelperInterface::class )
             ->getFormValidationRules( 'create' );
     }
 

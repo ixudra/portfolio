@@ -13,11 +13,11 @@
             </div>
             <div class='col-md-12'>
                 <div class='col-md-4'>{{ Translate::recursive('portfolio::members.email') }}:</div>
-                <div class='col-md-8'>{!! link_to('mailto:'. $company->email, $company->email) !!}</div>
+                <div class='col-md-8'>{!! HTML::email($company->email) !!}</div>
             </div>
             <div class='col-md-12'>
                 <div class='col-md-4'>{{ Translate::recursive('portfolio::members.url') }}:</div>
-                <div class='col-md-8'>{!! link_to($company->url, $company->url, array('target' => '_blank')) !!}</div>
+                <div class='col-md-8'>@if( !empty($company->url) ) {!! HTML::link($company->url, $company->url, array('target' => '_blank')) !!} @endif</div>
             </div>
             <div class='col-md-12'>
                 <div class='col-md-4'>{{ Translate::recursive('portfolio::members.phone') }}:</div>
