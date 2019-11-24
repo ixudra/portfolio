@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('project_type_id', Translate::recursive('portfolio::members.project_type_id') .': ', array('class' => '')) !!}
-            {!! Form::select('project_type_id', $projectTypes, $input['project_type_id'], array('placeholder' => Translate::recursive('portfolio::members.project_type_id'), 'class' => 'form-control')) !!}
+            {!! Form::select('project_type_id', $projectTypes, $input['project_type_id'], array('class' => 'form-control')) !!}
         </div>
         <div class="form-group">
             {!! Form::label('shown', Translate::recursive('portfolio::form.shown') .': ', array('class' => '')) !!}
