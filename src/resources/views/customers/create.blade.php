@@ -15,10 +15,10 @@
 
     <ul role="tablist" class="nav nav-tabs" id="createCustomerTab">
         <li class="active" role="presentation">
-            <a aria-controls="company" data-toggle="tab" data-customer-type="company" role="tab" aria-expanded="true" id="company-tab" href="#company">Company</a>
+            <a aria-controls="company" data-toggle="tab" data-customer-type="company" role="tab" aria-expanded="true" id="customer-company-tab" href="#company">Company</a>
         </li>
         <li role="presentation">
-            <a aria-controls="person" data-toggle="tab" data-customer-type="person" role="tab" id="person-tab" href="#person">Person</a>
+            <a aria-controls="person" data-toggle="tab" data-customer-type="person" role="tab" id="customer-person-tab" href="#person">Person</a>
         </li>
     </ul>
 
@@ -27,7 +27,7 @@
 
             {!! Form::hidden('customerType', 'company', array('id' => 'customerType')) !!}
 
-            <div aria-labelledby="company-tab" id="customer-company-form" class="tab-pane fade in active" role="tabpanel">
+            <div aria-labelledby="company-tab" id="company" class="tab-pane fade in active" role="tabpanel">
 
                 @include('portfolio::companies.form.full', array('input' => $input, 'prefix' => 'company_'))
 
@@ -37,7 +37,7 @@
                 </div>
 
             </div>
-            <div aria-labelledby="person-tab" id="customer-person-form" class="tab-pane fade" role="tabpanel">
+            <div aria-labelledby="person-tab" id="person" class="tab-pane fade" role="tabpanel">
 
                 @include('portfolio::people.form.full', array('input' => $input, 'prefix' => 'person_'))
 
