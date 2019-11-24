@@ -27,7 +27,7 @@ class ProjectFormHelper extends BaseFormHelper implements ProjectFormHelperInter
             'scheduled',
             'in_development',
             'completed',
-            'cancelled'
+            'cancelled',
         );
 
         $results = array();

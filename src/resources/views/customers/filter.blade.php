@@ -6,7 +6,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('withProjects', Translate::recursive('portfolio::form.withProjects') .': ', array('class' => 's')) !!}
-            {!! Form::select('withProjects', $withProjectOptions, $input['withProjects'], array('placeholder' => Translate::recursive('portfolio::form.withProjects'), 'class' => 'form-control', 'id' => 'withProjects')) !!}
+            {!! Form::select('withProjects', $withProjectOptions, $input['withProjects'], array('class' => 'form-control', 'id' => 'withProjects')) !!}
         </div>
         <div class="form-group">
             {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}

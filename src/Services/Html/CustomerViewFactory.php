@@ -19,7 +19,7 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
         if( empty($input) ) {
             $input = array(
                 'query'                 => '',
-                'withProjects'          => 1,
+                'withProjects'          => '',
             );
         }
 
@@ -28,7 +28,7 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
 
     public function create($input = null)
     {
-        if( $input == null ) {
+        if( $input === null ) {
             $input = App::make( CustomerInputHelperInterface::class )->getDefaultInput();
         }
 
@@ -47,7 +47,7 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
     public function edit(CustomerInterface $customer, $input = null)
     {
         $customerType = $customer->object->getSingular();
-        if( $input == null ) {
+        if( $input === null ) {
             $input = App::make( CustomerInputHelperInterface::class )->getInputForModel( $customer, $customerType );
         }
 
@@ -80,11 +80,11 @@ class CustomerViewFactory extends BaseViewFactory implements CustomerViewFactory
         $countries = App::make( AddressFormHelperInterface::class )->getCountriesAsSelectList();
 
         $customerType = 'company';
-        if( !is_null($customer) ) {
+        if( $customer !== null ) {
             $customerType = $customer->object->getSingular();
             $this->addParameter('prefix', $customerType .'_');
         }
-        $requiredFields = App::make( CustomerValidationHelperInterface::class, array($customerType))->getRequiredFormFields( $formName );
+        $requiredFields = App::makeWith( CustomerValidationHelperInterface::class, array($customerType))->getRequiredFormFields( $formName );
 
         $this->addParameter('countries', $countries);
         $this->addParameter('input', $input);

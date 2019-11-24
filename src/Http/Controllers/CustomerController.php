@@ -3,6 +3,8 @@
 
 use Ixudra\Core\Http\Controllers\BaseController;
 use Ixudra\Portfolio\Interfaces\Repositories\CustomerRepositoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface;
+use Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface;
 use Ixudra\Portfolio\Interfaces\Services\Html\CustomerViewFactoryInterface;
 use Ixudra\Portfolio\Http\Requests\Customers\CreateCustomerFormRequest;
 use Ixudra\Portfolio\Http\Requests\Customers\FilterCustomerFormRequest;
@@ -104,9 +106,9 @@ class CustomerController extends BaseController {
 
     protected function getFactory($customerType)
     {
-        $factory = 'Ixudra\Portfolio\Interfaces\Services\Factories\CompanyFactoryInterface';
-        if( $customerType == 'person' ) {
-            $factory = 'Ixudra\Portfolio\Interfaces\Services\Factories\PersonFactoryInterface';
+        $factory = CompanyFactoryInterface::class;
+        if( $customerType === 'person' ) {
+            $factory = PersonFactoryInterface::class;
         }
 
         return App::make( $factory );

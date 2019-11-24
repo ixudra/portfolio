@@ -6,7 +6,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('customer_id', Translate::recursive('portfolio::members.customer_id') .': ', array('class' => '')) !!}
-            {!! Form::select('customer_id', $customers, $input['customer_id'], array('placeholder' => Translate::recursive('portfolio::members.customer_id'), 'class' => 'form-control')) !!}
+            {!! Form::select('customer_id', $customers, $input['customer_id'], array('class' => 'form-control')) !!}
         </div>
         <div class="form-group">
             {!! Form::label('project_type_id', Translate::recursive('portfolio::members.project_type_id') .': ', array('class' => '')) !!}
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('shown', Translate::recursive('portfolio::form.shown') .': ', array('class' => '')) !!}
-            {!! Form::select('shown', $visibilityOptions, $input['shown'], array('placeholder' => Translate::recursive('portfolio::form.shown'), 'class' => 'form-control')) !!}
+            {!! Form::select('shown', $visibilityOptions, $input['shown'], array('class' => 'form-control')) !!}
         </div>
         <div class="form-group">
             {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
