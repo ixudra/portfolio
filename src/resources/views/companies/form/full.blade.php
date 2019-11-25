@@ -1,18 +1,12 @@
 
+    <div class="row col-md-12">&nbsp;</div>
+
     @include('portfolio::companies.form.fields', array('prefix' => $prefix))
 
-    <div class="row">
-        <div class="col-md-12">
-            <h3>{{ Translate::recursive('portfolio::members.corporateAddress') }}</h3>
-        </div>
-    </div>
+    <div class="row col-md-12">&nbsp;</div>
 
-    @include('portfolio::addresses.fields', array('prefix' => 'corporate_address_'))
+    @include('portfolio::addresses.fields', array('prefix' => 'corporate_address_', 'title' => Translate::recursive('portfolio::members.corporateAddress')))
 
-    <div class="row">
-        <div class="col-md-12">
-            <h3>{{ Translate::recursive('portfolio::members.representative') }}</h3>
-        </div>
-    </div>
+    <div class="row col-md-12">&nbsp;</div>
 
-    @include('portfolio::people.form.fields', array('prefix' => 'representative_'))
+    @include('portfolio::people.form.fields', array('prefix' => 'representative_', 'title' => Translate::recursive('portfolio::members.representative')))

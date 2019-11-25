@@ -1,12 +1,17 @@
-<div class="row">
-    {!! Form::open(array('route' => array('admin.projectTypes.filter'), 'method' => 'POST', 'id' => 'filterProjectTypes', 'class' => 'form-inline', 'role' => 'form')) !!}
-        <div class="form-group">
-            {!! Form::label('query', Translate::recursive('common.query') .': ', array('class' => 'sr-only')) !!}
-            {!! Form::text('query', $input['query'], array('placeholder' => Translate::recursive('common.query'), 'class' => 'form-control', 'id' => 'query')) !!}
-        </div>
-        <div class="form-group">
-            {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
-            {!! HTML::linkRoute('admin.projectTypes.index', Translate::recursive('common.clear'), array(), array('class' => 'btn btn-default')) !!}
+<div>
+    {!! Form::open(array('route' => array('admin.projectTypes.filter'), 'method' => 'POST', 'id' => 'filterProjectTypes')) !!}
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                {!! Form::label('query', Translate::recursive('common.query') .': ') !!}
+                {!! Form::text('query', $input['query'], array('placeholder' => Translate::recursive('common.query'), 'class' => 'form-control', 'id' => 'query')) !!}
+            </div>
+            <div class="col-md-6 mb-3 align-bottom">
+                {!! Form::label('query','&nbsp;') !!}
+                <div class="form-group">
+                    {!! Form::iconSubmit(Translate::recursive('common.search'), 'search', array('class' => 'btn btn-primary align-bottom')) !!}
+                    {!! HTML::iconRoute('admin.users.index', Translate::recursive('common.clear'), 'remove', array(), array('class' => 'btn btn-outline-secondary')) !!}
+                </div>
+            </div>
         </div>
     {!! Form::close() !!}
 </div>

@@ -13,7 +13,7 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="d-flex flex-row-reverse bd-highlight">
         <p>
             {!! HTML::iconRoute('admin.customers.create', Translate::recursive('common.new'), 'plus', array(), array('class' => 'btn btn-primary')) !!}
         </p>

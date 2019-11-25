@@ -1,18 +1,28 @@
 {!! Form::open(array('route' => $route, 'method' => $method, 'id' => $formId, 'class' => 'form-horizontal', 'role' => 'form')) !!}
 
-    <div class="well well-large">
-        <div class='form-group {{ $errors->has('name') ? 'has-error' : '' }} {{ in_array('name', $requiredFields) ? 'required' : '' }}'>
-            {!! Form::label('name', Translate::recursive('portfolio::members.name') .': ', array('class' => 'control-label col-lg-3')) !!}
-            <div class="col-lg-4">
-                {!! Form::text('name', $input['name'], array('class' => 'form-control')) !!}
-                {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                {{ Translate::recursive('common.titles.basicInformation') }}
+            </div>
+            <div class="card-body">
+                {!! Form::openFormGroup($prefix .'name', $errors, $requiredFields) !!}
+                    {!! Form::label($prefix .'name', Translate::recursive('portfolio::members.name') .': ', array('class' => 'control-label col-sm-3')) !!}
+                    <div class="col-sm-6">
+                        {!! Form::text($prefix .'name', $input[$prefix .'name'], array('class' => 'form-control')) !!}
+                    </div>
+                {!! Form::closeFormGroup($prefix .'name', $errors) !!}
             </div>
         </div>
     </div>
+</div>
 
-    <div class="action-button pull-right">
-        {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
-        {!! HTML::linkRoute($redirectUrl, Translate::recursive('common.cancel'), $redirectParameters, array('class' => 'btn btn-default')) !!}
-    </div>
+<div class="row col-md-12">&nbsp;</div>
+
+<div class="align-right">
+    {!! Form::submit(Translate::recursive('common.submit'), array('class' => 'btn btn-primary')) !!}
+    {!! HTML::linkRoute($redirectUrl, Translate::recursive('common.cancel'), $redirectParameters, array('class' => 'btn btn-outline-secondary')) !!}
+</div>
 
 {!! Form::close() !!}
