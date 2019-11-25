@@ -26,11 +26,10 @@ class EloquentCompanyRepository extends BaseEloquentRepository implements Compan
         $results = $this->getModel();
 
         if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
-            $query = '%'. $filters[ 'query' ] .'%';
             $results = $results
-                ->where('name', 'like', $query)
-                ->orWhere('url', 'like', $query)
-                ->orWhere('email', 'like', $query);
+                ->where('name', 'like', $filters[ 'query' ])
+                ->orWhere('url', 'like', $filters[ 'query' ])
+                ->orWhere('email', 'like', $filters[ 'query' ]);
         }
 
         return $this->paginated($results, $filters, $size);

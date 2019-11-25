@@ -25,9 +25,11 @@ class EloquentAddressRepository extends BaseEloquentRepository implements Addres
     {
         $results = $this->getModel();
 
-        if( array_key_exists('city', $filters) ) {
+        if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
             $results = $results
-                ->where( 'city', '=', $filters[ 'city' ] );
+                ->where('addresses.street_1', 'like', $filters[ 'query' ])
+                ->orWhere('addresses.street_2', 'like', $filters[ 'query' ])
+                ->orWhere('addresses.city', 'like', $filters[ 'query' ]);
         }
 
         return $this->paginated($results, $filters, $size);

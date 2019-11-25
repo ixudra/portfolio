@@ -24,12 +24,10 @@ class EloquentProjectTypeRepository extends BaseEloquentRepository implements Pr
     public function search($filters, $size = 25)
     {
         $results = $this->getModel();
-        foreach( $filters as $key => $value ) {
-            if( !$this->hasString( $filters, $key ) ) {
-                continue;
-            }
 
-            $results = $results->where( $key, 'like', '%'. $value .'%' );
+        if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
+            $results = $results
+                ->where('project_types.key', 'like', $filters[ 'query' ]);
         }
 
         return $this->paginated($results, $filters, $size);

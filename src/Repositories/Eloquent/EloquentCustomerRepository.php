@@ -57,11 +57,10 @@ class EloquentCustomerRepository extends BaseEloquentRepository implements Custo
                         ->where('customers.customer_type', '=', Config::get('bindings.models.company'));
                 });
 
-            $query = '%'. $filters[ 'query' ] .'%';
             $results = $results
-                ->where('companies.name', 'like', $query)
-                ->orWhere('people.first_name', 'like', $query)
-                ->orWhere('people.last_name', 'like', $query);
+                ->where('companies.name', 'like', $filters[ 'query' ])
+                ->orWhere('people.first_name', 'like', $filters[ 'query' ])
+                ->orWhere('people.last_name', 'like', $filters[ 'query' ]);
         }
 
         return $this->paginated($results, $filters, $size);

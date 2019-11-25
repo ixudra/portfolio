@@ -32,9 +32,8 @@ class EloquentProjectRepository extends BaseEloquentRepository implements Projec
         $results = $this->applyForeignKeys( $results, $foreignKeys, $filters );
 
         if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
-            $query = '%'. $filters[ 'query' ] .'%';
             $results = $results
-                ->where('projects.name', 'like', $query);
+                ->where('projects.name', 'like', $filters[ 'query' ]);
         }
 
         return $this->paginated($results, $filters, $size);
