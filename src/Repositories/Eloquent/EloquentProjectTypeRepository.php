@@ -25,9 +25,9 @@ class EloquentProjectTypeRepository extends BaseEloquentRepository implements Pr
     {
         $results = $this->getModel();
 
-        if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
+        if( array_key_exists('query', $filters) && !empty($filters[ 'query' ]) ) {
             $results = $results
-                ->where('project_types.key', 'like', $filters[ 'query' ]);
+                ->where('project_types.name', 'like', $filters[ 'query' ]);
         }
 
         return $this->paginated($results, $filters, $size);

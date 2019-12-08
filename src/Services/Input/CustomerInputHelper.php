@@ -48,7 +48,7 @@ class CustomerInputHelper extends BaseInputHelper implements CustomerInputHelper
             unset( $input[ '_token' ] );
         }
 
-        if( array_key_exists('query', $input) && $input[ 'query' ] != '' ) {
+        if( array_key_exists('query', $input) && !empty($input[ 'query' ]) ) {
             $input[ 'query' ] = '%'. $input[ 'query' ] .'%';
         }
 

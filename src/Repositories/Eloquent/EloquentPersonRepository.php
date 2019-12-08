@@ -25,7 +25,7 @@ class EloquentPersonRepository extends BaseEloquentRepository implements PersonR
     {
         $results = $this->getModel();
 
-        if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
+        if( array_key_exists('query', $filters) && !empty($filters[ 'query' ]) ) {
             $results = $results
                 ->where('first_name', 'like', $filters[ 'query' ])
                 ->orWhere('last_name', 'like', $filters[ 'query' ])

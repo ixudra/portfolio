@@ -23,7 +23,7 @@
                 {!! Form::label('search','&nbsp;') !!}
                 <div class="form-group">
                     {!! Form::iconSubmit(Translate::recursive('common.search'), 'search', array('class' => 'btn btn-primary align-bottom')) !!}
-                    {!! HTML::iconRoute('admin.projects.index', Translate::recursive('common.clear'), 'remove', array(), array('class' => 'btn btn-outline-secondary')) !!}
+                    {!! HTML::iconRoute('admin.projects.index', Translate::recursive('common.clear'), 'times', array(), array('class' => 'btn btn-outline-secondary')) !!}
                 </div>
             </div>
         </div>

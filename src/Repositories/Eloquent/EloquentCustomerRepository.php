@@ -33,7 +33,7 @@ class EloquentCustomerRepository extends BaseEloquentRepository implements Custo
     {
         $results = $this->getModel();
 
-        if( array_key_exists('withProjects', $filters) && $filters[ 'withProjects' ] !== '' ) {
+        if( array_key_exists('withProjects', $filters) && !empty($filters[ 'withProjects' ]) ) {
             if( $filters[ 'withProjects' ] == 1 ) {
                 $results = $results
                     ->join('projects', 'customers.id', '=', 'projects.customer_id');
@@ -44,7 +44,7 @@ class EloquentCustomerRepository extends BaseEloquentRepository implements Custo
             }
         }
 
-        if( array_key_exists('query', $filters) && $filters[ 'query' ] !== '' ) {
+        if( array_key_exists('query', $filters) && !empty($filters[ 'query' ]) ) {
             $results = $results
                 ->leftJoin('people', function($join)
                 {

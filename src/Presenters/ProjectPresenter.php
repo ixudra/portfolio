@@ -15,9 +15,9 @@ class ProjectPresenter extends BasePresenter implements ProjectPresenterInterfac
 
     public function hiddenIcon()
     {
-        $icon = 'eye-open';
+        $icon = 'eye';
         if( $this->hidden ) {
-            $icon = 'eye-close';
+            $icon = 'eye-slash';
         }
 
         return $icon;
