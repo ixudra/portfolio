@@ -15,6 +15,9 @@
 
     <div class="row">
         <p>
+            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#addressFilters" aria-expanded="false" aria-controls="addressFilters">
+                <i class="fas fa-sliders-h" aria-hidden="true"></i> {{ Translate::recursive('portfolio::common.filters') }}
+            </button>
             {!! HTML::iconRoute('admin.addresses.create', Translate::recursive('common.new'), 'plus', array(), array('class' => 'btn btn-primary')) !!}
         </p>
     </div>

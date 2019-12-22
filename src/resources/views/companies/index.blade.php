@@ -15,6 +15,9 @@
 
     <div class="row">
         <p>
+            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#companyFilters" aria-expanded="false" aria-controls="companyFilters">
+                <i class="fas fa-sliders-h" aria-hidden="true"></i> {{ Translate::recursive('portfolio::common.filters') }}
+            </button>
             {!! HTML::iconRoute('admin.companies.create', Translate::recursive('common.new'), 'plus', array(), array('class' => 'btn btn-primary')) !!}
         </p>
     </div>

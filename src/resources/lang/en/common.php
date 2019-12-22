@@ -3,8 +3,9 @@
 
     return array(
 
+        'filter'                            => 'filter',
         'titles'                            => array(
-            'basicInformation'                  => 'Basic information'
-        )
+            'basicInformation'                  => 'basic information',
+        ),
 
     );

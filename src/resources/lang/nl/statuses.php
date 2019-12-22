@@ -12,6 +12,6 @@
             'completed'                     =>  'afgerond',
             'cancelled'                     =>  'geannuleerd',
 
-        )
+        ),
 
     );

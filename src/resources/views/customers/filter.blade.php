@@ -1,4 +1,5 @@
-<div>
+
+<div id="customerFilters" class="collapse">
     {!! Form::open(array('route' => array('admin.customers.filter'), 'method' => 'POST', 'id' => 'filterCustomers')) !!}
         <div class="form-row">
             <div class="col-md-4 mb-3">
