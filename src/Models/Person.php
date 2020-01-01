@@ -54,6 +54,17 @@ class Person extends Model implements PersonInterface {
     }
 
 
+    public function getCorporateAddress()
+    {
+        return $this->address;
+    }
+
+    public function getBillingAddress()
+    {
+        return $this->address;
+    }
+
+
     public static function getRules()
     {
         return array(

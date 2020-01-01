@@ -9,4 +9,8 @@ interface CustomerModelInterface {
 
     public function getSortingName();
 
+    public function getCorporateAddress();
+
+    public function getBillingAddress();
+
 }

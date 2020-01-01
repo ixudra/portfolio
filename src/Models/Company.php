@@ -62,6 +62,17 @@ class Company extends Model implements CompanyInterface {
     }
 
 
+    public function getCorporateAddress()
+    {
+        return $this->corporateAddress;
+    }
+
+    public function getBillingAddress()
+    {
+        return $this->billingAddress;
+    }
+
+
     public static function getRules()
     {
         return array(

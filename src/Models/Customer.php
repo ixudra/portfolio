@@ -41,6 +41,24 @@ class Customer extends Model implements CustomerInterface {
     }
 
 
+    public function getCorporateAddress()
+    {
+        return $this->object->getCorporateAddress();
+    }
+
+    public function getBillingAddress()
+    {
+        return $this->object->getBillingAddress();
+    }
+
+    public function isCompany()
+    {
+        $companyClass = Config::get('bindings.models.company');
+
+        return $this->object instanceof $companyClass;
+    }
+
+
     public static function getRules()
     {
         return array(
