@@ -81,7 +81,7 @@ class Person extends Model implements PersonInterface {
         return array(
             'first_name'                => '',
             'last_name'                 => '',
-            'birth_date'                => '',
+            'birth_date'                => null,
             'email'                     => '',
             'cellphone'                 => '',
         );
