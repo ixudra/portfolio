@@ -58,7 +58,7 @@ class PersonFactory extends BaseFactory implements PersonFactoryInterface {
             }
         }
 
-        return $person->update( $this->extractPersonInput($address, $input, $prefix) );
+        return $person->update( $this->extractPersonInput( $input, $prefix ) );
     }
 
     protected function includeAddress($input)
