@@ -91,7 +91,9 @@ class Project extends Model implements ProjectInterface {
 
     public function delete()
     {
-        $this->image->delete();
+        if( $this->image ) {
+            $this->image->delete();
+        }
 
         parent::delete();
     }
