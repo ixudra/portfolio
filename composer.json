@@ -1,7 +1,7 @@
 {
     "name": "ixudra/portfolio",
     "description": "Custom PHP Portfolio library for the Laravel 5 framework - developed by Ixudra",
-    "version": "2.0.1",
+    "version": "2.1.0",
     "keywords": ["Ixudra", "Laravel", "Portfolio", "Project"],
     "homepage": "http://ixudra.be",
     "license": "MIT",
@@ -15,7 +15,7 @@
 
     "require": {
         "php": ">=7.2.0",
-        "illuminate/support": "~6.0",
+        "illuminate/support": ">=6.0",
         "laravelcollective/html": "~6.0",
         "ixudra/addressable": "~2.0",
         "ixudra/core": "~6.0",
